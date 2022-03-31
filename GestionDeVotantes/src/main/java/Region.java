@@ -23,8 +23,6 @@ public class Region {
         String nombre;
         String comuna;
         String direccion;
-        int coordenadaX;
-        int coordenadaY;
         int capacidadMaxima;
         int numeroPrimeraMesa;
         int numeroUltimaMesa;
@@ -41,14 +39,6 @@ public class Region {
         
         System.out.println("Ingrese dirección del local");
         direccion = lector.readLine();
-        
-        System.out.println("Ingrese la coordenada X de la ubicacion del local");
-        auxNumero = lector.readLine();
-        coordenadaX = Integer.parseInt(auxNumero);
-        
-        System.out.println("Ingrese la coordenada Y de la ubicacion del local");
-        auxNumero = lector.readLine();
-        coordenadaY = Integer.parseInt(auxNumero);
         
         System.out.println("Ingrese capacidad maxima del local");
         auxNumero = lector.readLine();
@@ -73,7 +63,7 @@ public class Region {
         }
         
         // Instanciación de la variable de Clase Local.
-        Local aux = new Local(nombre, comuna, direccion, coordenadaX, coordenadaY, capacidadMaxima, numeroPrimeraMesa, numeroUltimaMesa);
+        Local aux = new Local(nombre, comuna, direccion, capacidadMaxima, numeroPrimeraMesa, numeroUltimaMesa);
         
         // Inserción del los datos del local nuevo en el mapa respectivo, con la clave el nombre.
         registroLocalesNombre.put(aux.getNombreLocal(), aux);
@@ -84,8 +74,6 @@ public class Region {
     public void agregarLocal(String nombre, String comuna, int numeroDeMesaVotanteNuevo)throws IOException{
         // Variables locales del metodo.
         String direccion;
-        int coordenadaX;
-        int coordenadaY;
         int capacidadMaxima;
         int numeroPrimeraMesa;
         int numeroUltimaMesa;
@@ -96,14 +84,6 @@ public class Region {
         // Solicitud de ingreso de datos del local.
         System.out.println("Ingrese dirección del local");
         direccion = lector.readLine();
-        
-        System.out.println("Ingrese la coordenada X de la ubicacion del local");
-        auxNumero = lector.readLine();
-        coordenadaX = Integer.parseInt(auxNumero);
-        
-        System.out.println("Ingrese la coordenada Y de la ubicacion del local");
-        auxNumero = lector.readLine();
-        coordenadaY = Integer.parseInt(auxNumero);
         
         System.out.println("Ingrese capacidad maxima del local");
         auxNumero = lector.readLine();
@@ -128,7 +108,7 @@ public class Region {
         }
         
         // Instanciación de la variable de Clase Local.
-        Local aux = new Local(nombre, comuna, direccion, coordenadaX, coordenadaY, capacidadMaxima, numeroPrimeraMesa, numeroUltimaMesa);
+        Local aux = new Local(nombre, comuna, direccion, capacidadMaxima, numeroPrimeraMesa, numeroUltimaMesa);
         
         // Inserción del los datos del local nuevo en el mapa respectivo, con la clave el nombre.
         registroLocalesNombre.put(aux.getNombreLocal(), aux);
@@ -159,8 +139,6 @@ public class Region {
         String rut;
         String comuna;
         String direccion;
-        int coordenadaX;
-        int coordenadaY; 
         int estadoElectoral;
         String localAsignado;
         int numeroDeMesa;
@@ -182,14 +160,6 @@ public class Region {
         System.out.println("Ingrese dirección de domicilio del votante");
         direccion = lector.readLine();
         
-        System.out.println("Ingrese la coordenada X de la ubicacion del domicilio del votante");
-        auxNumero = lector.readLine();
-        coordenadaX = Integer.parseInt(auxNumero);
-        
-        System.out.println("Ingrese la coordenada Y de la ubicacion del domicilio del votante");
-        auxNumero = lector.readLine();
-        coordenadaY = Integer.parseInt(auxNumero);
-        
         System.out.println("Ingrese 1 si la persona esta habilitada para votar, 0 caso contrario");
         auxNumero = lector.readLine();
         estadoElectoral = Integer.parseInt(auxNumero);
@@ -207,7 +177,7 @@ public class Region {
         numeroDeMesa = Integer.parseInt(auxNumero);
         
         // Instanciación de la variable de Clase Votante.
-        Votante aux = new Votante(nombreCompleto, rut, comuna, direccion, coordenadaX, coordenadaY, estadoElectoral, localAsignado, numeroDeMesa);
+        Votante aux = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral, localAsignado, numeroDeMesa);
         
         // Inserción del los datos del votante nuevo en el mapa respectivo, con la clave el rut.
         registroVotantesRut.put(aux.getRut(), aux);
