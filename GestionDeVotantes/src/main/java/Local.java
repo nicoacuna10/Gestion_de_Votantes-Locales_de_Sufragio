@@ -14,24 +14,16 @@ public class Local {
     private String nombreLocal; // Nombre del local.
     private String comuna; // Comuna donde se encuentra el local.
     private String direccion; // Dirección del local.
-    
-    // Coordenadas de la ubicación del local.
-    private int coordenadaX; // Coordenada X.
-    private int coordenadaY; // Coordenada Y.
-    
     private int capacidadMaxima; // Capacidad Maxima (Personas) del local.
     private int numeroPrimeraMesa; // Número de la primera mesa del local.
     private int numeroUltimaMesa; // Número de la última mesa del local.
-    
     private LinkedList <Mesa> listaDeMesas; // Lista de las mesas, contiene los números de las mesas del local.
     
     // Constructor clase Local
-    public Local(String nombreLocal, String comuna, String direccion, int coordenadaX, int coordenadaY, int capacidadMaxima, int numeroPrimeraMesa, int numeroUltimaMesa) {
+    public Local(String nombreLocal, String comuna, String direccion,  int capacidadMaxima, int numeroPrimeraMesa, int numeroUltimaMesa) {
         this.nombreLocal = nombreLocal;
         this.comuna = comuna;
         this.direccion = direccion;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
         this.capacidadMaxima = capacidadMaxima;
         this.numeroPrimeraMesa = numeroPrimeraMesa;
         this.numeroUltimaMesa = numeroUltimaMesa;
@@ -124,12 +116,6 @@ public class Local {
     public String getDireccion() {
         return direccion;
     }
-    public int getCoordenadaX() {
-        return coordenadaX;
-    }
-    public int getCoordenadaY() {
-        return coordenadaY;
-    }
     public int getCapacidadMaxima() {
         return capacidadMaxima;
     }
@@ -151,12 +137,6 @@ public class Local {
     }
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-    public void setCoordenadaX(int coordenadaX) {
-        this.coordenadaX = coordenadaX;
-    }
-    public void setCoordenadaY(int coordenadaY) {
-        this.coordenadaY = coordenadaY;
     }
     public void setCapacidadMaxima(int capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
