@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -10,48 +9,56 @@ import java.util.List;
 public class Mesa {
     
     private int numeroDeMesa;
-    private int cantidadDeVotantes;
-    private int cantidadDeVocales;
-    private List <String> listaDeRutsDeVotantes;
-    private List <String> listaDeRutsDeVocales;
+    private int capacidadMaxima;
+    private LinkedList <String> listaRutsVotantes;
 
-    public Mesa(int numeroDeMesa, int cantidadDeVotantes) {
+    public Mesa(int numeroDeMesa, int capacidadMaxima) {
         this.numeroDeMesa = numeroDeMesa;
-        this.cantidadDeVotantes = cantidadDeVotantes;
-        this.listaDeRutsDeVotantes = new LinkedList <String>();
+        this.capacidadMaxima = capacidadMaxima;
+        this.listaRutsVotantes = new LinkedList();
     }
+    
+    
+    public Mesa(int numeroDeMesa) {
+        this.numeroDeMesa = numeroDeMesa;
+        this.capacidadMaxima = 250;
+        this.listaRutsVotantes = new LinkedList();
+    }
+    
+    // Método agregar rut de votante a la lista.
+    public void agregarRutVotante(String rut){
+        listaRutsVotantes.add(rut);
+    }
+    
+    // Método mostrar los ruts de los votantes
+    public void mostrarRutsVotantes(){
+        int index;
+        
+        for(index = 0; index < listaRutsVotantes.size(); index++){
+            System.out.println(listaRutsVotantes.get(index));
+        }
+    }
+    
+    
     public int getNumeroDeMesa() {
         return numeroDeMesa;
     }
-    public int getCantidadDeVotantes() {
-        return cantidadDeVotantes;
+    public int getCapacidadMaxima() {
+        return capacidadMaxima;
     }
-    public int getCantidadDeVocales() {
-        return cantidadDeVocales;
-    }
-    public List getListaDeRutsDeVotantes(){
-        return listaDeRutsDeVotantes;
-    }
-    public List getListaDeRutsDeVocales(){
-        return listaDeRutsDeVocales;
+    public LinkedList getListaDeRutsDeVocales(){
+        return listaRutsVotantes;
     }
     
     public void setNumeroDeMesa(int numeroDeMesa) {
         this.numeroDeMesa = numeroDeMesa;
     }
-    public void setCantidadDeVotantes(int cantidadDeVotantes) {
-        this.cantidadDeVotantes = cantidadDeVotantes;
+    public void setCapacidadMaxima(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
     }
-    public void setCantidadDeVocales(int cantidadDeVocales) {
-        this.cantidadDeVocales = cantidadDeVocales;
+    public void setListaRutsVotantes(LinkedList listaRutsVotantes) {
+        this.listaRutsVotantes = listaRutsVotantes;
     }
-    public void setListaDeVotantes(List listaDeRutsDeVotantes) {
-        this.listaDeRutsDeVotantes = listaDeRutsDeVotantes;
-    }
-    public void setListaDeVocales(List listaDeRutsDeVocales) {
-        this.listaDeRutsDeVocales = listaDeRutsDeVocales;
-    }
-    
     
     
 }
