@@ -32,6 +32,19 @@ public class Mesa {
         listaRutsVotantes.add(rut);
     }
     
+    // Método eliminar rut de votante de la lista.
+    public void eliminarRutVotante(String rut){
+        String auxRut;
+        for(int i=0; i<listaRutsVotantes.size(); i++){
+            auxRut = listaRutsVotantes.get(i);
+            if( auxRut == rut){
+                listaRutsVotantes.remove(i);
+                break;
+            }
+        
+        }
+    }
+    
     // getters y setters
     public int getNumeroDeMesa() {
         return numeroDeMesa;
