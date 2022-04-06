@@ -349,8 +349,20 @@ public class GestionDeVotantes {
         auxL.agregarMesa(numeroPrimeraMesa, numeroUltimaMesa);
     }
     
-    // Función 5: muestra las mesas de un local.
-    public static void funcion5(Region valparaiso)throws IOException{
+    // Función 5: muestra los locales de votacion de la región.
+    public static void funcion5(Region valparaiso){
+        
+        System.out.println("Locales de votacion de la region de Valparaiso");
+        Map <String, Local> mapaAuxLocales = valparaiso.getRegistroLocalesNombre();
+        Local auxL;
+        for(String nombreLocal : mapaAuxLocales.keySet()){
+            auxL = mapaAuxLocales.get(nombreLocal);
+            System.out.println(nombreLocal+"\t"+auxL.getComuna());
+        }
+    }
+    
+    // Función 6: muestra las mesas de un local.
+    public static void funcion6(Region valparaiso)throws IOException{
         
         // Variables auxiliares
         Local auxL;
@@ -404,8 +416,9 @@ public class GestionDeVotantes {
             System.out.println("2. Modificar datos del votante");
             System.out.println("3. Consultar datos electorales del votante");
             System.out.println("4. Agregar local al registro");
-            System.out.println("5. Mostrar las mesas de un local");
-            System.out.println("6. Salir");
+            System.out.println("5. Mostrar locales de votacion");
+            System.out.println("6. Mostrar las mesas de un local");
+            System.out.println("7. Salir");
  
             try {
  
@@ -444,16 +457,22 @@ public class GestionDeVotantes {
                         funcion4(valparaiso);
                         break;
                     case 5:
-                        if(valparaiso != null){
+                        if(valparaiso != null && valparaiso.registroLocalesNombre != null){
                             System.out.println("Has seleccionado la opcion 5");
                             funcion5(valparaiso);
                         }
                         break;
                     case 6:
+                        if(valparaiso != null && valparaiso.registroLocalesNombre != null){
+                            System.out.println("Has seleccionado la opcion 6");
+                            funcion6(valparaiso);
+                        }
+                        break;
+                    case 7:
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo números entre 1 y 6");
+                        System.out.println("Solo números entre 1 y 7");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Debes insertar un número");
