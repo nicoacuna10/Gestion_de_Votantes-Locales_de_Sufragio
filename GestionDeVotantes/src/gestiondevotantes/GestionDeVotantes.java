@@ -9,7 +9,6 @@ import java.io.*;
  * @author Nicolás Acuña
  */
 
-
 public class GestionDeVotantes {
     
     // Función 1: agrega un nuevo votante.
@@ -274,23 +273,7 @@ public class GestionDeVotantes {
         
         if(auxV != null){
             auxL = valparaiso.buscarLocal(auxV.getLocalAsignado());
-            
-            // Se imprimen los datos del votante
-            System.out.println("DATOS VOTANTE");
-            System.out.println("NOMBRE: "+auxV.getNombreCompleto());
-            System.out.println("RUT "+auxV.getRut());
-            System.out.println("COMUNA: "+auxV.getComuna());
-            System.out.println("DIRECCION: "+auxV.getDireccion());
-
-            if(auxV.getEstadoElectoral() == 1){
-                System.out.println("HABILITADO(A) PARA VOTAR: SI");
-            }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
-
-            System.out.println("LOCAL: "+auxV.getLocalAsignado());
-            System.out.println("DIRECCION LOCAL: "+auxL.getDireccion());
-            System.out.println("NUMERO DE MESA: "+auxV.getNumeroDeMesa());
-            
-            
+            valparaiso.mostrarDatosVotante(auxV, auxL);
         }else System.out.println("El votante no existe en el registro");
 
         
@@ -351,14 +334,8 @@ public class GestionDeVotantes {
     
     // Función 5: muestra los locales de votacion de la región.
     public static void funcion5(Region valparaiso){
-        
         System.out.println("Locales de votacion de la region de Valparaiso");
-        Map <String, Local> mapaAuxLocales = valparaiso.getRegistroLocalesNombre();
-        Local auxL;
-        for(String nombreLocal : mapaAuxLocales.keySet()){
-            auxL = mapaAuxLocales.get(nombreLocal);
-            System.out.println(nombreLocal+"\t"+auxL.getComuna());
-        }
+        valparaiso.mostrarLocales();
     }
     
     // Función 6: muestra las mesas de un local.
@@ -366,9 +343,6 @@ public class GestionDeVotantes {
         
         // Variables auxiliares
         Local auxL;
-        LinkedList auxLista;
-        Mesa auxM;
-        
         String nombre;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
@@ -377,15 +351,8 @@ public class GestionDeVotantes {
         
         auxL = valparaiso.buscarLocal(nombre);
         if(auxL != null){
-            int index;
-            auxLista = auxL.getListaDeMesas();
-            
             System.out.println("Lista de mesas del local "+auxL.getNombreLocal());
-            for(index = 0; index < auxLista.size() ; index++){
-                auxM = (Mesa) auxLista.get(index);
-                System.out.println(auxM.getNumeroDeMesa());
-            }
-            
+            auxL.mostrarMesas();
             
         }else System.out.println("El local no existe en el registro");
         
@@ -400,9 +367,6 @@ public class GestionDeVotantes {
         
         // Se crea una variable de clase Region.
         Region valparaiso = null;
-        
-        
-        
         
         // MENU
         Scanner sn = new Scanner(System.in);
@@ -443,7 +407,7 @@ public class GestionDeVotantes {
                         }
                         break;
                     case 3:
-                        if(valparaiso != null && valparaiso.registroVotantesRut != null){
+                        if(valparaiso != null){
                             System.out.println("Has seleccionado la opcion 3");
                             funcion3(valparaiso);
                         }
@@ -457,13 +421,13 @@ public class GestionDeVotantes {
                         funcion4(valparaiso);
                         break;
                     case 5:
-                        if(valparaiso != null && valparaiso.registroLocalesNombre != null){
+                        if(valparaiso != null){
                             System.out.println("Has seleccionado la opcion 5");
                             funcion5(valparaiso);
                         }
                         break;
                     case 6:
-                        if(valparaiso != null && valparaiso.registroLocalesNombre != null){
+                        if(valparaiso != null){
                             System.out.println("Has seleccionado la opcion 6");
                             funcion6(valparaiso);
                         }

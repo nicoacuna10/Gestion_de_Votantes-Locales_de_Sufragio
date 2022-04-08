@@ -79,6 +79,15 @@ public class Local {
         
         
     }
+    
+    // Método mostrar mesas de un local.
+    public void mostrarMesas(){
+        Mesa auxM;
+        for(int index = 0; index < listaDeMesas.size() ; index++){
+            auxM = (Mesa) listaDeMesas.get(index);
+            System.out.println(auxM.getNumeroDeMesa());
+        }
+    }
 
     public String getNombreLocal() {
         return nombreLocal;
