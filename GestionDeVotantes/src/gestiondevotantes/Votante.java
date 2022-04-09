@@ -53,7 +53,7 @@ public class Votante {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
-    public void setRun(String rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
     public void setComuna(String comuna) {
