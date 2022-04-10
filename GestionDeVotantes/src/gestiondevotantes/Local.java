@@ -49,6 +49,34 @@ public class Local {
         listaDeMesas.add(auxM); // Inserta la información de la mesa nueva al final de la lista.
     }
     
+    // Método elminar mesa.
+    public Mesa eliminarMesa(int numeroDeMesa){
+        
+        boolean encontrado = false;
+        int index;
+        Mesa aux;
+        
+        index = 0;
+        aux = listaDeMesas.get(index);
+        
+        while(!encontrado && index < listaDeMesas.size()){
+            
+            if(aux.getNumeroDeMesa() == numeroDeMesa){
+                encontrado = true;
+                break;
+            }
+            
+            index++;
+            aux = listaDeMesas.get(index);
+        
+        }
+        
+        if(encontrado){
+            return listaDeMesas.remove(index);
+        }else return null;
+    
+    }
+    
     
     // Método buscar mesa. Retorna el valor de la variable (información de la mesa) si la encuentra, null caso contrario.
     public Mesa buscarMesa(int numeroDeMesa){
@@ -107,9 +135,6 @@ public class Local {
     public int getNumeroUltimaMesa() {
         return numeroUltimaMesa;
     }
-    public LinkedList getListaDeMesas() {
-        return listaDeMesas;
-    }
 
     public void setNombreLocal(String nombreLocal) {
         this.nombreLocal = nombreLocal;
@@ -128,9 +153,6 @@ public class Local {
     }
     public void setNumeroUltimaMesa(int numeroUltimaMesa) {
         this.numeroUltimaMesa = numeroUltimaMesa;
-    }
-    public void setListaDeMesas(LinkedList listaDeMesas) {
-        this.listaDeMesas = listaDeMesas;
     }
     
     

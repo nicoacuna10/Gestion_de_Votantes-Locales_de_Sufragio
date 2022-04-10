@@ -2,7 +2,6 @@ package gestiondevotantes;
 
 import java.util.*;
 
-
 /**
  *
  * @author Nicolás Acuña
@@ -15,8 +14,8 @@ public class Region {
     
     // Constructor de la Clase Region.
     public Region(){
-        this.registroLocalesNombre = new LinkedHashMap();
-        this.registroVotantesRut = new LinkedHashMap();
+        this.registroLocalesNombre = new HashMap();
+        this.registroVotantesRut = new HashMap();
     }
     
     // Método agregar local, con parámetros objetos de clase Local y Votante
@@ -27,9 +26,13 @@ public class Region {
     
     
     // Método agregar local, con parámetro objeto de clase Local
-    public void agregarLocal(Local auxL){
+    public boolean agregarLocal(Local auxL){
+        if(registroLocalesNombre.containsKey(auxL.getNombreLocal()) == true){
+            return false;
+        }
         // Inserción del los datos del local nuevo en el mapa respectivo, con la clave el nombre.
         registroLocalesNombre.put(auxL.getNombreLocal(), auxL);
+        return true;
     }
         
     
@@ -38,11 +41,33 @@ public class Region {
         return registroLocalesNombre.get(nombre);
     }
     
+    // Método eliminar local.
+    public boolean eliminarLocal(String nombre){
+        if(registroLocalesNombre.containsKey(nombre) == false){
+            return false;
+        }
+        // eliminación del local.
+        registroLocalesNombre.remove(nombre);
+        return true;
+    
+    }
+    
+    // Método mostrar datos local
+    public void mostrarDatosLocal(Local auxL){
+        // Se imprimen los datos del local.
+        System.out.println("DATOS LOCAL");
+        System.out.println("NOMBRE: "+auxL.getNombreLocal());
+        System.out.println("COMUNA: "+auxL.getComuna());
+        System.out.println("DIRECCION: "+auxL.getDireccion());
+        System.out.println("MESAS: "+auxL.getNumeroPrimeraMesa()+" - "+auxL.getNumeroUltimaMesa());
+    
+    }
+    
     // Método mostrar locales.
     public void mostrarLocales(){
-        for(String nombreLocal : registroLocalesNombre.keySet()){
+        registroLocalesNombre.keySet().forEach(nombreLocal -> {
             System.out.println(nombreLocal+"\t"+(registroLocalesNombre.get(nombreLocal)).getComuna());
-        }
+        });
     }
     
     // Método agregar votante.
@@ -59,36 +84,21 @@ public class Region {
     // Método mostrar datos votante.
     public void mostrarDatosVotante(Votante auxV, Local auxL){
         // Se imprimen los datos del votante
-            System.out.println("DATOS VOTANTE");
-            System.out.println("NOMBRE: "+auxV.getNombreCompleto());
-            System.out.println("RUT "+auxV.getRut());
-            System.out.println("COMUNA: "+auxV.getComuna());
-            System.out.println("DIRECCION: "+auxV.getDireccion());
+        System.out.println("DATOS VOTANTE");
+        System.out.println("NOMBRE: "+auxV.getNombreCompleto());
+        System.out.println("RUT "+auxV.getRut());
+        System.out.println("COMUNA: "+auxV.getComuna());
+        System.out.println("DIRECCION: "+auxV.getDireccion());
 
-            if(auxV.getEstadoElectoral() == 1){
-                System.out.println("HABILITADO(A) PARA VOTAR: SI");
-            }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
+        if(auxV.getEstadoElectoral() == 1){
+            System.out.println("HABILITADO(A) PARA VOTAR: SI");
+        }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
 
-            System.out.println("LOCAL: "+auxV.getLocalAsignado());
-            System.out.println("DIRECCION LOCAL: "+auxL.getDireccion());
-            System.out.println("NUMERO DE MESA: "+auxV.getNumeroDeMesa());
+        System.out.println("LOCAL: "+auxV.getLocalAsignado());
+        System.out.println("DIRECCION LOCAL: "+auxL.getDireccion());
+        System.out.println("NUMERO DE MESA: "+auxV.getNumeroDeMesa());
     }
     
-    // getters y setters
-    public Map getRegistroLocalesNombre(){
-        return registroLocalesNombre;
-    }
-    
-    public Map getRegistroVotantesRut(){
-        return registroVotantesRut;
-    }
-    
-    public void setRegistroLocalesNombre(Map registroLocalesNombre){
-        this.registroLocalesNombre = registroLocalesNombre;
-    }
-    
-    public void setRegistroVotantesRut(Map registroVotantesRut){
-        this.registroVotantesRut = registroVotantesRut;
-    }
+
 }
 

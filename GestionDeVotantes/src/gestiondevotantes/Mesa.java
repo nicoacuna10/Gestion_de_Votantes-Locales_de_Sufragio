@@ -13,7 +13,7 @@ public class Mesa {
     private int numeroDeMesa;
     private int capacidadMaxima;
     private LinkedList <String> listaRutsVotantes;
-
+    
     public Mesa(int numeroDeMesa, int capacidadMaxima) {
         this.numeroDeMesa = numeroDeMesa;
         this.capacidadMaxima = capacidadMaxima;
@@ -37,7 +37,7 @@ public class Mesa {
         String auxRut;
         for(int i=0; i<listaRutsVotantes.size(); i++){
             auxRut = listaRutsVotantes.get(i);
-            if( auxRut == rut){
+            if( rut.equals(auxRut)){
                 listaRutsVotantes.remove(i);
                 break;
             }
@@ -52,9 +52,7 @@ public class Mesa {
     public int getCapacidadMaxima() {
         return capacidadMaxima;
     }
-    public LinkedList getListaDeRutsDeVocales(){
-        return listaRutsVotantes;
-    }
+
     
     public void setNumeroDeMesa(int numeroDeMesa) {
         this.numeroDeMesa = numeroDeMesa;
@@ -62,9 +60,7 @@ public class Mesa {
     public void setCapacidadMaxima(int capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
     }
-    public void setListaRutsVotantes(LinkedList listaRutsVotantes) {
-        this.listaRutsVotantes = listaRutsVotantes;
-    }
+
     
     
 }
