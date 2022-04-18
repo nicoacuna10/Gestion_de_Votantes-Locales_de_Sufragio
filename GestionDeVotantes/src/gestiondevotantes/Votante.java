@@ -16,7 +16,14 @@ public class Votante {
     private int estadoElectoral; // Si el valor es 1, el votante está habilitado para votar.
     private String localAsignado; // Nombre del local donde le toca votar.
     private int numeroDeMesa; // Número de mesa donde le toca votar.
-    
+    // Constructor en caso de que el usuario no este habilitado para votar
+    public Votante(String nombreCompleto, String rut, String comuna, String direccion, int estadoElectoral) {
+        this.nombreCompleto = nombreCompleto;
+        this.rut = rut;
+        this.comuna = comuna;
+        this.direccion = direccion;
+        this.estadoElectoral = estadoElectoral;
+    }
     // Constructor de la clase
     public Votante(String nombreCompleto, String rut, String comuna, String direccion, int estadoElectoral, String localAsignado, int numeroDeMesa) {
         this.nombreCompleto = nombreCompleto;

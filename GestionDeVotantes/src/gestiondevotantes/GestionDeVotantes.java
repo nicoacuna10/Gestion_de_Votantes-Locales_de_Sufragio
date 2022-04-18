@@ -14,7 +14,9 @@ public class GestionDeVotantes {
 
     // Función principal de la clase
     public static void main(String[] args)throws IOException{
-        
+        Menu m = new Menu();
+        m.menuOperaciones();
+        /*
         System.out.println(" -----------------------------------------");
         System.out.println("| Gestion de Votantes-Locales de votacion |");
         System.out.println(" -----------------------------------------");
@@ -126,7 +128,7 @@ public class GestionDeVotantes {
                 sn.next();
             }
         }
-        
+        */
     }
     
 }
