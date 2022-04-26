@@ -27,12 +27,13 @@ public class Menu {
         Funcionalidad f = new Funcionalidad();
         valparaiso = f.funcionInicial(valparaiso);
         Scanner sn = new Scanner(System.in);
-
+        
         boolean salir = false;
         int opcion;
             while (!salir) {
 
                 System.out.println("MENU");
+                System.out.println("0.  Mostrar datos de TODOS los usuarios");
                 System.out.println("1.  Agregar usuario al registro");
                 System.out.println("2.  Modificar datos del usuario");
                 System.out.println("3.  Eliminar usuario del registro");
@@ -57,6 +58,11 @@ public class Menu {
                     opcion = sn.nextInt();
 
                     switch (opcion) {
+                        case 0:
+                            System.out.println("Has seleccionado la opcion 0");
+                            f.MostrarDatosUsuarios(valparaiso);
+                            break;
+                            
                         case 1:
                             System.out.println("Has seleccionado la opcion 1");
                             valparaiso = f.funcionAgregarVotante(valparaiso);

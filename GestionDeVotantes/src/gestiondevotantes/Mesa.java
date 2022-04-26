@@ -17,7 +17,7 @@ public class Mesa {
     public Mesa(int numeroDeMesa, int capacidadMaxima) {
         this.numeroDeMesa = numeroDeMesa;
         this.capacidadMaxima = capacidadMaxima;
-        this.listaRutsVotantes = new LinkedList();
+        listaRutsVotantes = new LinkedList();
     }
     
     

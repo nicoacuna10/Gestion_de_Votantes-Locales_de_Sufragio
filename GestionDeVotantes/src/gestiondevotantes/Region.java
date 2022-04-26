@@ -9,13 +9,15 @@ import java.util.*;
 public class Region {
     
     // Creación de mapas.
-    private Map <String, Local> registroLocalesNombre; // Mapa de Locales con clave el nombre.
-    private Map <String, Votante> registroVotantesRut; // Mapa de Votantes con clave el rut.
+    private HashMap <String, Local> registroLocalesNombre; // Mapa de Locales con clave el nombre.
+    private HashMap <String, Votante> registroVotantesRut; // Mapa de Votantes con clave el rut.
+    private ArrayList <String> usuariosRut;  // Lista de Rut
     
     // Constructor de la Clase Region.
     public Region(){
-        this.registroLocalesNombre = new HashMap();
-        this.registroVotantesRut = new HashMap();
+        registroLocalesNombre = new HashMap();
+        registroVotantesRut = new HashMap();
+        usuariosRut = new ArrayList();
     }
     
     // Método agregar local, con parámetros objetos de clase Local y Votante
@@ -38,7 +40,8 @@ public class Region {
     
     // Método buscar local.
     public Local buscarLocal(String nombre){
-        return registroLocalesNombre.get(nombre);
+        if(registroLocalesNombre.containsValue(nombre))return registroLocalesNombre.get(nombre);
+        return null;
     }
     
     // Método eliminar local.
@@ -74,17 +77,47 @@ public class Region {
     public void agregarVotante(Votante aux){
         // Inserción del los datos del votante nuevo en el mapa respectivo, con la clave el rut.
         registroVotantesRut.put(aux.getRut(), aux);
+        usuariosRut.add(aux.getRut());
     }
     
     public Votante buscarVotante(String rut){
         // Búsqueda del votante con la clave el rut
-        return registroVotantesRut.get(rut);
+        if(registroVotantesRut.containsKey(rut))return registroVotantesRut.get(rut);
+        return null;
     }
-    
+    public Votante eliminarVotante(String rut){
+        if(registroVotantesRut.containsKey(rut)){
+            for(int i=0;i<usuariosRut.size(); i++){
+                if(usuariosRut.get(i).equals(rut))usuariosRut.remove(i);
+            }
+            return registroVotantesRut.remove(rut);
+        }
+        return null;
+    }
+    public void mostrarTodosVotantes(){
+        if(usuariosRut.size()>0){
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            for(int i=0; i<usuariosRut.size();i++){
+                Votante v = buscarVotante(usuariosRut.get(i));
+                if(v==null)break;
+
+                System.out.format("%-30s %-15s %-15s %-25s", v.getNombreCompleto(),v.getRut(),v.getComuna(),v.getDireccion());
+                if(v.getEstadoElectoral()==1)System.out.println("SI");
+                else System.out.println("NO");
+            }
+            System.out.println("-------------------------------------------------------------------------------------------------");
+        }else{
+            System.out.println("No hay datos");
+        }
+    }
     // Método mostrar datos votante.
     public void mostrarDatosVotante(Votante auxV, Local auxL){
         // Se imprimen los datos del votante
+        System.out.println("------------------------------------------");
         System.out.println("DATOS VOTANTE");
+        System.out.println("------------------------------------------");
         System.out.println("NOMBRE: "+auxV.getNombreCompleto());
         System.out.println("RUT "+auxV.getRut());
         System.out.println("COMUNA: "+auxV.getComuna());
@@ -92,11 +125,12 @@ public class Region {
 
         if(auxV.getEstadoElectoral() == 1){
             System.out.println("HABILITADO(A) PARA VOTAR: SI");
+            System.out.println("LOCAL: "+auxV.getLocalAsignado());
+            System.out.println("DIRECCION LOCAL: "+auxL.getDireccion());
+            System.out.println("NUMERO DE MESA: "+auxV.getNumeroDeMesa());
         }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
+        System.out.println("------------------------------------------");
 
-        System.out.println("LOCAL: "+auxV.getLocalAsignado());
-        System.out.println("DIRECCION LOCAL: "+auxL.getDireccion());
-        System.out.println("NUMERO DE MESA: "+auxV.getNumeroDeMesa());
     }
     
 

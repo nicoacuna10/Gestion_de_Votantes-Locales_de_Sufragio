@@ -14,6 +14,16 @@ public class Funcionalidad {
     
     }
     
+    
+    public void MostrarDatosUsuarios (Region valparaiso){
+        valparaiso.mostrarTodosVotantes();
+    }
+    public String leerDatos() throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String dato = lector.readLine();
+        return dato;
+    }
+    
     // Funcion inicial: llena las colecciones.
     public Region funcionInicial(Region valparaiso){
     
@@ -64,6 +74,7 @@ public class Funcionalidad {
         Local auxL;
         Votante auxV;
         Votante votanteExistente;
+        
         Mesa auxM;
         String nombreCompleto;
         String rut;
@@ -98,7 +109,10 @@ public class Funcionalidad {
             System.out.println("El usuario "+nombreCompleto+" no esta habilitado para votar");
             auxV = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral);
             votanteExistente = valparaiso.buscarVotante(rut);
-            if(votanteExistente==null)valparaiso.agregarVotante(auxV);
+            if(votanteExistente==null){
+                valparaiso.agregarVotante(auxV);
+                
+            }
         }else{
             System.out.println("Ingrese Nombre del Local Asignado");
             localAsignado = lector.readLine();
@@ -250,9 +264,14 @@ public class Funcionalidad {
     }
     
     // Función 3: elimina votante del registro
-    public Region funcionEliminarVotante(Region valparaiso)throws IOException{
+    public Region funcionEliminarVotante(Region valparaiso) throws IOException{
         //if(valparaiso == null)System.out.println("No hay votantes en Valparaiso");
         //valparaiso.
+        System.out.println("Ingrese un RUT");
+        String rut = leerDatos();
+        Votante v = valparaiso.eliminarVotante(rut);
+        if(v == null)System.out.println("En el registro no existe el rut ingresado");
+        System.out.println("Se ha Eliminado a " +v.getNombreCompleto()+" del registro");
         return valparaiso;
     }
     
