@@ -80,32 +80,13 @@ public class Local {
     
     // Método buscar mesa. Retorna el valor de la variable (información de la mesa) si la encuentra, null caso contrario.
     public Mesa buscarMesa(int numeroDeMesa){
-        // Variables locales del método.
-        boolean encontrado = false; // Bandera que indica si se encontró el numero de la mesa dentro de la lista.
-        int index; // iterador
-        Mesa aux;
-        
-        // Se posicona en el primer elemento de la lista
-        index = 0;
-        aux = listaDeMesas.get(index);
-        
-        // Se busca la mesa, avanzando en la lista hasta que se encuentre el elmento o se llegue al final de la lista.
-        while(!encontrado && index < listaDeMesas.size()){
-        
-            if(aux.getNumeroDeMesa() == numeroDeMesa){
-                encontrado = true;
-                break;
+        Mesa auxMesa;
+        for (int i=0;i<listaDeMesas.size();i++){
+            if(numeroDeMesa == listaDeMesas.get(i).getNumeroDeMesa()){
+                return listaDeMesas.get(i);
             }
-            
-            index++;
-            aux = listaDeMesas.get(index);
         }
-        
-        if(encontrado){
-            return aux; // Si encuentra la mesa, retorna el valor de esta.
-        }else return null; // Si no encuentra la mesa, retorna null.
-        
-        
+        return null;
     }
     
     // Método mostrar mesas de un local.

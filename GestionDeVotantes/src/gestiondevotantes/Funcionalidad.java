@@ -442,18 +442,15 @@ public class Funcionalidad {
         nombreLocal = lector.readLine();
         
         auxL = valparaiso.buscarLocal(nombreLocal);
+        //Ya no se pide numero de la mesa nueva, se agrega automaticamente al final
         
-        System.out.println("Ingrese numero nueva mesa");
-        numeroMesaNueva = Integer.parseInt(lector.readLine());
+            System.out.println("MESAS DISPONIBLES ANTERIORMENTE : " + auxL.getNumeroUltimaMesa() );
         
-        while(numeroMesaNueva != auxL.getNumeroUltimaMesa()+1){
-            System.out.println("Ingrese numero de mesa valido");
-            numeroMesaNueva = Integer.parseInt(lector.readLine());
-        }
-        
-        auxL.agregarMesa(numeroMesaNueva);
-        auxL.setNumeroUltimaMesa(numeroMesaNueva);
-        
+            numeroMesaNueva = (auxL.getNumeroUltimaMesa() + 1);
+            auxL.agregarMesa(numeroMesaNueva);
+            auxL.setNumeroUltimaMesa(numeroMesaNueva);
+            
+            System.out.println("MESAS DISPONIBLES AHORA : " + auxL.getNumeroUltimaMesa());
         
         return valparaiso;
     
@@ -499,21 +496,12 @@ public class Funcionalidad {
         nombreLocal = lector.readLine();
         
         auxL = valparaiso.buscarLocal(nombreLocal);
+      
+        System.out.println("La mesa a eliminar es : Mesa " + auxL.getNumeroUltimaMesa());
+        //Se elimina la mesa y se reasigna la variable
+        auxL.eliminarMesa(auxL.getNumeroUltimaMesa());
+        auxL.setNumeroUltimaMesa((auxL.getNumeroUltimaMesa() - 1));
         
-        System.out.println("Ingrese numero de la mesa a eliminar");
-        numeroDeMesa = Integer.parseInt(lector.readLine());
-        
-        while(numeroDeMesa != auxL.getNumeroUltimaMesa()){
-            System.out.println("Ingrese numero de mesa valido");
-            numeroDeMesa = Integer.parseInt(lector.readLine());
-        }
-        
-        auxM = auxL.eliminarMesa(numeroDeMesa);
-        
-        if(auxM != null){
-            auxL.setNumeroUltimaMesa(numeroDeMesa-1);
-            System.out.println("La mesa numero "+auxM.getNumeroDeMesa()+" del local "+nombreLocal+" fue eliminada con exito");
-        }else System.out.println("La mesa no existe");
         
         return valparaiso;
     }
