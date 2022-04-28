@@ -33,9 +33,6 @@ public class Funcionalidad {
         Votante votante1;
         Votante votante2;
         Votante votante3;
-        Mesa mesa1;
-        Mesa mesa2;
-        Mesa mesa3;
         
         votante1 = new Votante("PEDRO ALBERTO LOPEZ GONZALEZ", "13800755-0", "VINA DEL MAR", "15 NORTE 567", 1, "UNIVERSIDAD ANDRES BELLO", 50);
         valparaiso.agregarVotante(votante1);
@@ -48,17 +45,14 @@ public class Funcionalidad {
         
         local1 = new Local("UNIVERSIDAD ANDRES BELLO", "VINA DEL MAR", "QUILLOTA 980", 10002, 31, 70);
         local1.agregarMesa(local1.getNumeroPrimeraMesa(), local1.getNumeroUltimaMesa());
-        mesa1 = local1.buscarMesa(votante1.getNumeroDeMesa());
         valparaiso.agregarLocal(local1);
         
         local2 = new Local("PUCV CASA CENTRAL", "VALPARAISO", "BRASIL 2950", 3000, 21, 35);
         local2.agregarMesa(local2.getNumeroPrimeraMesa(), local2.getNumeroUltimaMesa());
-        mesa2 = local2.buscarMesa(votante2.getNumeroDeMesa());
         valparaiso.agregarLocal(local2);
         
         local3 = new Local("LICEO POLITECNICO CONCON", "CONCON", "PORVENIR 865", 1500, 1, 7);
         local3.agregarMesa(local3.getNumeroPrimeraMesa(), local3.getNumeroUltimaMesa());
-        mesa3 = local3.buscarMesa(votante3.getNumeroDeMesa());
         valparaiso.agregarLocal(local3);
 
         return valparaiso;
@@ -104,7 +98,7 @@ public class Funcionalidad {
 
         if(estadoElectoral==0){
             System.out.println("El usuario "+nombreCompleto+" no esta habilitado para votar");
-            auxV = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral);
+            auxV = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral, null, 0);
             votanteExistente = valparaiso.buscarVotante(rut);
             if(votanteExistente==null){
                 valparaiso.agregarVotante(auxV);
