@@ -28,7 +28,7 @@ public class Local {
         this.capacidadMaxima = capacidadMaxima;
         this.numeroPrimeraMesa = numeroPrimeraMesa;
         this.numeroUltimaMesa = numeroUltimaMesa;
-        this.listaDeMesas = new LinkedList();
+        listaDeMesas = new LinkedList();
     }
     
     // Método agregar mesa, con dos parámetros int
@@ -51,41 +51,26 @@ public class Local {
     
     // Método elminar mesa.
     public Mesa eliminarMesa(int numeroDeMesa){
-        
-        boolean encontrado = false;
-        int index;
-        Mesa aux;
-        
-        index = 0;
-        aux = listaDeMesas.get(index);
-        
-        while(!encontrado && index < listaDeMesas.size()){
-            
-            if(aux.getNumeroDeMesa() == numeroDeMesa){
-                encontrado = true;
-                break;
+        for(int i=0; i<listaDeMesas.size() ; i++){
+            if(listaDeMesas.get(i).getNumeroDeMesa()==numeroDeMesa){
+                System.out.println("Se ha eliminado la mesa "+numeroDeMesa);
+                return listaDeMesas.remove(i);
             }
-            
-            index++;
-            aux = listaDeMesas.get(index);
-        
         }
-        
-        if(encontrado){
-            return listaDeMesas.remove(index);
-        }else return null;
+        System.out.println("No existe la mesa");
+        return null;
     
     }
     
     
     // Método buscar mesa. Retorna el valor de la variable (información de la mesa) si la encuentra, null caso contrario.
     public Mesa buscarMesa(int numeroDeMesa){
-        Mesa auxMesa;
         for (int i=0;i<listaDeMesas.size();i++){
             if(numeroDeMesa == listaDeMesas.get(i).getNumeroDeMesa()){
                 return listaDeMesas.get(i);
             }
         }
+        System.out.println("No existe la mesa");
         return null;
     }
     

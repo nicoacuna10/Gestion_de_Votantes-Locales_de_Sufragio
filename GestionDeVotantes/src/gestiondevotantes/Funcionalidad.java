@@ -20,7 +20,7 @@ public class Funcionalidad {
     }
     public String leerDatos() throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        String dato = lector.readLine();
+        String dato = leerDatos();
         return dato;
     }
     
@@ -49,19 +49,16 @@ public class Funcionalidad {
         local1 = new Local("UNIVERSIDAD ANDRES BELLO", "VINA DEL MAR", "QUILLOTA 980", 10002, 31, 70);
         local1.agregarMesa(local1.getNumeroPrimeraMesa(), local1.getNumeroUltimaMesa());
         mesa1 = local1.buscarMesa(votante1.getNumeroDeMesa());
-        mesa1.agregarRutVotante(votante1.getRut());
         valparaiso.agregarLocal(local1);
         
         local2 = new Local("PUCV CASA CENTRAL", "VALPARAISO", "BRASIL 2950", 3000, 21, 35);
         local2.agregarMesa(local2.getNumeroPrimeraMesa(), local2.getNumeroUltimaMesa());
         mesa2 = local2.buscarMesa(votante2.getNumeroDeMesa());
-        mesa2.agregarRutVotante(votante2.getRut());
         valparaiso.agregarLocal(local2);
         
         local3 = new Local("LICEO POLITECNICO CONCON", "CONCON", "PORVENIR 865", 1500, 1, 7);
         local3.agregarMesa(local3.getNumeroPrimeraMesa(), local3.getNumeroUltimaMesa());
         mesa3 = local3.buscarMesa(votante3.getNumeroDeMesa());
-        mesa3.agregarRutVotante(votante3.getRut());
         valparaiso.agregarLocal(local3);
 
         return valparaiso;
@@ -83,26 +80,26 @@ public class Funcionalidad {
         int estadoElectoral;
         String localAsignado;
         int numeroDeMesa;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
 
         // Solicitud de ingreso de datos del votante.
         System.out.println("Ingrese nombre completo del usuario");
-        nombreCompleto = lector.readLine();
+        nombreCompleto = leerDatos();
 
         System.out.println("Ingrese rut del usuario");
-        rut = lector.readLine();
+        rut = leerDatos();
 
         System.out.println("Ingrese comuna de domicilio del usuario");
-        comuna = lector.readLine();
+        comuna = leerDatos();
 
         System.out.println("Ingrese dirección de domicilio del usuario");
-        direccion = lector.readLine();
+        direccion = leerDatos();
 
         System.out.println("Ingrese 1 si el usuario esta habilitado para votar, 0 caso contrario");
-        estadoElectoral = Integer.parseInt(lector.readLine());
+        estadoElectoral = Integer.parseInt(leerDatos());
         while(estadoElectoral != 1 && estadoElectoral != 0){
             System.out.println("Ingrese un numero valido, 1 o 0");
-            estadoElectoral = Integer.parseInt(lector.readLine());
+            estadoElectoral = Integer.parseInt(leerDatos());
         }
 
         if(estadoElectoral==0){
@@ -115,10 +112,10 @@ public class Funcionalidad {
             }
         }else{
             System.out.println("Ingrese Nombre del Local Asignado");
-            localAsignado = lector.readLine();
+            localAsignado = leerDatos();
 
             System.out.println("Ingrese numero de mesa del votante");
-            numeroDeMesa = Integer.parseInt(lector.readLine());
+            numeroDeMesa = Integer.parseInt(leerDatos());
 
             // Instanciación de la variable de Clase Votante.
             auxV = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral, localAsignado, numeroDeMesa);
@@ -142,23 +139,23 @@ public class Funcionalidad {
 
                 // Solicitud de ingreso de datos del local.
                 System.out.println("Ingrese dirección del local");
-                direccion = lector.readLine();
+                direccion = leerDatos();
 
                 System.out.println("Ingrese capacidad maxima del local");
-                capacidadMaxima = Integer.parseInt(lector.readLine());
+                capacidadMaxima = Integer.parseInt(leerDatos());
 
                 System.out.println("Ingrese el numero de la primera mesa");
-                numeroPrimeraMesa = Integer.parseInt(lector.readLine());
+                numeroPrimeraMesa = Integer.parseInt(leerDatos());
                 while(numeroPrimeraMesa > auxV.getNumeroDeMesa() || numeroPrimeraMesa < 1){
                     System.out.println("Ingrese numero de mesa valido");
-                    numeroPrimeraMesa = Integer.parseInt(lector.readLine());
+                    numeroPrimeraMesa = Integer.parseInt(leerDatos());
                 }
 
                 System.out.println("Ingrese el numero de la ultima mesa");
-                numeroUltimaMesa = Integer.parseInt(lector.readLine());
+                numeroUltimaMesa = Integer.parseInt(leerDatos());
                 while(numeroUltimaMesa < auxV.getNumeroDeMesa()){
                     System.out.println("Ingrese numero de mesa valido");
-                    numeroUltimaMesa = Integer.parseInt(lector.readLine());
+                    numeroUltimaMesa = Integer.parseInt(leerDatos());
                 }
 
                 // Instanciación de la variable de Clase Local.
@@ -175,7 +172,6 @@ public class Funcionalidad {
             // Se busca la mesa del votante.
             auxM = auxL.buscarMesa(auxV.getNumeroDeMesa());
             // Se agrega el rut a la lista de ruts de los votantes de la mesa.
-            auxM.agregarRutVotante(auxV.getRut());
         }
         return valparaiso;
     
@@ -192,11 +188,11 @@ public class Funcionalidad {
         int numeroDeMesa;
         String direccionNueva;
         String comuna;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         // Se solicita ingresar el rut del votante para realizar los cambios necesarios.
         System.out.println("Ingrese rut del votante que necesite modificar dato");
-        rut = lector.readLine();
+        rut = leerDatos();
         
         // Se busca en el registro. Si no lo encuentra.
         auxV = valparaiso.buscarVotante(rut);
@@ -211,30 +207,29 @@ public class Funcionalidad {
 
         // Se le pide ingresar el nombre del local nuevo. Si no se encuentra, se le pide que ingrese otro.
         System.out.println("Ingrese nombre del local a cambiar");
-        nombreLocalNuevo = lector.readLine();
+        nombreLocalNuevo = leerDatos();
         auxL2 = valparaiso.buscarLocal(nombreLocalNuevo);
 
         while(auxL2 == null){
             System.out.println("Nombre del local no existe en el registro, ingrese otro");
-            nombreLocalNuevo = lector.readLine();
+            nombreLocalNuevo = leerDatos();
             auxL2 = valparaiso.buscarLocal(nombreLocalNuevo);
         }
 
         // Se busca la mesa actual del votante.
         auxM = auxL1.buscarMesa(auxV.getNumeroDeMesa());
         // Se elimina el rut del votante de la lista de ruts de votantes de la mesa.
-        auxM.eliminarRutVotante(auxV.getRut());
 
         // Se modifica el local del votante.
         auxV.setLocalAsignado(nombreLocalNuevo);
 
         // Se le pide que ingrese la mesa del local nuevo.
         System.out.println("Ingrese numero de mesa");
-        numeroDeMesa = Integer.parseInt(lector.readLine());
+        numeroDeMesa = Integer.parseInt(leerDatos());
 
         while(numeroDeMesa < auxL2.getNumeroPrimeraMesa() || numeroDeMesa > auxL2.getNumeroUltimaMesa()){
             System.out.println("Ingrese numero de mesa valido");
-            numeroDeMesa = Integer.parseInt(lector.readLine());
+            numeroDeMesa = Integer.parseInt(leerDatos());
         }
 
         // Se modifica el número de mesa.
@@ -243,19 +238,18 @@ public class Funcionalidad {
         // Se busca la mesa nueva del votante.
         auxM = auxL2.buscarMesa(auxV.getNumeroDeMesa());
         // Se agrega el rut del votante a la lista de ruts de votantes de la mesa nueva.
-        auxM.agregarRutVotante(auxV.getRut());
         
         
         // Se le pide ingresar la dirección nueva del domicilio.
         System.out.println("Ingrese direccion nueva del domicilio");
-        direccionNueva = lector.readLine();
+        direccionNueva = leerDatos();
 
         // Se modifica la dirección.
         auxV.setDireccion(direccionNueva);
 
         // Se le pide ingresar la comuna. Aunque no cambie, se le pide que la ingrese nuevamente.
         System.out.println("Ingrese comuna (si es la misma de la direccion anterior, ingresela ingualmente)");
-        comuna = lector.readLine();
+        comuna = leerDatos();
 
         // Se modifica la comuna (en caso que sea la misma, no hay cambios).
         auxV.setComuna(comuna);
@@ -279,11 +273,11 @@ public class Funcionalidad {
     public void funcionConsultarDatosVotante(Region valparaiso)throws IOException{
         Votante auxV;
         Local auxL;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         String rut;
         System.out.println("Ingrese rut del votante");
-        rut = lector.readLine();
+        rut = leerDatos();
         
         auxV = valparaiso.buscarVotante(rut);
         
@@ -302,34 +296,34 @@ public class Funcionalidad {
         int numeroPrimeraMesa;
         int numeroUltimaMesa;
         boolean agregado;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         
         // Solicitud de ingreso de datos del local.
         System.out.println("Ingrese nombre del local");
-        nombre = lector.readLine();
+        nombre = leerDatos();
         
         System.out.println("Ingrese comuna del local");
-        comuna = lector.readLine();
+        comuna = leerDatos();
         
         System.out.println("Ingrese dirección del local");
-        direccion = lector.readLine();
+        direccion = leerDatos();
         
         System.out.println("Ingrese capacidad maxima del local");
-        capacidadMaxima = Integer.parseInt(lector.readLine());
+        capacidadMaxima = Integer.parseInt(leerDatos());
         
         System.out.println("Ingrese el numero de la primera mesa");
-        numeroPrimeraMesa = Integer.parseInt(lector.readLine());
+        numeroPrimeraMesa = Integer.parseInt(leerDatos());
         while(numeroPrimeraMesa < 1){
             System.out.println("Ingrese numero de mesa valido");
-            numeroPrimeraMesa = Integer.parseInt(lector.readLine());
+            numeroPrimeraMesa = Integer.parseInt(leerDatos());
         }
         
         System.out.println("Ingrese el numero de la ultima mesa");
-        numeroUltimaMesa = Integer.parseInt(lector.readLine());
+        numeroUltimaMesa = Integer.parseInt(leerDatos());
         while(numeroUltimaMesa < numeroPrimeraMesa){
             System.out.println("Ingrese numero de mesa valido");
-            numeroUltimaMesa = Integer.parseInt(lector.readLine());
+            numeroUltimaMesa = Integer.parseInt(leerDatos());
         }
         
         // Instanciación de la variable de Clase Local.
@@ -352,29 +346,29 @@ public class Funcionalidad {
         String comuna;
         String direccion;
         int capacidadMaxima;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = leerDatos();
         
         auxL = valparaiso.buscarLocal(nombreLocal);
         
         if(auxL != null){
             
             System.out.println("Ingrese nombre nuevo del local");
-            nombreLocal = lector.readLine();
+            nombreLocal = leerDatos();
             auxL.setNombreLocal(nombreLocal);    
             
             System.out.println("Ingrese comuna nueva del local");
-            comuna = lector.readLine();
+            comuna = leerDatos();
             auxL.setComuna(comuna);
             
             System.out.println("Ingrese direccion nueva del local");
-            direccion = lector.readLine();
+            direccion = leerDatos();
             auxL.setDireccion(direccion);
             
             System.out.println("Ingrese capacidad maxima nueva del local");
-            capacidadMaxima = Integer.parseInt(lector.readLine());
+            capacidadMaxima = Integer.parseInt(leerDatos());
             auxL.setCapacidadMaxima(capacidadMaxima);
             
             System.out.println("El local fue modificado con exito");
@@ -389,10 +383,10 @@ public class Funcionalidad {
         
         boolean eliminado;
         String nombreLocal;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = leerDatos();
         
         eliminado = valparaiso.eliminarLocal(nombreLocal);
         
@@ -409,10 +403,10 @@ public class Funcionalidad {
         
         Local auxL;
         String nombreLocal;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = leerDatos();
         
         // Búsqueda de local.
         auxL = valparaiso.buscarLocal(nombreLocal);
@@ -436,10 +430,10 @@ public class Funcionalidad {
         Local auxL;
         String nombreLocal;
         int numeroMesaNueva;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = leerDatos();
         
         auxL = valparaiso.buscarLocal(nombreLocal);
         //Ya no se pide numero de la mesa nueva, se agrega automaticamente al final
@@ -464,20 +458,20 @@ public class Funcionalidad {
         String nombreLocal;
         int numeroDeMesa;
         int capacidadMaxima;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre local");
-        nombreLocal = lector.readLine();
+        nombreLocal = leerDatos();
         
         auxL = valparaiso.buscarLocal(nombreLocal);
         
         System.out.println("Ingrese numero de mesa");
-        numeroDeMesa = Integer.parseInt(lector.readLine());
+        numeroDeMesa = Integer.parseInt(leerDatos());
         
         auxM = auxL.buscarMesa(numeroDeMesa);
         
         System.out.println("Ingrese capacidad maxima nueva");
-        capacidadMaxima = Integer.parseInt(lector.readLine());
+        capacidadMaxima = Integer.parseInt(leerDatos());
         auxM.setCapacidadMaxima(capacidadMaxima);       
         
         return valparaiso;
@@ -490,10 +484,10 @@ public class Funcionalidad {
         Mesa auxM;
         String nombreLocal;
         int numeroDeMesa;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = leerDatos();
         
         auxL = valparaiso.buscarLocal(nombreLocal);
       
@@ -511,10 +505,10 @@ public class Funcionalidad {
         // Variables auxiliares
         Local auxL;
         String nombre;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        
         
         System.out.println("Ingrese nombre del local");
-        nombre = lector.readLine();
+        nombre = leerDatos();
         
         auxL = valparaiso.buscarLocal(nombre);
         if(auxL != null){
@@ -524,4 +518,5 @@ public class Funcionalidad {
         }else System.out.println("El local no existe en el registro");
     }
     
+
 }

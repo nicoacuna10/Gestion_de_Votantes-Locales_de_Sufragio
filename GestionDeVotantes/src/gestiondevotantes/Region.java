@@ -1,6 +1,11 @@
 package gestiondevotantes;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,6 +136,33 @@ public class Region {
         }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
         System.out.println("------------------------------------------");
 
+    }
+        public void exportar(String nombreArchivo){
+        File f;
+        FileWriter fw;
+        BufferedWriter bw;
+        PrintWriter pw;
+        
+        try {
+            f = new File(nombreArchivo);
+            fw = new FileWriter(f);
+            bw = new BufferedWriter(fw);
+            pw = new PrintWriter(bw);//int estadoElectoral, String localAsignado, int numeroDeMesa)
+            pw.write("NOMBRE,RUT,COMUNA,DIRECCION,ESTADO ELECTORAL,LOCAL ASIGNADO,NUMERO DE MESA");
+            for(int i=0; i<usuariosRut.size() ; i++){
+                
+                if(registroVotantesRut.containsKey(usuariosRut.get(i))){
+                    Votante v = registroVotantesRut.get(usuariosRut.get(i));
+                    String linea = "\n"+v.getNombreCompleto()+","+v.getRut()+","+v.getComuna()+","+v.getDireccion()+","+v.getEstadoElectoral()+","+v.getLocalAsignado()+","+v.getNumeroDeMesa();;
+                    pw.append(linea);
+                }
+            }
+            pw.close();
+            bw.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+ e);
+        }
+        
     }
     
 

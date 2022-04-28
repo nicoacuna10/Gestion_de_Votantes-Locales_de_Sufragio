@@ -49,7 +49,7 @@ public class Menu {
                 System.out.println("11. Modificar datos de la mesa");
                 System.out.println("12. Eliminar Mesa");
                 System.out.println("13. Mostrar las mesas de un local");
-
+                System.out.println("15. Exportar datos en un archivo csv");
                 System.out.println("14. Salir");
 
                 try {
@@ -124,6 +124,9 @@ public class Menu {
                         case 14:
                             salir = true;
                             break;
+                        case 15:
+                            valparaiso.exportar("datos.csv");
+                            break;
                         default:
                             System.out.println("Solo números entre 1 y 14");
                     }
@@ -133,6 +136,9 @@ public class Menu {
                 }
             }
 
-        }
+    }
+    /*public void subMenuExportar(){
+        
+    }*/
    
 }
