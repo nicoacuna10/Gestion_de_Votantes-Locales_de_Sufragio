@@ -21,7 +21,6 @@ public class Mesa {
     
     public Mesa(int numeroDeMesa) {
         this.numeroDeMesa = numeroDeMesa;
-        this.capacidadMaxima = 250;
     }
     
     // getters y setters

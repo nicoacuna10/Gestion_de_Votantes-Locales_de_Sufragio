@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestiondevotantes;
 
 import java.util.*;
@@ -49,8 +44,9 @@ public class Menu {
                 System.out.println("11. Modificar datos de la mesa");
                 System.out.println("12. Eliminar Mesa");
                 System.out.println("13. Mostrar las mesas de un local");
-                System.out.println("15. Exportar datos en un archivo csv");
-                System.out.println("14. Salir");
+                
+                System.out.println("14. Exportar datos en un archivo csv");
+                System.out.println("15. Salir");
 
                 try {
 
@@ -60,7 +56,7 @@ public class Menu {
                     switch (opcion) {
                         case 0:
                             System.out.println("Has seleccionado la opcion 0");
-                            f.MostrarDatosUsuarios(valparaiso);
+                            f.funcionMostrarVotantes(valparaiso);
                             break;
                             
                         case 1:
@@ -120,15 +116,16 @@ public class Menu {
                             f.funcionMostrarMesas(valparaiso);
                             break;
 
-
                         case 14:
+                            f.funcionExportar("datos.csv", valparaiso);
+                            break;
+                            
+                        case 15:
                             salir = true;
                             break;
-                        case 15:
-                            valparaiso.exportar("datos.csv");
-                            break;
+                        
                         default:
-                            System.out.println("Solo números entre 1 y 14");
+                            System.out.println("Solo números entre 1 y 15");
                     }
                 } catch (InputMismatchException e) {
                     System.out.println("Debes insertar un número");
