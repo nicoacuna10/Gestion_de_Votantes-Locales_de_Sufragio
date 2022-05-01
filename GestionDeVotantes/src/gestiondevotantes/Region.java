@@ -17,134 +17,11 @@ public class Region {
     
     // Creación de mapas.
     private HashMap <String, Local> registroLocalesNombre; // Mapa de Locales con clave el nombre.
-    private HashMap <String, Votante> registroVotantesRut; // Mapa de Votantes con clave el rut.
+
     
     // Constructor de la Clase Region.
     public Region(){
         registroLocalesNombre = new HashMap();
-        registroVotantesRut = new HashMap();
-    }
-    
-    /*  Método mostrarVotantes: muestra todos los votantes del registro
-        en caso de existir al menos 1. En caso contrario muestra un mensaje
-        indicando que no hay datos.
-    */
-    public void mostrarVotantes(){
-        if(registroVotantesRut.size()>0){
-            System.out.println("-------------------------------------------------------------------------------------------------");
-            System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
-            System.out.println("-------------------------------------------------------------------------------------------------");
-            // Se recorre el mapa registroVotantesRut
-            registroVotantesRut.keySet().forEach(rutVotante -> {
-                Votante v = registroVotantesRut.get(rutVotante);
-                System.out.format("%-30s %-15s %-15s %-25s", v.getNombreCompleto(),v.getRut(),v.getComuna(),v.getDireccion());
-                if(v.getEstadoElectoral()==1)System.out.println("SI");
-                else System.out.println("NO");
-            });
-            System.out.println("-------------------------------------------------------------------------------------------------");
-        }else{
-            System.out.println("No hay datos");
-        }
-    }
-    
-    /*  Método agregarVotante: Ingresa un votantes y lo ingresa al mapa
-        registroVotantesRut. Si ya existe no lo agrega y retorna false.
-        En caso de no existir lo agrega y retorna true.
-    */
-    public boolean agregarVotante(Votante v){
-        if(registroVotantesRut.containsKey(v.getRut())){
-            return false;
-        }
-        
-        registroVotantesRut.put(v.getRut(), v);
-        return true;
-    }
-    
-    /*  Método buscarVotante: busca un votante en el mapa registroVotantesRut
-        con la clave el rut personal. Si el mapa contiene el rut, retorna el
-        votante. En caso contrario retorna null.
-    */
-    public Votante buscarVotante(String rut){
-        if(registroVotantesRut.containsKey(rut)){
-            return registroVotantesRut.get(rut);
-        }
-        return null;
-    }
-    
-    /*  Método modificarDatosVotante: modifica datos del votante (local, numero
-        de mesa, comuna, dirección electoral). Solo se hace la modificación si
-        el votante existe en el registro, el local existe en el registro, el número
-        de mesa es valida, y la comuna nueva coincide con la comuna del local.
-    
-    */
-    public boolean modificarDatosVotante(String rut, String nombreLocalNuevo, int numeroMesaNueva, String comunaNueva, String direccionNueva){
-        if(!registroVotantesRut.containsKey(rut) || !registroLocalesNombre.containsKey(nombreLocalNuevo)){
-            return false;
-        }
-        
-        Votante v = registroVotantesRut.get(rut);
-        Local b = registroLocalesNombre.get(nombreLocalNuevo);
-        
-        if(numeroMesaNueva < b.getNumeroPrimeraMesa() || numeroMesaNueva > b.getNumeroUltimaMesa()){
-            return false;
-        }
-        
-        if(!comunaNueva.equals(b.getComuna())){
-            return false;
-        }
-        
-        v.setComuna(comunaNueva);
-        v.setDireccion(direccionNueva);
-        v.setLocalAsignado(nombreLocalNuevo);
-        v.setNumeroDeMesa(numeroMesaNueva);
-
-        return true;
-    }
-    
-    /*  Método eliminarVotante: Se elimina el votante del registro con la clave 
-        el rut personal, siempre que exista en el registro. Si no se encuentra
-        en el registro retorna false. Si se elimina con exito retorna true.
-    
-    */
-    public boolean eliminarVotante(String rut){
-        if(!registroVotantesRut.containsKey(rut)){
-            return false;
-        }
-        registroVotantesRut.remove(rut);
-        return true;
-    }
-    
-    /*  Método mostrarDatosVotante: muestra los datos del votante.
-        Se verifica que el votante se encuentre en registro.
-        Si no se encuentra el votante en registro, retorna false.
-        Si el votante está en registro, se muestran los datos y retorna
-        true.
-    
-    */
-    public boolean mostrarDatosVotante(String rut){
-        if(!registroVotantesRut.containsKey(rut)){
-            return false;
-        }
-        Votante v = registroVotantesRut.get(rut);
-        Local b = registroLocalesNombre.get(v.getLocalAsignado());
-        // Se imprimen los datos del votante
-        System.out.println("------------------------------------------");
-        System.out.println("DATOS VOTANTE");
-        System.out.println("------------------------------------------");
-        System.out.println("NOMBRE: "+v.getNombreCompleto());
-        System.out.println("RUT "+v.getRut());
-        System.out.println("COMUNA: "+v.getComuna());
-        System.out.println("DIRECCION: "+v.getDireccion());
-
-        if(v.getEstadoElectoral() == 1){
-            System.out.println("HABILITADO(A) PARA VOTAR: SI");
-            System.out.println("LOCAL: "+v.getLocalAsignado());
-            System.out.println("DIRECCION LOCAL: "+b.getDireccion());
-            System.out.println("NUMERO DE MESA: "+v.getNumeroDeMesa());
-        }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
-        System.out.println("------------------------------------------");
-        
-        return true;
     }
     
     /*  Método agregarLocal: Se ingresa un local nuevo al registro. Se verifica 
@@ -153,11 +30,11 @@ public class Region {
         agrega y retorna true.
     
     */
-    public boolean agregarLocal(Local b){
-        if(registroLocalesNombre.containsKey(b.getNombreLocal())){
+    public boolean agregarLocal(Local a){
+        if(registroLocalesNombre.containsKey(a.getNombreLocal())){
             return false;
         }
-        registroLocalesNombre.put(b.getNombreLocal(), b);
+        registroLocalesNombre.put(a.getNombreLocal(), a);
         return true;
     }
         
@@ -180,14 +57,14 @@ public class Region {
     
     */
     public boolean modificarDatosLocal(String nombreLocal, String comuna, String direccion, int capacidadMaxima){
-        if(!registroLocalesNombre.containsKey(nombreLocal)){
+        if(!registroLocalesNombre.containsKey(nombreLocal) || nombreLocal.equals("SIN LOCAL")){
             return false;
         }
-        Local b = registroLocalesNombre.get(nombreLocal);
-        b.setNombreLocal(nombreLocal);
-        b.setComuna(comuna);
-        b.setDireccion(direccion);
-        b.setCapacidadMaxima(capacidadMaxima);
+        Local a = registroLocalesNombre.get(nombreLocal);
+        a.setNombreLocal(nombreLocal);
+        a.setComuna(comuna);
+        a.setDireccion(direccion);
+        a.setCapacidadMaxima(capacidadMaxima);
         return true;
     }
     
@@ -197,7 +74,10 @@ public class Region {
     
     */
     public boolean eliminarLocal(String nombreLocal){
-        if(!registroLocalesNombre.containsKey(nombreLocal)){
+        if(registroLocalesNombre.isEmpty()){
+            return false;
+        }
+        if(!registroLocalesNombre.containsKey(nombreLocal) || nombreLocal.equals("SIN LOCAL")){
             return false;
         }
         registroLocalesNombre.remove(nombreLocal);
@@ -210,16 +90,16 @@ public class Region {
         En caso contrario, retorna false.
     */
     public boolean mostrarDatosLocal(String nombreLocal){
-        if(!registroLocalesNombre.containsKey(nombreLocal)){
+        if(!registroLocalesNombre.containsKey(nombreLocal) || nombreLocal.equals("SIN LOCAL")){
             return false;
         }
-        Local b = registroLocalesNombre.get(nombreLocal);
+        Local a = registroLocalesNombre.get(nombreLocal);
         // Se imprimen los datos del local.
         System.out.println("DATOS LOCAL");
-        System.out.println("NOMBRE: "+b.getNombreLocal());
-        System.out.println("COMUNA: "+b.getComuna());
-        System.out.println("DIRECCION: "+b.getDireccion());
-        System.out.println("MESAS: "+b.getNumeroPrimeraMesa()+" - "+b.getNumeroUltimaMesa());
+        System.out.println("NOMBRE: "+a.getNombreLocal());
+        System.out.println("COMUNA: "+a.getComuna());
+        System.out.println("DIRECCION: "+a.getDireccion());
+        System.out.println("MESAS: "+a.getNumeroPrimeraMesa()+" - "+a.getNumeroUltimaMesa());
         
         return true;
     }
@@ -229,83 +109,158 @@ public class Region {
     */
     public void mostrarLocales(){
         // Se recorre el mapa registroLocalesNombre
-        registroLocalesNombre.keySet().forEach(nombreLocal -> {
-            System.out.println(nombreLocal+"\t"+(registroLocalesNombre.get(nombreLocal)).getComuna());
-        });
+        for(String nombreLocal : registroLocalesNombre.keySet()){
+            if(!nombreLocal.equals("SIN LOCAL")){
+                System.out.println(nombreLocal+"\t"+(registroLocalesNombre.get(nombreLocal)).getComuna());
+            }
+        }
     }
     
-    /*  Método agregarMesa: agrega una mesa nueva al local a partir del número
-        de la última mesa actual solo si existe el local. Si no existe el local
-        no se agrega y retorna false. Si existe, se llama al metodo agregaMesa
-        de la clase Local y se actualiza el número de la última mesa.
+    /*  Método agregarVotante: Agrega un nuevo votante si no existe dentro del local
+        de votación. Retorna true si lo agrega, caso contrario false. Utiliza el
+        método agregarVotante de la clase Local para agregarlo al mapa de votantes del
+        local.
+    
     */
-    public boolean agregarMesa(String nombreLocal){
+    public boolean agregarVotante(String nombreLocal, Votante v){
         if(!registroLocalesNombre.containsKey(nombreLocal)){
             return false;
         }
-        Local b = registroLocalesNombre.get(nombreLocal);
-        b.agregarMesa();
-        b.setNumeroUltimaMesa(b.getNumeroUltimaMesa()+1);
+        Local a = registroLocalesNombre.get(nombreLocal);
+        return a.agregarVotante(v);
+    }
+    
+    /*  Método agregarVotante: Agrega un nuevo votante que no está habilitado para
+        votar (estadoElectoral de valor 0. Utiliza el método agregarVotante de la
+        clase Local para agregarlo al mapa de votantes del local de nombre "SIN LOCAL".
+    
+    */
+    public void agregarVotante(Votante v){
+        Local a = registroLocalesNombre.get("SIN LOCAL");
+        a.agregarVotante(v);
+    }
+    
+    
+    /*  Método buscarVotante: Busca un votante en el local con el nombre que ingresa.
+        Retorna null si el local ingresado no existe en el registro.
+        En caso de que exista el local ingresado, lo busca con el método
+        buscarVotante de la clase Local.
+    
+    */
+    public Votante buscarVotante(String nombreLocal, String rut){
+        if(!registroLocalesNombre.containsKey(nombreLocal)){
+            return null;
+        }
+        Local a = registroLocalesNombre.get(nombreLocal);
+        return a.buscarVotante(rut);
+    }
+    
+    /*  Método buscarVotante: Busca un votante en todos los locales de votación
+        hasta que lo encuentre o términe de recorrer (lo que ocurra primero).
+        Si lo encuentra retorna el votante. Si termina de recorrer los locales
+        sin éxito, retorna null.
+    
+    */
+    public Votante buscarVotante(String rut){
+        for( String nombreLocal : registroLocalesNombre.keySet()){
+            Local a = registroLocalesNombre.get(nombreLocal);
+            Votante v = a.buscarVotante(rut);
+            if(v != null){
+                return v;
+            }
+        }
+        return null;
+    }
+    
+    /*  Método modificarDatosVotante: Modifica los datos del votante (el nombre
+        del local, número de la mesa, la comuna y la dirección) si se cumple lo
+        siguiente:
+        1.- El votante se encuentre en alguno de los locales.
+        2.- El nombre del local al que se quiere cambiar sea el mismo donde se
+            encuentra alctualmente el votante.
+        3.- La comuna del nuevo local sea distinta a la del domicilio del votante.
+    */
+    public boolean modificarDatosVotante(String rut, String nombreLocalB, int numeroDeMesa, String comuna, String direccion){
+        String nombreLocalA = "0";
+        for( String nombreLocal : registroLocalesNombre.keySet()){
+            Local a = registroLocalesNombre.get(nombreLocal);
+            Votante v = a.buscarVotante(rut);
+            if(v != null){
+                nombreLocalA = a.getNombreLocal();
+            }
+        }
+        if(nombreLocalA.equals("0")){
+            return false;
+        }
+        Local a = registroLocalesNombre.get(nombreLocalA);
+        if(!registroLocalesNombre.containsKey(nombreLocalB) || nombreLocalB.equals(nombreLocalA)){
+            return false;
+        }
+        if(!a.getComuna().equals(comuna)){
+            return false;
+        }
+        if( !a.modificarDatosVotante(rut, numeroDeMesa, comuna, direccion) ){
+            return false;
+        }
+        Local b = registroLocalesNombre.get(nombreLocalB);
+        Votante v = a.buscarVotante(rut);
+        b.agregarVotante(v);
+        a.eliminarVotante(rut);
         return true;
     }
     
-    /*  Método agregarMesa: lista las mesas de un local cuando este se agrega por
-        primera vez.
+    /*  Método eliminarVotante: Elimina un votante si existe dentro del local
+        de votación. Retorna false si el local no existe o si no se encuentra
+        dentro de este. Retorna true en caso de que lo elimine con exito.
     */
-    public void agregarMesa(Local b, int nPrimeraMesa, int nUltimaMesa){
-        b.agregarMesa(nPrimeraMesa, nUltimaMesa);
-    }
-    
-    /*  Método modificarDatosMesa: modifica la capacidad maxima de una mesa solo
-        si el local donde se encuentra la mesa existe. Si no existe retorna false.
-        Si existe retorna lo que retorne el metodo modificarDatosMesa de la clase
-        Local.
-    
-    */
-    public boolean modificarDatosMesa(String nombreLocal, int numeroDeMesa, int capacidadMaximaNueva){
+    public boolean eliminarVotante(String nombreLocal, String rut){
         if(!registroLocalesNombre.containsKey(nombreLocal)){
             return false;
         }
-        Local b = registroLocalesNombre.get(nombreLocal);
-        return b.modificarDatosMesa(numeroDeMesa, capacidadMaximaNueva);
+        Local a = registroLocalesNombre.get(nombreLocal);
+        return a.eliminarVotante(rut);
     }
     
-    /*  Método eliminarMesa: elimina la última mesa de local solo si existe este
-        último. Si no existe el local, retorna false. Si existe se llama al método
-        eliminarMesa de la clase Local para que elimine la mesa y se actualiza
-        el numero de la última mesa.
-    
+    /*  Método eliminarVotante: Elimina el votante buscando el votante en todos
+        los locales de votación. Retorna false si no se eliminó el votante
+        (no se encontraba en ninguno de los locales). Retorna true si se eliminó
+        correctamente
     */
-    public boolean eliminarMesa(String nombreLocal){
-        if(!registroLocalesNombre.containsKey(nombreLocal)){
-            return false;
+    public boolean eliminarVotante(String rut){
+        for( String nombreLocal : registroLocalesNombre.keySet()){
+            Local a = registroLocalesNombre.get(nombreLocal);
+            Votante w = a.buscarVotante(rut);
+            if(w != null){
+                return a.eliminarVotante(rut);
+            }
         }
-        Local b = registroLocalesNombre.get(nombreLocal);
-        Mesa mesaEliminada = b.eliminarMesa();
-        b.setNumeroUltimaMesa(b.getNumeroUltimaMesa()-1);
-        if(mesaEliminada != null){
-            return true;
-        }else return false;
+        return false;
     }
     
-    /*  Método mostrarMesas: muestra los números de las mesas de un local solo
-        si existe este último. Si no existe no muestra nada y retorna false.
-        Si existe llama al método mostrarMesas de la clase Local para que muestre las mesas.
-    
+    /* Método mostrarDatosVotante: Muestra los datos de un votante.
     */
-    public boolean mostrarMesas(String nombreLocal){
-        if(!registroLocalesNombre.containsKey(nombreLocal)){
-            return false;
+    public void mostrarDatosVotante(String rut){
+        for( String nombreLocal : registroLocalesNombre.keySet()){
+            Local a = registroLocalesNombre.get(nombreLocal);
+            Votante v = a.buscarVotante(rut);
+            if(v != null){
+               a.mostrarDatosVotante(v, a.getNombreLocal(), a.getDireccion()); 
+            }
         }
-        Local b = registroLocalesNombre.get(nombreLocal);
-        System.out.println("Mesas Local: "+b.getNombreLocal());
-        b.mostrarMesas();
-        return true;
     }
     
+    /*  Método mostrarVotantes: Muestra todos los votantes de todos los locales
+        de votación.
+    */
+    public void mostrarVotantes(){
+        // Se recorre el mapa registroLocalesNombre
+        for( String nombreLocal : registroLocalesNombre.keySet()){
+            Local a = registroLocalesNombre.get(nombreLocal);
+            a.mostrarVotantes();
+        }
+    }
     
-
-    /* Método exportar: exporta archivo *csv con las colecciones.
+    /* Método exportar: exporta archivo *csv con las 2 colecciones anidadas.
     */
     public void exportar(String nombreArchivo){
     File f;
@@ -317,25 +272,19 @@ public class Region {
         f = new File(nombreArchivo);
         fw = new FileWriter(f);
         bw = new BufferedWriter(fw);
-        pw = new PrintWriter(bw);//int estadoElectoral, String localAsignado, int numeroDeMesa)
-        pw.write("NOMBRE,RUT,COMUNA,DIRECCION,ESTADO ELECTORAL,LOCAL ASIGNADO,NUMERO DE MESA");
-        registroVotantesRut.keySet().forEach((String rutVotante) -> {
-                Votante v = registroVotantesRut.get(rutVotante);
-                String linea = "\n"+v.getNombreCompleto()+","+v.getRut()+","+v.getComuna()+","+v.getDireccion()+","+v.getEstadoElectoral()+","+v.getLocalAsignado()+","+v.getNumeroDeMesa();
-                pw.append(linea);
-        });
-        pw.write("\nNOMBRE,COMUNA,DIRECCION,CAPACIDAD MAXIMA,NUMERO PRIMERA MESA,NUMERO ULTIMA MESA");
-        registroLocalesNombre.keySet().forEach((String nombreLocal) ->{
-                Local b = registroLocalesNombre.get(nombreLocal);
-                String linea = "\n"+b.getNombreLocal()+","+b.getComuna()+","+b.getDireccion()+","+b.getCapacidadMaxima()+","+b.getNumeroPrimeraMesa()+","+b.getNumeroUltimaMesa();
-                pw.append(linea);
-                pw.write("\nNUMERO MESA,CAPACIDAD MAXIMA");
-                for(int n=b.getNumeroPrimeraMesa(); n<=b.getNumeroUltimaMesa(); n++){
-                    Mesa m = (Mesa) b.buscarMesa(n);
-                    linea = "\n"+m.getNumeroDeMesa()+","+m.getCapacidadMaxima();
+        pw = new PrintWriter(bw);
+        pw.write("NOMBRE,RUT,COMUNA,DIRECCION,ESTADO ELECTORAL,NOMBRE LOCAL,NUMERO DE MESA,DIRECCION,CAPACIDAD MAXIMA,NUMERO PRIMERA MESA,NUMERO ULTIMA MESA");
+        for(String nombreLocal : registroLocalesNombre.keySet()){
+                Local a = registroLocalesNombre.get(nombreLocal);
+ 
+                int cantidadVotantes = a.obtenerCantidadVotantes();
+                String[] rutsVotantes = a.obtenerRutsVotantes();
+                for(int i = 0; i < cantidadVotantes; i++){
+                    Votante v = a.buscarVotante(rutsVotantes[i]);
+                    String linea = "\n"+v.getNombreCompleto()+","+v.getRut()+","+v.getComuna()+","+v.getDireccion()+","+v.getEstadoElectoral()+","+a.getNombreLocal()+","+v.getNumeroDeMesa()+","+a.getDireccion()+","+a.getCapacidadMaxima()+","+a.getNumeroPrimeraMesa()+","+a.getNumeroUltimaMesa();
                     pw.append(linea);
                 }
-        });
+        }
         pw.close();
         bw.close();
     } catch (IOException e) {
