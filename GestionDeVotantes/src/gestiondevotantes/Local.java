@@ -82,6 +82,18 @@ public class Local {
         return true;
     }
     
+    /*  Método modificarDatosVotante: Modifica el número de mesa del votante.
+        Retorna true si se modifica el número de mesa, false en caso contrario.
+    */
+    public boolean modificarDatosVotante(String rut, int numeroDeMesa){
+        if(!registroVotantesRut.containsKey(rut)){
+            return false;
+        }
+        Votante v = registroVotantesRut.get(rut);
+        v.setNumeroDeMesa(numeroDeMesa);
+        return true;
+    }
+    
     /*  Método eliminarVotante: Elimina un votante del registro si no se
         encuentra vacio o si el votante se encuentra. Retorna true si se elimina
         con éxito, retorna false caso contrario.

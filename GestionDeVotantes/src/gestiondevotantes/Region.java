@@ -193,8 +193,11 @@ public class Region {
             return false;
         }
         Local a = registroLocalesNombre.get(nombreLocalA);
-        if(!registroLocalesNombre.containsKey(nombreLocalB) || nombreLocalB.equals(nombreLocalA)){
+        if(!registroLocalesNombre.containsKey(nombreLocalB)){
             return false;
+        }
+        if(nombreLocalB.equals(nombreLocalA)){
+            return a.modificarDatosVotante(rut, numeroDeMesa);
         }
         if(!a.getComuna().equals(comuna)){
             return false;
