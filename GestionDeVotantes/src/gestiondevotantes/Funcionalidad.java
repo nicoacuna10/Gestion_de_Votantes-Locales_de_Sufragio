@@ -144,7 +144,7 @@ public class Funcionalidad {
     }
     
     /*  Función 4: consultar (buscar y mostrar) datos de un local.
-    
+        Ademas se da la posibilidad de buscar y mostrar en otro nivel
     */
     public void funcionConsultarDatosLocal(Region valparaiso)throws IOException{
         String nombreLocal;
@@ -153,9 +153,29 @@ public class Funcionalidad {
         System.out.println("Ingrese nombre del local");
         nombreLocal = lector.readLine();
 
-        if( valparaiso.mostrarDatosLocal(nombreLocal) == true ){
-            System.out.println("Se mostraron los datos del local con exito");
+        if( valparaiso.mostrarDatosLocal(nombreLocal.toUpperCase()) == true ){
+            //System.out.println("Se mostraron los datos del local con exito");
+            
+            System.out.println("¿Desea consultar datos de algun votante de este Local?");
+            System.out.println("Por favor escriba SI o NO");
+            String respuesta = lector.readLine();
+            if((respuesta.toUpperCase()).equals("SI")){
+                System.out.println("Escriba el RUT del usuario");
+                String rut = lector.readLine();
+                Votante v = valparaiso.buscarVotante(rut);
+                if(v!=null){
+                    System.out.println(v.getNombreCompleto()+" esta en el local "+nombreLocal.toUpperCase());
+                    System.out.println("¿Desea consultar los datos del usuario?");
+                    System.out.println("Por favor escriba SI o NO");
+                    respuesta = lector.readLine();
+                    if((respuesta.toUpperCase()).equals("SI"))valparaiso.mostrarDatosVotante(rut);
+                    System.out.println("--------------------------------------------------------");
+                }
+                if(v == null)System.out.println("No esta dicha persona en el local "+nombreLocal.toUpperCase());
+            }
+                    
         }else System.out.println("No existe Local");
+        
     
     }
     
