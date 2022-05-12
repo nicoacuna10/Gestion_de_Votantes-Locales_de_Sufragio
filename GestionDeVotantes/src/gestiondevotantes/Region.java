@@ -37,6 +37,13 @@ public class Region {
         registroLocalesNombre.put(a.getNombreLocal(), a);
         return true;
     }
+    
+    public Local agregarLocal(String nombreLocal){
+        if(registroLocalesNombre.containsKey(nombreLocal))return null;
+        Local l = new Local(nombreLocal);
+        registroLocalesNombre.put(nombreLocal, l);
+        return l;
+    }
         
     
     /*  Método buscarLocal: Se ingresa el nombre local y busca dentro del
@@ -124,7 +131,8 @@ public class Region {
     */
     public boolean agregarVotante(String nombreLocal, Votante v){
         if(!registroLocalesNombre.containsKey(nombreLocal)){
-            return false;
+            Local auxLocal =agregarLocal(nombreLocal);  
+            return auxLocal.agregarVotante(v);
         }
         Local a = registroLocalesNombre.get(nombreLocal);
         return a.agregarVotante(v);
