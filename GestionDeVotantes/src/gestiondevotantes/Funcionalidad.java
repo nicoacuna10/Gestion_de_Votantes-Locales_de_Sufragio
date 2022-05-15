@@ -65,13 +65,13 @@ public class Funcionalidad {
         
         // Solicitud de ingreso de datos del local.
         System.out.println("Ingrese nombre del local");
-        nombre = lector.readLine();
+        nombre = lector.readLine().toUpperCase();
         
         System.out.println("Ingrese comuna del local");
-        comuna = lector.readLine();
+        comuna = lector.readLine().toUpperCase();
         
         System.out.println("Ingrese dirección del local");
-        direccion = lector.readLine();
+        direccion = lector.readLine().toUpperCase();
         
         System.out.println("Ingrese capacidad maxima del local");
         capacidadMaxima = Integer.parseInt(lector.readLine());
@@ -110,13 +110,13 @@ public class Funcionalidad {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
             
         System.out.println("Ingrese nombre nuevo del local");
-        nombreLocal = lector.readLine();   
+        nombreLocal = lector.readLine().toUpperCase();   
 
         System.out.println("Ingrese comuna nueva del local");
-        comuna = lector.readLine();
+        comuna = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese direccion nueva del local");
-        direccion = lector.readLine();
+        direccion = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese capacidad maxima nueva del local");
         capacidadMaxima = Integer.parseInt(lector.readLine());
@@ -135,7 +135,7 @@ public class Funcionalidad {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = lector.readLine().toUpperCase();
         
         if(valparaiso.eliminarLocal(nombreLocal)){
             System.out.println("El local fue eliminado con exito");
@@ -151,7 +151,7 @@ public class Funcionalidad {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese nombre del local");
-        nombreLocal = lector.readLine();
+        nombreLocal = lector.readLine().toUpperCase();
 
         if( valparaiso.mostrarDatosLocal(nombreLocal.toUpperCase()) == true ){
             //System.out.println("Se mostraron los datos del local con exito");
@@ -204,16 +204,16 @@ public class Funcionalidad {
 
         // Solicitud de ingreso de datos del votante.
         System.out.println("Ingrese nombre completo del votante");
-        nombreCompleto = lector.readLine();
+        nombreCompleto = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese rut del votante");
         rut = lector.readLine();
 
         System.out.println("Ingrese comuna de domicilio del votante");
-        comuna = lector.readLine();
+        comuna = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese dirección de domicilio del votante");
-        direccion = lector.readLine();
+        direccion = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese 1 si la persona esta habilitada para votar, 0 caso contrario");
         estadoElectoral = Integer.parseInt(lector.readLine());
@@ -224,7 +224,7 @@ public class Funcionalidad {
         
         if(estadoElectoral == 1){
             System.out.println("Ingrese nombre del local");
-            nombreLocal = lector.readLine();
+            nombreLocal = lector.readLine().toUpperCase();
             
             System.out.println("Ingrese numero de mesa del votante");
             numeroDeMesa = Integer.parseInt(lector.readLine());
@@ -260,16 +260,16 @@ public class Funcionalidad {
         rut = lector.readLine();
         
         System.out.println("Ingrese nombre del local a cambiar");
-        nombreLocalNuevo = lector.readLine();
+        nombreLocalNuevo = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese numero de mesa");
         numeroMesaNueva = Integer.parseInt(lector.readLine());
  
         System.out.println("Ingrese comuna (si es la misma de la direccion anterior, ingresela ingualmente)");
-        comunaNueva = lector.readLine();
+        comunaNueva = lector.readLine().toUpperCase();
         
         System.out.println("Ingrese direccion nueva del domicilio");
-        direccionNueva = lector.readLine();
+        direccionNueva = lector.readLine().toUpperCase();
 
         
         if( valparaiso.modificarDatosVotante(rut, nombreLocalNuevo, numeroMesaNueva, comunaNueva, direccionNueva) == true){
@@ -321,6 +321,11 @@ public class Funcionalidad {
     public void funcionExportar(String nombreArchivo, Region valparaiso){
         valparaiso.exportar(nombreArchivo);
     }
-    
+    public void funcionMostrarVotantesPorLocal(Region valparaiso) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el Nombre del local");
+        String nombreLocal = lector.readLine().toUpperCase();
+        valparaiso.mostrarVotantesLocal(nombreLocal);
+    }
 
 }

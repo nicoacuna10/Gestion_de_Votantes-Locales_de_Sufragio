@@ -167,6 +167,9 @@ public class Local {
         }
         return rutsVotantes;
     }
+    public void mostrarVotantesPorLocal(String nombreLocal){ 
+        
+    }
 
     public String getNombreLocal() {
         return nombreLocal;

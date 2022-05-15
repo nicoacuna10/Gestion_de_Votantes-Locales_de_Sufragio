@@ -1,5 +1,6 @@
 package gestiondevotantes;
 
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,6 +18,7 @@ public class Region {
     
     // Creación de mapas.
     private HashMap <String, Local> registroLocalesNombre; // Mapa de Locales con clave el nombre.
+    
 
     
     // Constructor de la Clase Region.
@@ -270,38 +272,46 @@ public class Region {
             a.mostrarVotantes();
         }
     }
-    
     /* Método exportar: exporta archivo *csv con las 2 colecciones anidadas.
     */
     public void exportar(String nombreArchivo){
-    File f;
-    FileWriter fw;
-    BufferedWriter bw;
-    PrintWriter pw;
+        File f;
+        FileWriter fw;
+        BufferedWriter bw;
+        PrintWriter pw;
 
-    try {
-        f = new File(nombreArchivo);
-        fw = new FileWriter(f);
-        bw = new BufferedWriter(fw);
-        pw = new PrintWriter(bw);
-        pw.write("NOMBRE,RUT,COMUNA,DIRECCION,ESTADO ELECTORAL,NOMBRE LOCAL,NUMERO DE MESA,DIRECCION,CAPACIDAD MAXIMA,NUMERO PRIMERA MESA,NUMERO ULTIMA MESA");
-        for(String nombreLocal : registroLocalesNombre.keySet()){
-                Local a = registroLocalesNombre.get(nombreLocal);
- 
-                int cantidadVotantes = a.obtenerCantidadVotantes();
-                String[] rutsVotantes = a.obtenerRutsVotantes();
-                for(int i = 0; i < cantidadVotantes; i++){
-                    Votante v = a.buscarVotante(rutsVotantes[i]);
-                    String linea = "\n"+v.getNombreCompleto()+","+v.getRut()+","+v.getComuna()+","+v.getDireccion()+","+v.getEstadoElectoral()+","+a.getNombreLocal()+","+v.getNumeroDeMesa()+","+a.getDireccion()+","+a.getCapacidadMaxima()+","+a.getNumeroPrimeraMesa()+","+a.getNumeroUltimaMesa();
-                    pw.append(linea);
-                }
+        try {
+            f = new File(nombreArchivo);
+            fw = new FileWriter(f);
+            bw = new BufferedWriter(fw);
+            pw = new PrintWriter(bw);
+            pw.write("NOMBRE,RUT,COMUNA,DIRECCION,ESTADO ELECTORAL,NOMBRE LOCAL,NUMERO DE MESA,DIRECCION,CAPACIDAD MAXIMA,NUMERO PRIMERA MESA,NUMERO ULTIMA MESA");
+            for(String nombreLocal : registroLocalesNombre.keySet()){
+                    Local a = registroLocalesNombre.get(nombreLocal);
+                    //System.out.println("ENTRA afuera");
+                    int cantidadVotantes = a.obtenerCantidadVotantes();
+                    String[] rutsVotantes = a.obtenerRutsVotantes();
+                    //System.out.println("cant: "+cantidadVotantes);
+                    for(int i = 0; i < cantidadVotantes; i++){
+                        //System.out.println("ENTRA "+i);
+                        Votante v = a.buscarVotante(rutsVotantes[i]);
+                        if(v == null)break;
+                        String linea = "\n"+v.getNombreCompleto()+","+v.getRut()+","+v.getComuna()+","+v.getDireccion()+","+v.getEstadoElectoral()+","+a.getNombreLocal()+","+v.getNumeroDeMesa()+","+a.getDireccion()+","+a.getCapacidadMaxima()+","+a.getNumeroPrimeraMesa()+","+a.getNumeroUltimaMesa();
+                        pw.append(linea);
+                    }
+            }
+            pw.close();
+            bw.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+ e);
         }
-        pw.close();
-        bw.close();
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+ e);
-    }
 
+    }
+    public void mostrarVotantesLocal(String nL){
+        Local lo = registroLocalesNombre.get(nL);
+        if(lo !=null){
+            lo.mostrarVotantes();
+        }
     }
     
 

@@ -39,9 +39,9 @@ public class Menu {
                 System.out.println("8.  Eliminar usuario del registro");
                 System.out.println("9.  Consultar datos electorales del usuario");
                 System.out.println("10. Mostrar todos los usuarios");
-
-                System.out.println("11. Exportar datos a archivo *.csv");
-                System.out.println("12. Salir");
+                System.out.println("11. Mostrar todos los votantes de un Local");
+                System.out.println("12. Exportar datos a archivo *.csv");
+                System.out.println("13. Salir");
 
                 try {
 
@@ -87,12 +87,15 @@ public class Menu {
                             
                         case 10:
                             f.funcionMostrarVotantes(valparaiso);
-
+                            break;
                         case 11:
+                            f.funcionMostrarVotantesPorLocal(valparaiso);
+                            break;
+                        case 12:
                             f.funcionExportar("datos.csv", valparaiso);
                             break;
                             
-                        case 12:
+                        case 13:
                             salir = true;
                             break;
                         
