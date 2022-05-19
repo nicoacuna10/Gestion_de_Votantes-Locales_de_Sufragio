@@ -40,16 +40,16 @@ public class Menu {
                 System.out.println("3.  Eliminar local del registro");
                 System.out.println("4.  Consultar datos del local");
                 System.out.println("5.  Mostrar locales de votacion");
-                
                 System.out.println("6.  Agregar usuario al registro");
                 System.out.println("7.  Modificar datos del usuario");
                 System.out.println("8.  Eliminar usuario del registro");
                 System.out.println("9.  Consultar datos electorales del usuario");
                 System.out.println("10. Mostrar todos los usuarios");
                 System.out.println("11. Mostrar todos los votantes de un Local");
-                System.out.println("12. Consultar Tipo de Usuario");
-                System.out.println("13. Exportar datos a archivo *.csv");
-                System.out.println("14. Salir");
+                System.out.println("12. Mostrar el votante mas joven de un Local");
+                System.out.println("13. Consultar Tipo de Usuario");
+                System.out.println("14. Exportar datos a archivo *.csv");
+                System.out.println("15. Salir");
 
                 try {
 
@@ -100,12 +100,15 @@ public class Menu {
                             f.funcionMostrarVotantesPorLocal(valparaiso);
                             break;
                         case 12:
-                            f.funcionIdentificarse(valparaiso);
+                            f.funcionMostrarVotanteMasJoven(valparaiso);
                             break;
                         case 13:
-                            f.funcionExportar("datos.csv", valparaiso);
+                            f.funcionIdentificarse(valparaiso);
                             break;
                         case 14:
+                            f.funcionExportar("datos.csv", valparaiso);
+                            break;
+                        case 15:
                             salir = true;
                             break;
                         

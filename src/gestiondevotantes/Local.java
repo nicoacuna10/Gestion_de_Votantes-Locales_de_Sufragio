@@ -212,6 +212,37 @@ public class Local implements Mostrable{
         }
         return rutsVotantes;
     }
+    
+    public void obtenerVotanteMasJoven(){
+        int guardado = 0;
+        int aComparar;
+        Votante vv = null; //votante que sera retornado
+       for( String rut : registroVotantesRut.keySet()){
+                Votante v = registroVotantesRut.get(rut);
+                
+                String input = v.getRut();   //string de entrada
+                String primerosDigitos = "";   //contendra el rut sin digito verificador
+ 
+                if (input.length() > 9)
+                     primerosDigitos = input.substring(0, 8);
+                else
+                   primerosDigitos = input.substring(0, 7);
+                
+                aComparar = Integer.parseInt(primerosDigitos); //Pasa los digitos a int
+                
+                if(aComparar > guardado){
+                guardado = aComparar;
+               vv = v;
+                }
+       }
+    //mostrar VV;
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.format("%-30s %-15s %-15s %-25s", vv.getNombreCompleto(), vv.getRut(), vv.getComuna(), vv.getDireccion());
+                if(vv.getEstadoElectoral()==1)System.out.println("SI");
+                else System.out.println("NO");
+    }
 
     public String getNombreLocal() {
         return nombreLocal;

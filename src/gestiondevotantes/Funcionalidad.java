@@ -359,8 +359,21 @@ public class Funcionalidad {
     }
     
     
+    /*
+    Funcion 12: Mostrar el votante mas joven de un local especifico
+    */
+    
+    public void funcionMostrarVotanteMasJoven(Region valparaiso) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el nombre del local");
+        String nombreLocal = lector.readLine().toUpperCase();
+        Local ll = valparaiso.buscarLocal(nombreLocal);
+        ll.obtenerVotanteMasJoven();
+    }
+    
+    
     /**
-     * Funcion 12: busca un usuario mediante su rut y luego hace que se identifique
+     * Funcion 13: busca un usuario mediante su rut y luego hace que se identifique
      * @param valparaiso
      * @throws IOException 
      */
@@ -371,9 +384,9 @@ public class Funcionalidad {
         valparaiso.consultarTipoUsuario(rut);
     }
     
-
+    
     /**
-     * Función 13: exportar
+     * Función 14: exportar
      * @param nombreArchivo
      * @param valparaiso 
      */
