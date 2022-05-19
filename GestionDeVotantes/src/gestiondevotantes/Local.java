@@ -9,7 +9,7 @@ import java.util.*;
  * @author Nicolás Acuña
  */
 
-public class Local {
+public class Local implements Mostrable{
     
     // Variables de instancia de la clase Local.
     private String nombreLocal; // Nombre del local.
@@ -46,14 +46,14 @@ public class Local {
         lleno o si no existe previamente el votante. Retorna true si se agregó
         el votante, retorna false caso contrario.
     */
-    public boolean agregarVotante(Votante v){
+    public boolean agregarVotante(Votante p){
         if(registroVotantesRut.size() == capacidadMaxima){
             return false;
         }
-        if(registroVotantesRut.containsKey(v.getRut())){
+        if(registroVotantesRut.containsKey(p.getRut())){
             return false;
         }
-        registroVotantesRut.put(v.getRut(), v);
+        registroVotantesRut.put(p.getRut(), p);
         return true;
     }
     
@@ -75,7 +75,7 @@ public class Local {
         if(!registroVotantesRut.containsKey(rut)){
             return false;
         }
-        Votante v = registroVotantesRut.get(rut);
+        Votante v = (Votante)registroVotantesRut.get(rut);
         v.setNumeroDeMesa(numeroDeMesa);
         v.setComuna(comuna);
         v.setDireccion(direccion);
@@ -89,7 +89,7 @@ public class Local {
         if(!registroVotantesRut.containsKey(rut)){
             return false;
         }
-        Votante v = registroVotantesRut.get(rut);
+        Votante v = (Votante)registroVotantesRut.get(rut);
         v.setNumeroDeMesa(numeroDeMesa);
         return true;
     }
@@ -111,6 +111,7 @@ public class Local {
     
     /*  Método mostrarDatosVotante: Muestra los datos del votante
     */
+    
     public void mostrarDatosVotante(Votante v, String nombreLocal, String direccionLocal){
         // Se imprimen los datos del votante
         System.out.println("------------------------------------------");
@@ -125,21 +126,23 @@ public class Local {
            System.out.println("HABILITADO(A) PARA VOTAR: SI");
            System.out.println("LOCAL: "+nombreLocal);
            System.out.println("DIRECCION LOCAL: "+direccionLocal);
-           System.out.println("NUMERO DE MESA: "+v.getNumeroDeMesa());
+           System.out.println("NUMERO DE MESA: "+(v.getNumeroDeMesa()));
         }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
         System.out.println("------------------------------------------");
     }
    
     /*   Método mostrarVotantes: Muestra todos los votantes del local.
     */
-    public void mostrarVotantes(){
+    @Override
+    public void mostrarDatos(){
+        
         if(registroVotantesRut.size()>0){
             System.out.println("-------------------------------------------------------------------------------------------------");
             System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
             System.out.println("-------------------------------------------------------------------------------------------------");
             // Se recorre el mapa registroVotantesRut
             for( String rut : registroVotantesRut.keySet()){
-                Votante v = registroVotantesRut.get(rut);
+                Persona v = registroVotantesRut.get(rut);
                 System.out.format("%-30s %-15s %-15s %-25s", v.getNombreCompleto(), rut, v.getComuna(), v.getDireccion());
                 if(v.getEstadoElectoral()==1)System.out.println("SI");
                 else System.out.println("NO");
@@ -166,9 +169,6 @@ public class Local {
             rutsVotantes[i] = rut;
         }
         return rutsVotantes;
-    }
-    public void mostrarVotantesPorLocal(String nombreLocal){ 
-        
     }
 
     public String getNombreLocal() {
@@ -208,6 +208,11 @@ public class Local {
     public void setNumeroUltimaMesa(int numeroUltimaMesa) {
         this.numeroUltimaMesa = numeroUltimaMesa;
     }
+
+    /*@Override
+    public void mostrarDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
     
     
     

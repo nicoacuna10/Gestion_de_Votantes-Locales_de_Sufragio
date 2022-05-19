@@ -14,16 +14,17 @@ import javax.swing.JOptionPane;
  * @author Nicolás Acuña
  * 
  */
-public class Region {
+public class Region implements Mostrable{
     
     // Creación de mapas.
     private HashMap <String, Local> registroLocalesNombre; // Mapa de Locales con clave el nombre.
-    
+    private HashMap <String, NoVotante> registroNoVotantesRut;// Mapa de No votantes con clave rut.
 
     
     // Constructor de la Clase Region.
     public Region(){
         registroLocalesNombre = new HashMap();
+        registroNoVotantesRut = new HashMap();
     }
     
     /*  Método agregarLocal: Se ingresa un local nuevo al registro. Se verifica 
@@ -145,9 +146,14 @@ public class Region {
         clase Local para agregarlo al mapa de votantes del local de nombre "SIN LOCAL".
     
     */
-    public void agregarVotante(Votante v){
-        Local a = registroLocalesNombre.get("SIN LOCAL");
-        a.agregarVotante(v);
+    public boolean agregarNoVotante(NoVotante nv){
+        if(registroNoVotantesRut.containsKey(nv.getRut())==false){
+            registroNoVotantesRut.put(nv.getRut(), nv);
+            //System.out.println("ENTRA ANV");
+            return true;
+        }
+        //System.out.println("NO ENTRA ANV");
+        return false;
     }
     
     
@@ -255,10 +261,39 @@ public class Region {
     public void mostrarDatosVotante(String rut){
         for( String nombreLocal : registroLocalesNombre.keySet()){
             Local a = registroLocalesNombre.get(nombreLocal);
-            Votante v = a.buscarVotante(rut);
-            if(v != null){
-               a.mostrarDatosVotante(v, a.getNombreLocal(), a.getDireccion()); 
+            
+            if(a.buscarVotante(rut).getEstadoElectoral()==1){
+                Votante v = a.buscarVotante(rut);
+                if(v != null){
+                    
+                   a.mostrarDatosVotante(v, a.getNombreLocal(), a.getDireccion()); 
+                }
+            }else{
+                System.out.println("ERROR");
             }
+            
+
+        }
+    }
+    //Metodo mostrarDatos: Muestra los datos de los No votantes.
+    @Override
+    public void mostrarDatos(){
+        if(registroNoVotantesRut.size()>0){
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            System.out.println("\t\t\t\t\tNO VOTANTES");
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            // Se recorre el mapa registroVotantesRut
+            for( String rut : registroNoVotantesRut.keySet()){
+                NoVotante v = registroNoVotantesRut.get(rut);
+                System.out.format("%-30s %-15s %-15s %-25s", v.getNombreCompleto(), rut, v.getComuna(), v.getDireccion());
+                if(v.getEstadoElectoral()==1)System.out.println("SI");
+                else System.out.println("NO");
+            }
+            System.out.println("-------------------------------------------------------------------------------------------------");
+        }else{
+            System.out.println("No hay datos2");
         }
     }
     
@@ -266,10 +301,12 @@ public class Region {
         de votación.
     */
     public void mostrarVotantes(){
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\t\tVOTANTES");
         // Se recorre el mapa registroLocalesNombre
         for( String nombreLocal : registroLocalesNombre.keySet()){
             Local a = registroLocalesNombre.get(nombreLocal);
-            a.mostrarVotantes();
+            a.mostrarDatos();
         }
     }
     /* Método exportar: exporta archivo *csv con las 2 colecciones anidadas.
@@ -307,12 +344,29 @@ public class Region {
         }
 
     }
-    public void mostrarVotantesLocal(String nL){
-        Local lo = registroLocalesNombre.get(nL);
+    public void mostrarVotantesLocal(String nombreL){
+        Local lo = registroLocalesNombre.get(nombreL);
         if(lo !=null){
-            lo.mostrarVotantes();
+            lo.mostrarDatos();
         }
     }
-    
+
+    public void consultarTipoUsuario(String rut) {
+        if(registroNoVotantesRut.containsKey(rut)==true){
+            NoVotante nv = registroNoVotantesRut.get(rut);
+            System.out.print("MI NOMBRE ES "+nv.getNombreCompleto()+" Y ");
+            nv.identificarse();
+        }else
+        for( String nombreLocal : registroLocalesNombre.keySet()){
+            Local a = registroLocalesNombre.get(nombreLocal);
+            Votante v = a.buscarVotante(rut);
+            if(v!=null){
+                System.out.print("MI NOMBRE ES "+v.getNombreCompleto()+" Y ");
+                v.identificarse();
+            }
+            
+        }
+        
+    }
 
 }

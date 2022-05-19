@@ -40,8 +40,9 @@ public class Menu {
                 System.out.println("9.  Consultar datos electorales del usuario");
                 System.out.println("10. Mostrar todos los usuarios");
                 System.out.println("11. Mostrar todos los votantes de un Local");
-                System.out.println("12. Exportar datos a archivo *.csv");
-                System.out.println("13. Salir");
+                System.out.println("12. Consultar Tipo de Usuario");
+                System.out.println("13. Exportar datos a archivo *.csv");
+                System.out.println("14. Salir");
 
                 try {
 
@@ -92,10 +93,12 @@ public class Menu {
                             f.funcionMostrarVotantesPorLocal(valparaiso);
                             break;
                         case 12:
+                            f.funcionIdentificarse(valparaiso);
+                            break;
+                        case 13:
                             f.funcionExportar("datos.csv", valparaiso);
                             break;
-                            
-                        case 13:
+                        case 14:
                             salir = true;
                             break;
                         

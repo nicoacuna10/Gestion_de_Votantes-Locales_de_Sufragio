@@ -19,8 +19,9 @@ public class Funcionalidad {
     */
     public void funcionInicial(Region valparaiso){
     
-        Local local1, local2, local3, local4;
-        Votante votante1, votante2, votante3, votante4;
+        Local local1, local2, local3;
+        Votante votante1, votante2, votante3;
+        NoVotante noVotante1, noVotante2;
         
         local1 = new Local("UNIVERSIDAD ANDRES BELLO", "VINA DEL MAR", "QUILLOTA 980", 10002, 31, 70);
         valparaiso.agregarLocal(local1);
@@ -34,11 +35,9 @@ public class Funcionalidad {
         /*  El local de nombre "SIN LOCAL" contiene los votantes que no están habiliatdos para votar, y por ende no se les
             puede asignar un local.
         */
-        local4 = new Local("SIN LOCAL");
-        valparaiso.agregarLocal(local4);
         
         votante1 = new Votante("PEDRO ALBERTO LOPEZ GONZALEZ", "13800755-0", "VINA DEL MAR", "15 NORTE 567", 1, 50);
-        valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", votante1);
+        valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", (Votante)votante1);
         
         votante2 = new Votante("PATRICIA CABRERO QUISPE", "8444987-2", "VALPARAISO", "CALLE ZENTENO 130", 1, 34);
         valparaiso.agregarVotante("PUCV CASA CENTRAL", votante2);
@@ -46,8 +45,11 @@ public class Funcionalidad {
         votante3 = new Votante("JUAN RICARDO ASTORGA BERMUDEZ", "19731000-K", "CONCON", "CALLE CUATRO 111", 1, 1);
         valparaiso.agregarVotante("LICEO POLITECNICO CONCON", votante3);
         
-        votante4 = new Votante("MARIA JUANA DE LOS ANGELES RIVEROS", "12888012-9", "SAN ANTONIO", "RUBEN DARIO 1073", 0);
-        valparaiso.agregarVotante(votante4);
+        noVotante1 = new NoVotante("MARIA JUANA DE LOS ANGELES RIVEROS", "12888012-9", "SAN ANTONIO", "RUBEN DARIO 1073", 0,"CARCEL");
+        valparaiso.agregarNoVotante(noVotante1);
+        
+        noVotante2 = new NoVotante("JUANA VALENTINA SANCHEZ ORTUZAR", "24898012-1", "VIÑA DEL MAR", "6 ORIENTE 458", 0,"MENOR DE EDAD");
+        valparaiso.agregarNoVotante(noVotante2);
 
     }
     
@@ -232,14 +234,16 @@ public class Funcionalidad {
             // Instanciación de la variable de Clase Votante.
             votanteNuevo = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral, numeroDeMesa);
             
-            if(valparaiso.agregarVotante(nombreLocal, votanteNuevo) == false){
+            if(valparaiso.agregarVotante(nombreLocal, (Votante)votanteNuevo) == false){
                 System.out.println("El votante ya existe");
                 return;
             }else System.out.println("El votante se agrego con exito");
             
         }else{
-            votanteNuevo = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral);
-            valparaiso.agregarVotante(votanteNuevo);
+            System.out.println("Ingrese la razon");
+            String razon = lector.readLine().toUpperCase();
+            NoVotante noVotanteNuevo = new NoVotante(nombreCompleto, rut, comuna, direccion, estadoElectoral,razon);
+            valparaiso.agregarNoVotante(noVotanteNuevo);
         }
         
     }
@@ -313,19 +317,32 @@ public class Funcionalidad {
     */
     public void funcionMostrarVotantes(Region valparaiso){
         valparaiso.mostrarVotantes();
+        valparaiso.mostrarDatos();
     }
     
-    /* Función 11: exportar
+
+    /* funcion 11: muestra Votantes por Local
     
     */
-    public void funcionExportar(String nombreArchivo, Region valparaiso){
-        valparaiso.exportar(nombreArchivo);
-    }
     public void funcionMostrarVotantesPorLocal(Region valparaiso) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el Nombre del local");
         String nombreLocal = lector.readLine().toUpperCase();
         valparaiso.mostrarVotantesLocal(nombreLocal);
     }
-
+    /*funcion 12: busca un usuario mediante su rut y luego hace que se identifique
+    
+    */
+    public void funcionIdentificarse(Region valparaiso) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el rut del usuario");
+        String rut = lector.readLine();
+        valparaiso.consultarTipoUsuario(rut);
+    }
+    /* Función 13: exportar
+    
+    */
+    public void funcionExportar(String nombreArchivo, Region valparaiso){
+        valparaiso.exportar(nombreArchivo);
+    }
 }
