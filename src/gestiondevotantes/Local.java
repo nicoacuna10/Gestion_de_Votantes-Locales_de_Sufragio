@@ -214,8 +214,8 @@ public class Local implements Mostrable{
     }
     
     public void obtenerVotanteMasJoven(){
-        int guardado = 0;
-        int aComparar;
+        int guardado = 0; //almacenara el rut de valor mas alto encontrado hasta ese punto
+        int aComparar; //Guardara el rut a comparar como int
         Votante vv = null; //votante que sera retornado
        for( String rut : registroVotantesRut.keySet()){
                 Votante v = registroVotantesRut.get(rut);
@@ -223,7 +223,7 @@ public class Local implements Mostrable{
                 String input = v.getRut();   //string de entrada
                 String primerosDigitos = "";   //contendra el rut sin digito verificador
  
-                if (input.length() > 9)
+                if (input.length() > 9) //Esta condicion verifica si el rut cuenta con 9 o 10 caracteres, guion incluido (12.345.678-9 o 1.234.567-8)
                      primerosDigitos = input.substring(0, 8);
                 else
                    primerosDigitos = input.substring(0, 7);

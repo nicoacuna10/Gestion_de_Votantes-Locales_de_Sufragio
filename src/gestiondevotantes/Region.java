@@ -427,5 +427,13 @@ public class Region implements Mostrable{
         }
         
     }
+    
+    public void mostrarVotanteMasJoven(String nombreLocal){
+        Local ll = buscarLocal(nombreLocal);//Se verifica la existencia del local
+        if(ll != null)
+            ll.obtenerVotanteMasJoven();
+        else
+            System.out.println("LOCAL NO ENCONTRADO");
+    }
 
 }

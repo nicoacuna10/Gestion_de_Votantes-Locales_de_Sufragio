@@ -367,8 +367,7 @@ public class Funcionalidad {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el nombre del local");
         String nombreLocal = lector.readLine().toUpperCase();
-        Local ll = valparaiso.buscarLocal(nombreLocal);
-        ll.obtenerVotanteMasJoven();
+        valparaiso.mostrarVotanteMasJoven(nombreLocal);
     }
     
     
