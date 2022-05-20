@@ -1,5 +1,6 @@
 package gestiondevotantes;
 
+import java.io.*;
 import java.util.*;
 
 
@@ -242,6 +243,48 @@ public class Local implements Mostrable{
         System.out.format("%-30s %-15s %-15s %-25s", vv.getNombreCompleto(), vv.getRut(), vv.getComuna(), vv.getDireccion());
                 if(vv.getEstadoElectoral()==1)System.out.println("SI");
                 else System.out.println("NO");
+    }
+    
+    public void mostrarVotantesIntervalo() throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        int primerRut;
+        int segundoRut = 0;
+        int contador = 0;
+        System.out.println("INGRESE PRIMER RUT SIN DIGITO VERIFICADOR (EJ: 1000000)");
+        primerRut = Integer.parseInt(lector.readLine());
+        
+        //Ciclo que asegura un segundo rut mayor al primero
+        System.out.println("INGRESE SEGUNDO RUT SIN DIGITO VERIFICADOR (MAYOR QUE EL PRIMERO)");
+        segundoRut = Integer.parseInt(lector.readLine());
+            if(segundoRut < primerRut)
+                System.out.println("EL SEGUNDO RUT DEBE SER MAYOR AL PRIMERO");
+        
+        
+         for( String rut : registroVotantesRut.keySet()){
+                Votante v = registroVotantesRut.get(rut);
+                String input = v.getRut();   //string de entrada
+                String primerosDigitos = "";   //contendra el rut sin digito verificador
+ 
+                if (input.length() > 9) //Esta condicion verifica si el rut cuenta con 9 o 10 caracteres, guion incluido (12.345.678-9 o 1.234.567-8)
+                     primerosDigitos = input.substring(0, 8);
+                else
+                   primerosDigitos = input.substring(0, 7);
+                int aComparar = Integer.parseInt(primerosDigitos); //Pasa los digitos a int
+                
+                if(aComparar >= primerRut && aComparar <= segundoRut){
+                    if(contador == 0){
+                        System.out.println("-------------------------------------------------------------------------------------------------");
+                        System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
+                        System.out.println("-------------------------------------------------------------------------------------------------");
+                        contador++;
+                    }
+                    System.out.format("%-30s %-15s %-15s %-25s", v.getNombreCompleto(), v.getRut(), v.getComuna(), v.getDireccion());
+                    if(v.getEstadoElectoral()==1)System.out.println("SI");
+                    else System.out.println("NO");
+                }
+         }
+         if(contador == 0)
+             System.out.println("NO SE ENCONTRARON VOTANTES DENTRO DEL INTERVALO");
     }
 
     public String getNombreLocal() {

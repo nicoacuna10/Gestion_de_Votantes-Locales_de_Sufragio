@@ -369,10 +369,19 @@ public class Funcionalidad {
         String nombreLocal = lector.readLine().toUpperCase();
         valparaiso.mostrarVotanteMasJoven(nombreLocal);
     }
+    /*
+    Funcion 13: Mostrar todos los votantes de un local en un intervalo
+    */
+    public void funcionMostrarVotantesIntervalo(Region valparaiso) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el nombre del local");
+        String nombreLocal = lector.readLine().toUpperCase();
+        valparaiso.mostrarVotantesIntervalo(nombreLocal);
+    }
     
     
     /**
-     * Funcion 13: busca un usuario mediante su rut y luego hace que se identifique
+     * Funcion 14: busca un usuario mediante su rut y luego hace que se identifique
      * @param valparaiso
      * @throws IOException 
      */
@@ -385,7 +394,7 @@ public class Funcionalidad {
     
     
     /**
-     * Función 14: exportar
+     * Función 15: exportar
      * @param nombreArchivo
      * @param valparaiso 
      */

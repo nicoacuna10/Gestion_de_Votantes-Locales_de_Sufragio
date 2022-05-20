@@ -427,6 +427,13 @@ public class Region implements Mostrable{
         }
         
     }
+    public void mostrarVotantesIntervalo(String nombreLocal) throws IOException{
+        Local ll = buscarLocal(nombreLocal);//Se verifica la existencia del local
+        if(ll != null)
+            ll.mostrarVotantesIntervalo();
+        else
+            System.out.println("LOCAL NO ENCONTRADO");
+    }
     
     public void mostrarVotanteMasJoven(String nombreLocal){
         Local ll = buscarLocal(nombreLocal);//Se verifica la existencia del local
