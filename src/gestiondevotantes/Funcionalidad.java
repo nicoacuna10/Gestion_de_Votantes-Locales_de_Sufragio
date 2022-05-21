@@ -55,7 +55,7 @@ public class Funcionalidad {
 
     /**
      * Función 1: agregar local
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionAgregarLocal(Region valparaiso)throws IOException{
@@ -106,7 +106,7 @@ public class Funcionalidad {
     
     /**
      * Función 2: modificar datos de un local
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionModificarDatosLocal(Region valparaiso)throws IOException{
@@ -137,7 +137,7 @@ public class Funcionalidad {
 
     /**
      * Función 3: eliminar local
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionEliminarLocal(Region valparaiso)throws IOException{
@@ -157,7 +157,7 @@ public class Funcionalidad {
     /**
      * Función 4: consultar (buscar y mostrar) datos de un local.
      * Ademas se da la posibilidad de buscar y mostrar en otro nivel
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionConsultarDatosLocal(Region valparaiso)throws IOException{
@@ -182,7 +182,7 @@ public class Funcionalidad {
                     System.out.println("¿Desea consultar los datos del usuario?");
                     System.out.println("Por favor escriba SI o NO");
                     respuesta = lector.readLine();
-                    if((respuesta.toUpperCase()).equals("SI"))valparaiso.mostrarDatosVotante(rut);
+                    //if((respuesta.toUpperCase()).equals("SI"))valparaiso.mostrarDatosVotante(rut);
                     System.out.println("--------------------------------------------------------");
                 }
                 if(v == null)System.out.println("No esta dicha persona en el local "+nombreLocal.toUpperCase());
@@ -196,7 +196,7 @@ public class Funcionalidad {
 
     /**
      * Función 5: mostrar los locales de la región.
-     * @param valparaiso 
+     * @param valparaiso Región de Valparaiso
      */
     public void funcionMostrarLocales(Region valparaiso){
        System.out.println("Locales de votacion de la region de Valparaiso");
@@ -207,7 +207,7 @@ public class Funcionalidad {
 
     /**
      * Función 6: agrega un nuevo votante.
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionAgregarVotante(Region valparaiso)throws IOException{
@@ -268,7 +268,7 @@ public class Funcionalidad {
 
     /**
      * Función 7: modifica datos de un votante.
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionModificarDatosVotante(Region valparaiso)throws IOException{
@@ -305,7 +305,7 @@ public class Funcionalidad {
 
     /**
      * Función 8: elimina votante del registro
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionEliminarVotante(Region valparaiso) throws IOException{
@@ -321,24 +321,42 @@ public class Funcionalidad {
         
     }
     
-    /* Función 9: muestra los datos del votante.
-    
-    */
+
+    /**
+     * Función 9: muestra los datos del votante.
+     * @param valparaiso Región de Valparaiso
+     * @throws IOException 
+     */
     public void funcionConsultarDatosVotante(Region valparaiso)throws IOException{        
         String rut;
+        String[] datosVotante;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese rut del votante");
         rut = lector.readLine();
         
-        valparaiso.mostrarDatosVotante(rut);
+        datosVotante = valparaiso.obtenerDatosVotante(rut);
+        
+        // Se imprimen los datos del votante
+        System.out.println("------------------------------------------");
+        System.out.println("DATOS VOTANTE");
+        System.out.println("------------------------------------------");
+        System.out.println("NOMBRE: "+datosVotante[0]);
+        System.out.println("RUT "+datosVotante[1]);
+        System.out.println("COMUNA: "+datosVotante[2]);
+        System.out.println("DIRECCION: "+datosVotante[3]);
+        System.out.println("HABILITADO(A) PARA VOTAR: SI");
+        System.out.println("LOCAL: "+datosVotante[5]);
+        System.out.println("DIRECCION LOCAL: "+datosVotante[6]);
+        System.out.println("NUMERO DE MESA: "+datosVotante[4]);
+        System.out.println("------------------------------------------");
     }
     
    
 
     /**
      * Función 10: mostrar Votantes
-     * @param valparaiso 
+     * @param valparaiso Región de Valparaiso
      */
     public void funcionMostrarVotantes(Region valparaiso){
         valparaiso.mostrarVotantes();
@@ -348,7 +366,7 @@ public class Funcionalidad {
 
     /**
      * Funcion 11: muestra Votantes por Local
-     * @param valparaiso
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
     public void funcionMostrarVotantesPorLocal(Region valparaiso) throws IOException{
@@ -358,20 +376,24 @@ public class Funcionalidad {
         valparaiso.mostrarVotantesLocal(nombreLocal);
     }
     
-    
-    /*
-    Funcion 12: Mostrar el votante mas joven de un local especifico
-    */
-    
+
+    /**
+     * Funcion 12: Mostrar el votante mas joven de un local especifico
+     * @param valparaiso Región de Valparaiso
+     * @throws IOException 
+     */
     public void funcionMostrarVotanteMasJoven(Region valparaiso) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el nombre del local");
         String nombreLocal = lector.readLine().toUpperCase();
         valparaiso.mostrarVotanteMasJoven(nombreLocal);
     }
-    /*
-    Funcion 13: Mostrar todos los votantes de un local en un intervalo
-    */
+
+    /**
+     *  Funcion 13: Mostrar todos los votantes de un local en un intervalo
+     * @param valparaiso Región de Valparaiso
+     * @throws IOException 
+     */
     public void funcionMostrarVotantesIntervalo(Region valparaiso) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el nombre del local");
@@ -379,24 +401,37 @@ public class Funcionalidad {
         valparaiso.mostrarVotantesIntervalo(nombreLocal);
     }
     
-    
     /**
-     * Funcion 14: busca un usuario mediante su rut y luego hace que se identifique
-     * @param valparaiso
+     * Función 14: Mostrar datos de no votante
+     * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionIdentificarse(Region valparaiso) throws IOException{
+    public void funcionMostrarDatosNoVotante(Region valparaiso)throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Ingrese el rut del usuario");
-        String rut = lector.readLine();
-        valparaiso.consultarTipoUsuario(rut);
+        System.out.println("Ingrese el nombre del no votante");
+        String rutNoVotante = lector.readLine().toUpperCase();
+        String[] datosNoVotante = valparaiso.obtenerDatosNoVotante(rutNoVotante);
+    
+        // Se imprimen los datos del no votante
+        System.out.println("------------------------------------------");
+        System.out.println("DATOS NO VOTANTE");
+        System.out.println("------------------------------------------");
+        System.out.println("NOMBRE: "+datosNoVotante[0]);
+        System.out.println("RUT "+datosNoVotante[1]);
+        System.out.println("COMUNA: "+datosNoVotante[2]);
+        System.out.println("DIRECCION: "+datosNoVotante[3]);
+        System.out.println("RAZON POR LA QUE NO VOTA: "+datosNoVotante[4]);
+        System.out.println("------------------------------------------");
+
     }
+    
+    
     
     
     /**
      * Función 15: exportar
-     * @param nombreArchivo
-     * @param valparaiso 
+     * @param nombreArchivo nombre del archivo a exportar
+     * @param valparaiso Región de Valparaiso
      */
     public void funcionExportar(String nombreArchivo, Region valparaiso){
         valparaiso.exportar(nombreArchivo);

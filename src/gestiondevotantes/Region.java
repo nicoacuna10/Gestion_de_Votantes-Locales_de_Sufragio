@@ -295,25 +295,41 @@ public class Region implements Mostrable{
     
 
     /**
-     * Método mostrarDatosVotante: Muestra los datos de un votante.
-     * @param rut 
+     * Método obtenerDatosVotante: Busca el votante en todos los locales y obtiene
+     * sus datos.
+     * @param rut rut del votante 
+     * @return Retorna un string con los datos del votante.
      */
-    public void mostrarDatosVotante(String rut){
+    public String[] obtenerDatosVotante(String rut){
         for( String nombreLocal : registroLocalesNombre.keySet()){
             Local a = registroLocalesNombre.get(nombreLocal);
             
-            if(a.buscarVotante(rut).getEstadoElectoral()==1){
                 Votante v = a.buscarVotante(rut);
                 if(v != null){
-                    
-                   a.mostrarDatosVotante(v, a.getNombreLocal(), a.getDireccion()); 
+                   String[] datosVotante;
+                   datosVotante = a.obtenerDatosVotante(v);
+                   return datosVotante;
                 }
-            }else{
-                System.out.println("ERROR");
-            }
             
 
         }
+        return null;
+    }
+    
+    /**
+     * Método obtenerDatosNoVotante: Busca el no votante en el registro y obtiene
+     * sus datos.
+     * @param rut rut del no votante
+     * @return Retorna un string con los datos del no votante
+     */
+    public String[] obtenerDatosNoVotante(String rut){
+        if( !registroNoVotantesRut.containsKey(rut)){
+            return null;
+        }
+        NoVotante nv = registroNoVotantesRut.get(rut);
+        String[] datosNoVotante = nv.obtenerDatosPersona();
+        
+        return datosNoVotante;
     }
     
 
@@ -405,28 +421,6 @@ public class Region implements Mostrable{
         }
     }
 
-    /**
-     * Método consultarTipoUsuario: muestra el tipo de usuario de una persona,
-     * indica si es votante o no votante.
-     * @param rut rut del usuario
-     */
-    public void consultarTipoUsuario(String rut) {
-        if(registroNoVotantesRut.containsKey(rut)==true){
-            NoVotante nv = registroNoVotantesRut.get(rut);
-            System.out.print("MI NOMBRE ES "+nv.getNombreCompleto()+" Y ");
-            nv.identificarse();
-        }else
-        for( String nombreLocal : registroLocalesNombre.keySet()){
-            Local a = registroLocalesNombre.get(nombreLocal);
-            Votante v = a.buscarVotante(rut);
-            if(v!=null){
-                System.out.print("MI NOMBRE ES "+v.getNombreCompleto()+" Y ");
-                v.identificarse();
-            }
-            
-        }
-        
-    }
     public void mostrarVotantesIntervalo(String nombreLocal) throws IOException{
         Local ll = buscarLocal(nombreLocal);//Se verifica la existencia del local
         if(ll != null)

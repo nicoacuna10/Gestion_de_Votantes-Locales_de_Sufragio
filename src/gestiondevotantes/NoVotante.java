@@ -8,7 +8,6 @@ package gestiondevotantes;
  */
 public class NoVotante extends Persona{
     private String razon;
-    //private int estadoElectoral;
     
     /**
      * Constructor de la clase NoVotante
@@ -25,17 +24,35 @@ public class NoVotante extends Persona{
         //this.estadoElectoral=estadoElectoral;
         
     }
+    
     /**
      * Método identificarse
      */
     @Override
-    public void identificarse(){
-        System.out.println("SOY NO VOTANTE");
+    public String[] obtenerDatosPersona(){
+        String[] datosNoVotante = new String[5];
+        
+        datosNoVotante[0] = getNombreCompleto();
+        datosNoVotante[1] = getRut();
+        datosNoVotante[2] = getComuna();
+        datosNoVotante[3] = getDireccion();
+        datosNoVotante[4] = razon;
+        
+        return datosNoVotante;
     }
+    
+    /**
+     * Método getRazon
+     * @return Retorna la razon por la que el no votante no vota
+     */
     public String getRazon() {
         return razon;
     }
-
+    
+    /**
+     * Método setRazon: almacena la razón por la que no vota
+     * @param razon razón por la que el no votante no vota
+     */
     public void setRazon(String razon) {
         this.razon = razon;
     }
@@ -43,8 +60,6 @@ public class NoVotante extends Persona{
     public Object crearPersona(){
         return null;
     }
-    public void jugar(){
-        
-    }
+
     
 }

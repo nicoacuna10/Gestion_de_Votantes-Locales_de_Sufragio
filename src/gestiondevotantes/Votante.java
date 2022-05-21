@@ -10,7 +10,6 @@ package gestiondevotantes;
 public class Votante extends Persona {
 
     private int numeroDeMesa;
-    //private int estadoElectoral;
     
     /**
      * Constructor clase votante con local asignado.
@@ -27,27 +26,39 @@ public class Votante extends Persona {
         this.numeroDeMesa = numeroDeMesa;
     }
     /**
-     * Método identificarse
+     * Método identificarse: guarda los datos del votante en un string
+     * @return Retorna un string con los datos del votante
      */
     @Override
-    public void identificarse(){
-        System.out.println("SOY VOTANTE");
+    public String[] obtenerDatosPersona(){
+        String[] datosVotante = new String[7];
+        
+        datosVotante[0] = getNombreCompleto();
+        datosVotante[1] = getRut();
+        datosVotante[2] = getComuna();
+        datosVotante[3] = getDireccion();
+        datosVotante[4] = String.valueOf(numeroDeMesa);
+        
+        return datosVotante;
     }
     
+    /**
+     * Método setNumeroDeMesa: almacena un nuevo número de mesa
+     * @param numeroDeMesa número de la mesa del votante
+     */
     public void setNumeroDeMesa(int numeroDeMesa) {
         this.numeroDeMesa = numeroDeMesa;
     }    
     
+    /**
+     * Método getNumeroDeMesa
+     * @return Retorna el número de la mesa del votante
+     */
     public int getNumeroDeMesa() {
         return numeroDeMesa;
     }
 
-    /*public int getEstadoElectoral() {
-        return estadoElectoral;
-    }
-    public void setEstadoElectoral(int estadoElectoral) {
-        this.estadoElectoral = estadoElectoral;
-    }*/
+
      public Object crearPersona(){
          return null;
      }

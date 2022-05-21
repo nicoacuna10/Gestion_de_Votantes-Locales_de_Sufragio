@@ -48,7 +48,7 @@ public class Menu {
                 System.out.println("11. Mostrar todos los votantes de un Local");
                 System.out.println("12. Mostrar el votante mas joven de un Local");
                 System.out.println("13. Mostrar votantes de un local en un intervalo");
-                System.out.println("14. Consultar Tipo de Usuario");
+                System.out.println("14. Consultar datos del no votante");
                 System.out.println("15. Exportar datos a archivo *.csv");
                 System.out.println("16. Salir");
 
@@ -107,7 +107,7 @@ public class Menu {
                             f.funcionMostrarVotantesIntervalo(valparaiso);
                             break;
                         case 14:
-                            f.funcionIdentificarse(valparaiso);
+                            f.funcionMostrarDatosNoVotante(valparaiso);
                             break;
                         case 15:
                             f.funcionExportar("datos.csv", valparaiso);
@@ -117,7 +117,7 @@ public class Menu {
                             break;
                         
                         default:
-                            System.out.println("Solo números entre 1 y 12");
+                            System.out.println("Solo números entre 1 y 16");
                     }
                 } catch (InputMismatchException e) {
                     System.out.println("Debes insertar un número");

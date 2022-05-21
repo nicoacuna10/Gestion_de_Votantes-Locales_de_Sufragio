@@ -142,28 +142,16 @@ public class Local implements Mostrable{
     
     
     /**
-     * Método mostrarDatosVotante: Muestra los datos del votante
+     * Método obtenerDatosVotante: Guarda los datos del local del votante en
+     * el arreglo de datos del votante.
      * @param v votante
-     * @param nombreLocal nombre del local del votante
-     * @param direccionLocal dirección del local del votante
+     * @return Retorna un string con los datos del votante
      */
-    public void mostrarDatosVotante(Votante v, String nombreLocal, String direccionLocal){
-        // Se imprimen los datos del votante
-        System.out.println("------------------------------------------");
-        System.out.println("DATOS VOTANTE");
-        System.out.println("------------------------------------------");
-        System.out.println("NOMBRE: "+v.getNombreCompleto());
-        System.out.println("RUT "+v.getRut());
-        System.out.println("COMUNA: "+v.getComuna());
-        System.out.println("DIRECCION: "+v.getDireccion());
-        
-        if(v.getEstadoElectoral() == 1){
-           System.out.println("HABILITADO(A) PARA VOTAR: SI");
-           System.out.println("LOCAL: "+nombreLocal);
-           System.out.println("DIRECCION LOCAL: "+direccionLocal);
-           System.out.println("NUMERO DE MESA: "+(v.getNumeroDeMesa()));
-        }else System.out.println("HABILITADO(A) PARA VOTAR: NO");
-        System.out.println("------------------------------------------");
+    public String[] obtenerDatosVotante(Votante v){
+        String[] datosVotante = v.obtenerDatosPersona();
+        datosVotante[5] = nombreLocal;
+        datosVotante[6] = direccion;
+        return datosVotante;
     }
    
 
@@ -214,6 +202,11 @@ public class Local implements Mostrable{
         return rutsVotantes;
     }
     
+    /**
+     * Método obtenerVotanteMasJoven: compara cada uno de los votantes del local,
+     * hasta que encuentre el votante con el menor número de rut (sin el digito
+     * verificador) y lo muestra.
+     */
     public void obtenerVotanteMasJoven(){
         int guardado = 0; //almacenara el rut de valor mas alto encontrado hasta ese punto
         int aComparar; //Guardara el rut a comparar como int
@@ -245,6 +238,11 @@ public class Local implements Mostrable{
                 else System.out.println("NO");
     }
     
+    /**
+     * Método mostrarVotantesIntervalo: muestra los votantes que están en un intervalo de rut1 y rut2
+     * que ingresa el usuario.
+     * @throws IOException 
+     */
     public void mostrarVotantesIntervalo() throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         int primerRut;
@@ -286,41 +284,99 @@ public class Local implements Mostrable{
          if(contador == 0)
              System.out.println("NO SE ENCONTRARON VOTANTES DENTRO DEL INTERVALO");
     }
-
+    
+    /**
+     * Método getNombreLocal
+     * @return Retorna el nombre del local
+     */
     public String getNombreLocal() {
         return nombreLocal;
     }
+    
+    /**
+     * Método getComuna
+     * @return Retorna la comuna del local
+     */
     public String getComuna() {
         return comuna;
     }
+    
+    /**
+     * Método getDireccion
+     * @return Retorna la dirección del local
+     */
     public String getDireccion() {
         return direccion;
     }
+    
+    /**
+     * Método getCapacidadMaxima
+     * @return Retorna la capacidad máxima de votantes del local
+     */
     public int getCapacidadMaxima() {
         return capacidadMaxima;
     }
+    
+    /**
+     * Método getNumeroPrimeraMesa
+     * @return Retorna el número de la primera mesa del local
+     */
     public int getNumeroPrimeraMesa() {
         return numeroPrimeraMesa;
     }
+    
+    /**
+     * Método getNumeroUltimaMesa
+     * @return Retorna el número de la última mesa del local.
+     */
     public int getNumeroUltimaMesa() {
         return numeroUltimaMesa;
     }
-
+    
+    /**
+     * Método setNombreLocal
+     * @param nombreLocal nombre del local de votación
+     */
     public void setNombreLocal(String nombreLocal) {
         this.nombreLocal = nombreLocal;
     }
+    
+    /**
+     * Método setComuna
+     * @param comuna comuna del local
+     */
     public void setComuna(String comuna) {
         this.comuna = comuna;
     }
+    
+    /**
+     * Método setDireccion
+     * @param direccion dirección del local
+     */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    /**
+     * Método setCapacidadMaxima
+     * @param capacidadMaxima capacidad máxima de votantes del local
+     */
     public void setCapacidadMaxima(int capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
     }
+    
+    /**
+     * Método setPrimeraMesa
+     * @param numeroPrimeraMesa número de la primera mesa del local
+     */
     public void setNumeroPrimeraMesa(int numeroPrimeraMesa) {
         this.numeroPrimeraMesa = numeroPrimeraMesa;
     }
+    
+    /**
+     * Métod setNumeroUltimaMesa
+     * @param numeroUltimaMesa número de la última mesa del local
+     */
     public void setNumeroUltimaMesa(int numeroUltimaMesa) {
         this.numeroUltimaMesa = numeroUltimaMesa;
     }

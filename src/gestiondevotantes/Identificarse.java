@@ -5,6 +5,10 @@ package gestiondevotantes;
  * @author jpail
  */
 public interface Identificarse {
-
-    public void identificarse();
+    
+    /**
+     * Declaración del método obtenerDatosPersona
+     * @return Retorna un String
+     */
+    public String[] obtenerDatosPersona();
 }
