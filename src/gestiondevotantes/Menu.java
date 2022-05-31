@@ -26,7 +26,10 @@ public class Menu {
         
         Region valparaiso = new Region();
         Funcionalidad f = new Funcionalidad();
+        CSV administradorCSV = new CSV();
+        
         f.funcionInicial(valparaiso);
+        administradorCSV.importarCSV("datosImportar.csv", valparaiso);
         Scanner sn = new Scanner(System.in);
         
         boolean salir = false;
@@ -40,16 +43,16 @@ public class Menu {
                 System.out.println("3.  Eliminar local del registro");
                 System.out.println("4.  Consultar datos del local");
                 System.out.println("5.  Mostrar locales de votacion");
-                System.out.println("6.  Agregar usuario al registro");
-                System.out.println("7.  Modificar datos del usuario");
-                System.out.println("8.  Eliminar usuario del registro");
-                System.out.println("9.  Consultar datos electorales del usuario");
-                System.out.println("10. Mostrar todos los usuarios");
-                System.out.println("11. Mostrar todos los votantes de un Local");
-                System.out.println("12. Mostrar el votante mas joven de un Local");
-                System.out.println("13. Mostrar votantes de un local en un intervalo");
-                System.out.println("14. Consultar datos del no votante");
-                System.out.println("15. Exportar datos a archivo *.csv");
+                System.out.println("6.  Agregar persona al registro");
+                System.out.println("7.  Modificar datos de la persona");
+                System.out.println("8.  Eliminar persona del registro");
+                System.out.println("9.  Buscar persona en el registro");
+                System.out.println("10. Mostrar los votantes de un local");
+                System.out.println("11. Mostrar todos los votantes de la region");
+                System.out.println("12. Mostrar el votante mas joven de un local");
+                System.out.println("13. Mostrar votantes de un local en un intervalo de ruts");
+                System.out.println("14. Mostrar todos los no votantes de la region");
+                System.out.println("15. Exportar archivo *.csv");
                 System.out.println("16. Salir");
 
                 try {
@@ -71,7 +74,7 @@ public class Menu {
                             break;
                         
                         case 4:
-                            f.funcionConsultarDatosLocal(valparaiso);
+                            f.funcionBuscarLocal(valparaiso);
                             break;
                             
                         case 5:
@@ -79,39 +82,45 @@ public class Menu {
                             break;
                             
                         case 6:
-                            f.funcionAgregarVotante(valparaiso);
+                            f.funcionAgregarPersona(valparaiso);
                             break;
                         
                         case 7:
-                            f.funcionModificarDatosVotante(valparaiso);
+                            f.funcionModificarDatosPersona(valparaiso);
                             break;
                             
                         case 8:
-                            f.funcionEliminarVotante(valparaiso);
+                            f.funcionEliminarPersona(valparaiso);
                             break;
                             
                         case 9:
-                            f.funcionConsultarDatosVotante(valparaiso);
+                            f.funcionBuscarPersona(valparaiso);
                             break;
                             
                         case 10:
+                            f.funcionMostrarVotantesLocal(valparaiso);
+                            break;
+                            
+                        case 11:
                             f.funcionMostrarVotantes(valparaiso);
                             break;
-                        case 11:
-                            f.funcionMostrarVotantesPorLocal(valparaiso);
-                            break;
+                            
                         case 12:
                             f.funcionMostrarVotanteMasJoven(valparaiso);
                             break;
+                            
                         case 13:
                             f.funcionMostrarVotantesIntervalo(valparaiso);
                             break;
+                            
                         case 14:
-                            f.funcionMostrarDatosNoVotante(valparaiso);
+                            f.funcionMostrarNoVotantes(valparaiso);
                             break;
+                            
                         case 15:
-                            f.funcionExportar("datos.csv", valparaiso);
+                            administradorCSV.exportarCSV("datosExportar.csv", valparaiso);
                             break;
+                            
                         case 16:
                             salir = true;
                             break;

@@ -5,5 +5,6 @@ package gestiondevotantes;
  * @author jpail
  */
 public interface Mostrable {
-    public void mostrarDatos();
+    public Votante buscarVotante(String rut);
+    public boolean eliminarVotante(String rut);
 }

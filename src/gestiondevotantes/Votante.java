@@ -12,6 +12,13 @@ public class Votante extends Persona {
     private int numeroDeMesa;
     
     /**
+     * Constructor de la clase Votante.
+     */
+    public Votante(){
+        super();
+    }
+    
+    /**
      * Constructor clase votante con local asignado.
      * @param nombreCompleto nombre completo del votante
      * @param rut rut del votante
@@ -22,11 +29,10 @@ public class Votante extends Persona {
      */
     public Votante(String nombreCompleto, String rut, String comuna, String direccion, int estadoElectoral, int numeroDeMesa) {
         super(nombreCompleto, rut, comuna, direccion, estadoElectoral);
-        //this.estadoElectoral = estadoElectoral;
         this.numeroDeMesa = numeroDeMesa;
     }
     /**
-     * Método identificarse: guarda los datos del votante en un string
+     * Método obtenerDatosPersona: guarda los datos del votante en un string
      * @return Retorna un string con los datos del votante
      */
     @Override
@@ -43,7 +49,7 @@ public class Votante extends Persona {
     }
     
     /**
-     * Método setNumeroDeMesa: almacena un nuevo número de mesa
+     * Método setNumeroDeMesa: Almacena un número de mesa del votante
      * @param numeroDeMesa número de la mesa del votante
      */
     public void setNumeroDeMesa(int numeroDeMesa) {
@@ -51,15 +57,11 @@ public class Votante extends Persona {
     }    
     
     /**
-     * Método getNumeroDeMesa
+     * Método getNumeroDeMesa: Obtiene el número de mesa del votante.
      * @return Retorna el número de la mesa del votante
      */
     public int getNumeroDeMesa() {
         return numeroDeMesa;
     }
 
-
-     public Object crearPersona(){
-         return null;
-     }
 }

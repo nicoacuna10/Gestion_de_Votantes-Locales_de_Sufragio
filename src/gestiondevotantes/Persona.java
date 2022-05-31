@@ -16,6 +16,13 @@ public abstract class Persona implements Identificarse{
     private int estadoElectoral; // Si el valor es 1, el votante está habilitado para votar.
     
     /**
+     * Constructor de la clase Persona.
+     */
+    public Persona(){
+    
+    }
+    
+    /**
      * Constructor de la clase Persona
      * @param nombreCompleto nombre de la persona
      * @param rut rut de la persona
@@ -48,12 +55,6 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * 
-     * @return 
-     */
-    public abstract Object crearPersona();
-    
-    /**
      * Declaración método abstracto obtenerDatosPersona
      * @return Retorna un String con los datos de la persona (votante o no votante).
      */
@@ -61,7 +62,7 @@ public abstract class Persona implements Identificarse{
     public abstract String[] obtenerDatosPersona();
     
     /**
-     * Método getNombreCompleto
+     * Método getNombreCompleto: Obtiene el nombre completo de la persona.
      * @return Retorna el nombre completo de la persona.
      */
     public String getNombreCompleto() {
@@ -69,7 +70,7 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * Método setNombreCompleto
+     * Método setNombreCompleto: Almacena el nombre completo de la persona.
      * @param nombreCompleto nombre completo de la persona
      */
     public void setNombreCompleto(String nombreCompleto) {
@@ -77,7 +78,7 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * Método getRut
+     * Método getRut: Obtiene el rut de la persona.
      * @return Retorna el rut de la persona
      */
     public String getRut() {
@@ -85,15 +86,15 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * Método setRut
+     * Método setRut: Almacena el rut de la persona.
      * @param rut rut de la persona
      */
-    public void setRut(String rut) {
+    public void setRut(String rut) {   
         this.rut = rut;
     }
     
     /**
-     * Método getComuna
+     * Método getComuna: Obtiene la comuna de la persona.
      * @return Retorna la comuna de la persona
      */
     public String getComuna() {
@@ -101,7 +102,7 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * Método setComuna
+     * Método setComuna: Almacena la comuna de la persona.
      * @param comuna comuna de la persona
      */
     public void setComuna(String comuna) {
@@ -109,7 +110,7 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * Método getDireccion
+     * Método getDireccion: Obtiene la dirección de la persona.
      * @return Retorna la dirección de la persona
      */
     public String getDireccion() {
@@ -117,7 +118,7 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
-     * Método setDireccion
+     * Método setDireccion: Almacena la dirección de la persona.
      * @param direccion dirección de la persona
      */
     public void setDireccion(String direccion) {

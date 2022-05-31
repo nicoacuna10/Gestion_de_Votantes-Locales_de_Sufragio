@@ -22,17 +22,10 @@ public class Local implements Mostrable{
     private HashMap <String, Votante> registroVotantesRut; // Mapa de Votantes con clave el rut.
     
     /**
-     * Constructor de la clase Local
-     * @param nombreLocal nombre del local
+     * Contructor de la clase Local.
      */
-    public Local(String nombreLocal){
-        this.nombreLocal = nombreLocal;
-        comuna = "0";
-        direccion = "0";
-        capacidadMaxima = 2000000;
-        numeroPrimeraMesa = 0;
-        numeroUltimaMesa = 0;
-        registroVotantesRut = new HashMap();
+    public Local(){
+    
     }
     
     /**
@@ -58,18 +51,16 @@ public class Local implements Mostrable{
     /**
      * Método agregarVotante: Agrega un votante al registro si el local no está
      * lleno o si no existe previamente el votante.
-     * @param p votante
+     * @param v votante
      * @return Retorna true si se agregó el votante, retorna false caso contrario.
      */
-    public boolean agregarVotante(Votante p){
-        if(registroVotantesRut.size() == capacidadMaxima){
+    public boolean agregarVotante(Votante v){
+        if(registroVotantesRut.size() == capacidadMaxima || registroVotantesRut.containsKey(v.getRut())){
             return false;
         }
-        if(registroVotantesRut.containsKey(p.getRut())){
-            return false;
-        }
-        registroVotantesRut.put(p.getRut(), p);
+        registroVotantesRut.put(v.getRut(), v);
         return true;
+        
     }
     
 
@@ -78,62 +69,58 @@ public class Local implements Mostrable{
      * @param rut rut del votante
      * @return Retorna el votante si se encuentra. Retorna null caso contrario
      */
+    @Override
     public Votante buscarVotante(String rut){
         if(!registroVotantesRut.containsKey(rut)){
             return null;
         }
         return registroVotantesRut.get(rut);
     }
-    
-
-    /**
-     * Método modificarDatosVotante: Modifica el numero de mesa, la comuna y
-     * la dirección siempre y cuando el votante se encuentre en el registro.
-     * @param rut rut del votante
-     * @param numeroDeMesa numero de mesa nuevo
-     * @param comuna comuna nueva
-     * @param direccion direccion nueva
-     * @return Retorna true si se modificaron los datos, retorna false en caso contrario.
-     */
-    public boolean modificarDatosVotante(String rut, int numeroDeMesa, String comuna, String direccion){
-        if(!registroVotantesRut.containsKey(rut)){
-            return false;
-        }
-        Votante v = (Votante)registroVotantesRut.get(rut);
-        v.setNumeroDeMesa(numeroDeMesa);
-        v.setComuna(comuna);
-        v.setDireccion(direccion);
-        return true;
-    }
-    
+        
     
     /**
-     * Método modificarDatosVotante: Modifica el número de mesa del votante.
+     * Método modificarNumeroDeMesaVotante: Modifica el número de mesa del votante.
+     * Verifica que el número de mesa a cambiar del votante se encuentre entre los
+     * rangos de mesa del local, es decir, que se encuentre entre el número de la primera mesa
+     * y el de la última mesa (ambos límites inclusive).
      * @param rut rut del votante
-     * @param numeroDeMesa numero de mesa nuevo
+     * @param numeroDeMesaNueva
      * @return Retorna true si se modifica el número de mesa, false en caso contrario.
      */
-    public boolean modificarDatosVotante(String rut, int numeroDeMesa){
-        if(!registroVotantesRut.containsKey(rut)){
+    public boolean modificarNumeroDeMesaVotante(String rut, int numeroDeMesaNueva){
+        Votante v = registroVotantesRut.get(rut);
+        if(numeroDeMesaNueva < numeroPrimeraMesa || numeroDeMesaNueva > numeroUltimaMesa){
             return false;
         }
-        Votante v = (Votante)registroVotantesRut.get(rut);
-        v.setNumeroDeMesa(numeroDeMesa);
+        v.setNumeroDeMesa(numeroDeMesaNueva);
         return true;
+    }
+    
+    /**
+     * Método modificarNumeroDeMesaVotante: Modifica el número de mesa del votante.
+     * Solo en caso de que la mesa del votante no se encuentre en el rango de mesas
+     * del local. En ese caso, se realiza una reasignación aleatoria entre los rangos
+     * de mesas del local.
+     * @param rut rut del votante
+     */
+    public void modificarNumeroDeMesaVotante(String rut){
+        Votante v = registroVotantesRut.get(rut);
+        if(v.getNumeroDeMesa() < numeroPrimeraMesa || v.getNumeroDeMesa() > numeroUltimaMesa){
+            int numeroDeMesa = (int) Math.floor(Math.random()*(numeroUltimaMesa - numeroPrimeraMesa + 1) + numeroPrimeraMesa);
+            v.setNumeroDeMesa(numeroDeMesa);
+        }
+    
     }
     
 
     /**
-     * Método eliminarVotante: Elimina un votante del registro si no se
-     * encuentra vacio o si el votante se encuentra.
+     * Método eliminarVotante: Elimina un votante del registro si no se encuentra vacio o si el votante se encuentra.
      * @param rut rut del votante
      * @return Retorna true si se elimina con éxito, retorna false caso contrario.
      */
+    @Override
     public boolean eliminarVotante(String rut){
-        if(registroVotantesRut.isEmpty()){
-            return false;
-        }
-        if(!registroVotantesRut.containsKey(rut)){
+        if(registroVotantesRut.isEmpty() || !registroVotantesRut.containsKey(rut)){
             return false;
         }
         registroVotantesRut.remove(rut);
@@ -153,31 +140,7 @@ public class Local implements Mostrable{
         datosVotante[6] = direccion;
         return datosVotante;
     }
-   
-
-    /**
-     * Método mostrarVotantes: Muestra todos los votantes del local.
-     */
-    @Override
-    public void mostrarDatos(){
-        
-        if(registroVotantesRut.size()>0){
-            System.out.println("-------------------------------------------------------------------------------------------------");
-            System.out.println("\tNOMBRE\t\t\tRUT\t\tCOMUNA\t\tDIRECCION\tESTADO ELECTORAL ");
-            System.out.println("-------------------------------------------------------------------------------------------------");
-            // Se recorre el mapa registroVotantesRut
-            for( String rut : registroVotantesRut.keySet()){
-                Persona v = registroVotantesRut.get(rut);
-                System.out.format("%-30s %-15s %-15s %-25s", v.getNombreCompleto(), rut, v.getComuna(), v.getDireccion());
-                if(v.getEstadoElectoral()==1)System.out.println("SI");
-                else System.out.println("NO");
-            }
-            System.out.println("-------------------------------------------------------------------------------------------------");
-        }else{
-            System.out.println("No hay datos");
-        }
-    }
-    
+  
 
     /**
      * Método obtenerCantidadVotantes: Obtiene la cantidad de votantes del local.
@@ -198,9 +161,25 @@ public class Local implements Mostrable{
         int i = 0;
         for(String rut : registroVotantesRut.keySet()){
             rutsVotantes[i] = rut;
+            i++;
         }
         return rutsVotantes;
     }
+    
+    /**
+     * Método modificaCapacidadMaxima: Modifica la capacidad maxima del local si
+     * es mayor o igual a cien y distinta al valor actual.
+     * @param capacidadMaximaNueva capacidad maxima nueva del local
+     * @return Retorna true si se realizó la modificación, false caso contrario.
+     */
+    public boolean modificarCapacidadMaxima(int capacidadMaximaNueva){
+        if(capacidadMaximaNueva < 100 || capacidadMaximaNueva == capacidadMaxima){
+            return false;
+        }
+        setCapacidadMaxima(capacidadMaximaNueva);
+        return true;
+    }
+    
     
     /**
      * Método obtenerVotanteMasJoven: compara cada uno de los votantes del local,
@@ -286,7 +265,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método getNombreLocal
+     * Método getNombreLocal: Obtiene el nombre del local.
      * @return Retorna el nombre del local
      */
     public String getNombreLocal() {
@@ -294,7 +273,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método getComuna
+     * Método getComuna: Obtienen la comuna donde se encuentra el local.
      * @return Retorna la comuna del local
      */
     public String getComuna() {
@@ -302,7 +281,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método getDireccion
+     * Método getDireccion: Obtiene la dirección del local.
      * @return Retorna la dirección del local
      */
     public String getDireccion() {
@@ -310,7 +289,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método getCapacidadMaxima
+     * Método getCapacidadMaxima: Obtiene la capacidad máxima del local.
      * @return Retorna la capacidad máxima de votantes del local
      */
     public int getCapacidadMaxima() {
@@ -318,7 +297,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método getNumeroPrimeraMesa
+     * Método getNumeroPrimeraMesa: Obtiene el número de la primera mesa del local.
      * @return Retorna el número de la primera mesa del local
      */
     public int getNumeroPrimeraMesa() {
@@ -326,7 +305,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método getNumeroUltimaMesa
+     * Método getNumeroUltimaMesa: Obtiene el número de la última mesa del local.
      * @return Retorna el número de la última mesa del local.
      */
     public int getNumeroUltimaMesa() {
@@ -334,7 +313,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método setNombreLocal
+     * Método setNombreLocal: Almacena el nombre del local.
      * @param nombreLocal nombre del local de votación
      */
     public void setNombreLocal(String nombreLocal) {
@@ -342,7 +321,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método setComuna
+     * Método setComuna: Almacena la comuna donde se encuentra el local.
      * @param comuna comuna del local
      */
     public void setComuna(String comuna) {
@@ -350,7 +329,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método setDireccion
+     * Método setDireccion: Almacena la dirección del local.
      * @param direccion dirección del local
      */
     public void setDireccion(String direccion) {
@@ -358,7 +337,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método setCapacidadMaxima
+     * Método setCapacidadMaxima: Almacena la capacidad máxima del local.
      * @param capacidadMaxima capacidad máxima de votantes del local
      */
     public void setCapacidadMaxima(int capacidadMaxima) {
@@ -366,7 +345,7 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Método setPrimeraMesa
+     * Método setPrimeraMesa: Almacena el número de la primera mesa del local.
      * @param numeroPrimeraMesa número de la primera mesa del local
      */
     public void setNumeroPrimeraMesa(int numeroPrimeraMesa) {
@@ -374,18 +353,11 @@ public class Local implements Mostrable{
     }
     
     /**
-     * Métod setNumeroUltimaMesa
+     * Métod setNumeroUltimaMesa: Almacena el número de la última mesa del local.
      * @param numeroUltimaMesa número de la última mesa del local
      */
     public void setNumeroUltimaMesa(int numeroUltimaMesa) {
         this.numeroUltimaMesa = numeroUltimaMesa;
     }
-
-    /*@Override
-    public void mostrarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-    
-    
-    
+        
 }

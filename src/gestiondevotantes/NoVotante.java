@@ -10,6 +10,13 @@ public class NoVotante extends Persona{
     private String razon;
     
     /**
+     * Constructor de la clase NoVotante.
+     */
+    public NoVotante(){
+        super();
+    }
+    
+    /**
      * Constructor de la clase NoVotante
      * @param nombreCompleto nombre del no votante
      * @param rut rut del no votante
@@ -26,7 +33,8 @@ public class NoVotante extends Persona{
     }
     
     /**
-     * Método identificarse
+     * Método obtenerDatosPersona: guarda los datos del no votante en un string.
+     * @return Retorna un arreglo de Strings con los datos del no votante.
      */
     @Override
     public String[] obtenerDatosPersona(){
@@ -42,7 +50,7 @@ public class NoVotante extends Persona{
     }
     
     /**
-     * Método getRazon
+     * Método getRazon: Obtiene la razon por la que el no votante no puede votar.
      * @return Retorna la razon por la que el no votante no vota
      */
     public String getRazon() {
@@ -57,9 +65,6 @@ public class NoVotante extends Persona{
         this.razon = razon;
     }
         
-    public Object crearPersona(){
-        return null;
-    }
 
     
 }

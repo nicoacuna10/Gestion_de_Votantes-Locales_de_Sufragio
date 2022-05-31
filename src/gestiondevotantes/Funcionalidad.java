@@ -36,7 +36,7 @@ public class Funcionalidad {
         
         
         votante1 = new Votante("PEDRO ALBERTO LOPEZ GONZALEZ", "13800755-0", "VINA DEL MAR", "15 NORTE 567", 1, 50);
-        valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", (Votante)votante1);
+        valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", votante1);
         
         votante2 = new Votante("PATRICIA CABRERO QUISPE", "8444987-2", "VALPARAISO", "CALLE ZENTENO 130", 1, 34);
         valparaiso.agregarVotante("PUCV CASA CENTRAL", votante2);
@@ -59,12 +59,9 @@ public class Funcionalidad {
      * @throws IOException 
      */
     public void funcionAgregarLocal(Region valparaiso)throws IOException{
-        String nombre;
-        String comuna;
-        String direccion;
-        int capacidadMaxima;
-        int numeroPrimeraMesa;
-        int numeroUltimaMesa;
+        
+        String nombre, comuna, direccion;
+        int capacidadMaxima, numeroPrimeraMesa, numeroUltimaMesa;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         // Solicitud de ingreso de datos del local.
@@ -79,18 +76,22 @@ public class Funcionalidad {
         
         System.out.println("Ingrese capacidad maxima del local");
         capacidadMaxima = Integer.parseInt(lector.readLine());
+        while(capacidadMaxima < 100){
+            System.out.println("Ingrese un valor mayor o igual a 100");
+            capacidadMaxima = Integer.parseInt(lector.readLine());
+        }
         
         System.out.println("Ingrese el numero de la primera mesa");
         numeroPrimeraMesa = Integer.parseInt(lector.readLine());
-        while(numeroPrimeraMesa < 1){
-            System.out.println("Ingrese numero de mesa valido");
+        while(numeroPrimeraMesa <= 0){
+            System.out.println("Ingrese un valor mayor a 0");
             numeroPrimeraMesa = Integer.parseInt(lector.readLine());
         }
         
         System.out.println("Ingrese el numero de la ultima mesa");
         numeroUltimaMesa = Integer.parseInt(lector.readLine());
-        while(numeroUltimaMesa < numeroPrimeraMesa){
-            System.out.println("Ingrese numero de mesa valido");
+        while(numeroUltimaMesa <= numeroPrimeraMesa){
+            System.out.println("Ingrese un valor mayor a "+numeroPrimeraMesa);
             numeroUltimaMesa = Integer.parseInt(lector.readLine());
         }
         
@@ -111,25 +112,17 @@ public class Funcionalidad {
      */
     public void funcionModificarDatosLocal(Region valparaiso)throws IOException{
         String nombreLocal;
-        String comuna;
-        String direccion;
-        int capacidadMaxima;
+        int capacidadMaximaNueva;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
             
-        System.out.println("Ingrese nombre nuevo del local");
+        System.out.println("Ingrese nombre del local");
         nombreLocal = lector.readLine().toUpperCase();   
 
-        System.out.println("Ingrese comuna nueva del local");
-        comuna = lector.readLine().toUpperCase();
-
-        System.out.println("Ingrese direccion nueva del local");
-        direccion = lector.readLine().toUpperCase();
-
         System.out.println("Ingrese capacidad maxima nueva del local");
-        capacidadMaxima = Integer.parseInt(lector.readLine());
+        capacidadMaximaNueva = Integer.parseInt(lector.readLine());
         
-        if( valparaiso.modificarDatosLocal(nombreLocal, comuna, direccion, capacidadMaxima) == true ){
-            System.out.println("El local fue modificado con exito");
+        if( valparaiso.modificarDatosLocal(nombreLocal, capacidadMaximaNueva) == true ){
+            System.out.println("Los datos del local fueron modificados con exito");
         }else System.out.println("No existe Local");
         
     }
@@ -155,42 +148,29 @@ public class Funcionalidad {
     
 
     /**
-     * Función 4: consultar (buscar y mostrar) datos de un local.
-     * Ademas se da la posibilidad de buscar y mostrar en otro nivel
+     * Función 4: buscar un local en el registro y mostrar sus datos.
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionConsultarDatosLocal(Region valparaiso)throws IOException{
+    public void funcionBuscarLocal(Region valparaiso)throws IOException{
         String nombreLocal;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese nombre del local");
         nombreLocal = lector.readLine().toUpperCase();
-
-        if( valparaiso.mostrarDatosLocal(nombreLocal.toUpperCase()) == true ){
-            //System.out.println("Se mostraron los datos del local con exito");
-            
-            System.out.println("¿Desea consultar datos de algun votante de este Local?");
-            System.out.println("Por favor escriba SI o NO");
-            String respuesta = lector.readLine();
-            if((respuesta.toUpperCase()).equals("SI")){
-                System.out.println("Escriba el RUT del usuario");
-                String rut = lector.readLine();
-                Votante v = valparaiso.buscarVotante(rut);
-                if(v!=null){
-                    System.out.println(v.getNombreCompleto()+" esta en el local "+nombreLocal.toUpperCase());
-                    System.out.println("¿Desea consultar los datos del usuario?");
-                    System.out.println("Por favor escriba SI o NO");
-                    respuesta = lector.readLine();
-                    //if((respuesta.toUpperCase()).equals("SI"))valparaiso.mostrarDatosVotante(rut);
-                    System.out.println("--------------------------------------------------------");
-                }
-                if(v == null)System.out.println("No esta dicha persona en el local "+nombreLocal.toUpperCase());
-            }
-                    
-        }else System.out.println("No existe Local");
         
-    
+        Local a = valparaiso.buscarLocal(nombreLocal);
+
+        if( a != null ){
+            // mostrar datos
+            System.out.println("DATOS LOCAL");
+            System.out.println("NOMBRE: "+a.getNombreLocal());
+            System.out.println("COMUNA: "+a.getComuna());
+            System.out.println("DIRECCION: "+a.getDireccion());
+            System.out.println("CAPACIDAD MAXIMA: "+a.getCapacidadMaxima());
+            System.out.println("MESAS: "+a.getNumeroPrimeraMesa()+" - "+a.getNumeroUltimaMesa());
+        }else System.out.println("No existe Local");
+
     }
     
 
@@ -199,39 +179,44 @@ public class Funcionalidad {
      * @param valparaiso Región de Valparaiso
      */
     public void funcionMostrarLocales(Region valparaiso){
-       System.out.println("Locales de votacion de la region de Valparaiso");
-       valparaiso.mostrarLocales();
+        
+       String[] nombresLocales = valparaiso.obtenerNombresLocales();
+       int cantidadLocales = nombresLocales.length;
+       
+       if(cantidadLocales > 0){
+           System.out.println("Locales de votacion de la region de Valparaiso");
+           System.out.println("Nombre\t\tComuna\t\tCapacidad Maxima\t\tDireccion\t\tMesas");
+       }
+       
+       for(int i = 0; i < cantidadLocales; i++){
+           Local a = valparaiso.buscarLocal(nombresLocales[i]);
+           System.out.println(a.getNombreLocal()+"\t\t"+a.getComuna()+"\t\t"+a.getDireccion()+"\t\t"+a.getCapacidadMaxima()+"\t\t"+a.getNumeroPrimeraMesa()+" - "+a.getNumeroUltimaMesa());
+       }
+
     }
-    
-    
 
     /**
-     * Función 6: agrega un nuevo votante.
+     * Función 6: agregar una nueva persona.
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionAgregarVotante(Region valparaiso)throws IOException{
-        String nombreLocal;
+    public void funcionAgregarPersona(Region valparaiso)throws IOException{
         Votante votanteNuevo;
-        String nombreCompleto;
-        String rut;
-        String comuna;
-        String direccion;
-        int estadoElectoral;
-        int numeroDeMesa;
+        String nombreLocal, nombreCompleto, rut, comuna, direccion;
+        int estadoElectoral, numeroDeMesa;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 
-        // Solicitud de ingreso de datos del votante.
-        System.out.println("Ingrese nombre completo del votante");
+        // Solicitud de ingreso de datos de la persona.
+        System.out.println("Ingrese nombre completo de la persona");
         nombreCompleto = lector.readLine().toUpperCase();
 
-        System.out.println("Ingrese rut del votante");
+        System.out.println("Ingrese rut del persona");
         rut = lector.readLine();
 
-        System.out.println("Ingrese comuna de domicilio del votante");
+        System.out.println("Ingrese comuna de domicilio de la persona");
         comuna = lector.readLine().toUpperCase();
 
-        System.out.println("Ingrese dirección de domicilio del votante");
+        System.out.println("Ingrese dirección de domicilio de la persona");
         direccion = lector.readLine().toUpperCase();
 
         System.out.println("Ingrese 1 si la persona esta habilitada para votar, 0 caso contrario");
@@ -251,134 +236,216 @@ public class Funcionalidad {
             // Instanciación de la variable de Clase Votante.
             votanteNuevo = new Votante(nombreCompleto, rut, comuna, direccion, estadoElectoral, numeroDeMesa);
             
-            if(valparaiso.agregarVotante(nombreLocal, (Votante)votanteNuevo) == false){
-                System.out.println("El votante ya existe");
-                return;
-            }else System.out.println("El votante se agrego con exito");
+            if(valparaiso.agregarVotante(nombreLocal, votanteNuevo)){
+                System.out.println("El votante se agrego con exito");
+            }else System.out.println("El votante ya existe");
             
         }else{
             System.out.println("Ingrese la razon");
             String razon = lector.readLine().toUpperCase();
             NoVotante noVotanteNuevo = new NoVotante(nombreCompleto, rut, comuna, direccion, estadoElectoral,razon);
-            valparaiso.agregarNoVotante(noVotanteNuevo);
+            if(valparaiso.agregarNoVotante(noVotanteNuevo)){
+                System.out.println("El no votante se agrego con exito");
+            }else System.out.println("El no votante ya existe");
         }
         
     }
     
 
     /**
-     * Función 7: modifica datos de un votante.
+     * Función 7: modificar datos de una persona.
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionModificarDatosVotante(Region valparaiso)throws IOException{
-        String rut;
-        String nombreLocalNuevo;
-        int numeroMesaNueva;
-        String direccionNueva;
-        String comunaNueva;
+    public void funcionModificarDatosPersona(Region valparaiso)throws IOException{
+        String rut, nombreLocalNuevo;
+        int numeroDeMesaNueva;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
-        // Se solicita ingresar el rut del votante para realizar los cambios necesarios.
-        System.out.println("Ingrese rut del votante que necesite modificar datos");
+        // Se solicita ingresar el rut de la persona para realizar los cambios necesarios.
+        System.out.println("Ingrese rut de la persona que necesite modificar datos");
         rut = lector.readLine();
         
-        System.out.println("Ingrese nombre del local a cambiar");
-        nombreLocalNuevo = lector.readLine().toUpperCase();
+        Votante v = valparaiso.buscarVotante(rut);
+        if(v != null){
+            Local a = valparaiso.obtenerLocalVotante(rut);
+            
+            int opcion = 0;
+            while(opcion!= 1 && opcion!=2){
+                System.out.println("1. Modificar número de mesa");
+                System.out.println("2. Modificar Local");
+                System.out.println("Ingrese opcion");
+                opcion = Integer.parseInt(lector.readLine());
+            }
+            
+            switch(opcion){
+                case 1:
+                    System.out.println("Ingrese numero de mesa nueva");
+                    numeroDeMesaNueva = Integer.parseInt(lector.readLine());
 
-        System.out.println("Ingrese numero de mesa");
-        numeroMesaNueva = Integer.parseInt(lector.readLine());
- 
-        System.out.println("Ingrese comuna (si es la misma de la direccion anterior, ingresela ingualmente)");
-        comunaNueva = lector.readLine().toUpperCase();
-        
-        System.out.println("Ingrese direccion nueva del domicilio");
-        direccionNueva = lector.readLine().toUpperCase();
+                    if( valparaiso.modificarDatosVotante(v, a, numeroDeMesaNueva) ){
+                        System.out.println("Los datos del votante fueron modificados");
+                    }else System.out.println("No se modificaron los datos del votante");
+                    break;
+                
+                case 2:
+                    System.out.println("Ingrese nombre del local nuevo");
+                    nombreLocalNuevo = lector.readLine();
+                    
+                    Local b = valparaiso.buscarLocal(nombreLocalNuevo);
 
+                    if( valparaiso.modificarDatosVotante(v, a, b) ){
+                        System.out.println("Los datos del votante fueron modificados");
+                    }else System.out.println("No se modificaron los datos del votante");
+            }
         
-        if( valparaiso.modificarDatosVotante(rut, nombreLocalNuevo, numeroMesaNueva, comunaNueva, direccionNueva) == true){
-            System.out.println("Los datos del votante fueron modificados");
-        }else System.out.println("No se modificaron los datos");
+        }else{
+            
+            NoVotante nv = valparaiso.buscarNoVotante(rut);
+            if(nv != null){
+                System.out.println("Ingrese razon nueva");
+                String razon = lector.readLine().toUpperCase();
+                
+                if( valparaiso.modificarDatosNoVotante(rut, razon) ){
+                    System.out.println("Los datos del no votante fueron modificados");
+                }else System.out.println("No se modificaron los datos del no votante");
+
+            }else System.out.println("La persona no existe en el registro");
         
+        }
+   
     }
 
 
     /**
-     * Función 8: elimina votante del registro
+     * Función 8: elimina persona del registro
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionEliminarVotante(Region valparaiso) throws IOException{
+    public void funcionEliminarPersona(Region valparaiso) throws IOException{
         String rut;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese un RUT");
         rut = lector.readLine();
         
-        if( valparaiso.eliminarVotante(rut) == true){
+        if( valparaiso.eliminarVotante(rut) ){
             System.out.println("Votante eliminado");
-        }else System.out.println("No existe votante");
+        }else{
+            if( valparaiso.eliminarNoVotante(rut) ){
+                System.out.println("No Votante eliminado");
+            }else System.out.println("Persona no eliminada");
+        }
         
     }
     
 
     /**
-     * Función 9: muestra los datos del votante.
+     * Función 9: buscar una persona en el registro y mostrar sus datos.
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionConsultarDatosVotante(Region valparaiso)throws IOException{        
+    public void funcionBuscarPersona(Region valparaiso)throws IOException{        
         String rut;
-        String[] datosVotante;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese rut del votante");
         rut = lector.readLine();
         
-        datosVotante = valparaiso.obtenerDatosVotante(rut);
+        String[] datosPersona = valparaiso.obtenerDatosVotante(rut);
         
-        // Se imprimen los datos del votante
-        System.out.println("------------------------------------------");
-        System.out.println("DATOS VOTANTE");
-        System.out.println("------------------------------------------");
-        System.out.println("NOMBRE: "+datosVotante[0]);
-        System.out.println("RUT "+datosVotante[1]);
-        System.out.println("COMUNA: "+datosVotante[2]);
-        System.out.println("DIRECCION: "+datosVotante[3]);
-        System.out.println("HABILITADO(A) PARA VOTAR: SI");
-        System.out.println("LOCAL: "+datosVotante[5]);
-        System.out.println("DIRECCION LOCAL: "+datosVotante[6]);
-        System.out.println("NUMERO DE MESA: "+datosVotante[4]);
-        System.out.println("------------------------------------------");
+        if(datosPersona != null){
+
+           // Se imprimen los datos del votante
+           System.out.println("------------------------------------------");
+           System.out.println("DATOS VOTANTE");
+           System.out.println("------------------------------------------");
+           System.out.println("NOMBRE: "+datosPersona[0]);
+           System.out.println("RUT "+datosPersona[1]);
+           System.out.println("COMUNA: "+datosPersona[2]);
+           System.out.println("DIRECCION: "+datosPersona[3]);
+           System.out.println("HABILITADO(A) PARA VOTAR: SI");
+           System.out.println("LOCAL: "+datosPersona[5]);
+           System.out.println("DIRECCION LOCAL: "+datosPersona[6]);
+           System.out.println("NUMERO DE MESA: "+datosPersona[4]);
+           System.out.println("------------------------------------------");
+        }else{
+            
+            datosPersona = valparaiso.obtenerDatosNoVotante(rut);
+            
+            if(datosPersona != null){
+                
+                // Se imprimen los datos del no votante
+                System.out.println("------------------------------------------");
+                System.out.println("DATOS NO VOTANTE");
+                System.out.println("------------------------------------------");
+                System.out.println("NOMBRE: "+datosPersona[0]);
+                System.out.println("RUT "+datosPersona[1]);
+                System.out.println("COMUNA: "+datosPersona[2]);
+                System.out.println("DIRECCION: "+datosPersona[3]);
+                System.out.println("HABILITADO(A) PARA VOTAR: NO");
+                System.out.println("RAZON: "+datosPersona[5]);
+                System.out.println("------------------------------------------");
+            }else System.out.println("La persona no existe en el registro");
+                 
+        }
+        
+       
     }
-    
-   
 
     /**
-     * Función 10: mostrar Votantes
-     * @param valparaiso Región de Valparaiso
-     */
-    public void funcionMostrarVotantes(Region valparaiso){
-        valparaiso.mostrarVotantes();
-        valparaiso.mostrarDatos();
-    }
-    
-
-    /**
-     * Funcion 11: muestra Votantes por Local
+     * Funcion 10: muestra Votantes de un Local.
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionMostrarVotantesPorLocal(Region valparaiso) throws IOException{
+    public void funcionMostrarVotantesLocal(Region valparaiso) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el Nombre del local");
         String nombreLocal = lector.readLine().toUpperCase();
-        valparaiso.mostrarVotantesLocal(nombreLocal);
+        
+        Local a = valparaiso.buscarLocal(nombreLocal);
+        
+        if(a != null){
+            System.out.println("Votantes del local: "+nombreLocal);
+            System.out.println("Nombre\t\tRut\t\tComuna\t\tDireccion\t\tMesa");
+            
+            String[] rutsVotantes = valparaiso.obtenerRutsVotantes(a);
+            
+            for( int i = 0; i < rutsVotantes.length; i++){
+                Votante v = valparaiso.buscarVotante(nombreLocal, rutsVotantes[i]);
+                
+                // Se imprimen datos
+                System.out.println(v.getNombreCompleto()+"\t\t"+v.getRut()+"\t\t"+v.getComuna()+"\t\t"+v.getDireccion()+"\t\t"+v.getNumeroDeMesa());
+            }
+        }else System.out.println("No existe el local");
+        
+        
     }
     
+    /**
+     * Función 11: muestra todos los votantes de la región.
+     * @param valparaiso Región de Valparaiso
+     */
+    public void funcionMostrarVotantes(Region valparaiso){
+        
+        if( valparaiso.obtenerCantidadLocales() > 0){
+            
+            String[] rutsVotantes = valparaiso.obtenerRutsVotantes();
+            
+            System.out.println("Votantes de la region de valparaiso");
+            System.out.println("Nombre\t\tRut\t\tComuna\t\tDireccion\t\tLocal\t\tDireccion Local\t\tMesa");
+            
+            for(int i = 0; i < rutsVotantes.length; i++){     
+                String[] datosVotante = valparaiso.obtenerDatosVotante(rutsVotantes[i]);        
+                // Se imprimen datos
+                    System.out.println(datosVotante[0]+"\t\t"+datosVotante[1]+"\t\t"+datosVotante[2]+"\t\t"+datosVotante[3]+"\t\t"+datosVotante[5]+"\t\t"+datosVotante[6]+"\t\t"+datosVotante[4]);
+            }
+        }
+  
+    }
 
     /**
-     * Funcion 12: Mostrar el votante mas joven de un local especifico
+     * Funcion 12: muestra el votante mas joven de un local especifico
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
@@ -390,7 +457,7 @@ public class Funcionalidad {
     }
 
     /**
-     *  Funcion 13: Mostrar todos los votantes de un local en un intervalo
+     *  Funcion 13: muestra todos los votantes de un local en un intervalo
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
@@ -402,38 +469,25 @@ public class Funcionalidad {
     }
     
     /**
-     * Función 14: Mostrar datos de no votante
+     * Función 14: Muestra todos los no votantes
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
-    public void funcionMostrarDatosNoVotante(Region valparaiso)throws IOException{
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Ingrese el nombre del no votante");
-        String rutNoVotante = lector.readLine().toUpperCase();
-        String[] datosNoVotante = valparaiso.obtenerDatosNoVotante(rutNoVotante);
-    
-        // Se imprimen los datos del no votante
-        System.out.println("------------------------------------------");
-        System.out.println("DATOS NO VOTANTE");
-        System.out.println("------------------------------------------");
-        System.out.println("NOMBRE: "+datosNoVotante[0]);
-        System.out.println("RUT "+datosNoVotante[1]);
-        System.out.println("COMUNA: "+datosNoVotante[2]);
-        System.out.println("DIRECCION: "+datosNoVotante[3]);
-        System.out.println("RAZON POR LA QUE NO VOTA: "+datosNoVotante[4]);
-        System.out.println("------------------------------------------");
+    public void funcionMostrarNoVotantes(Region valparaiso)throws IOException{
+        
+        String[] rutsNoVotantes = valparaiso.obtenerRutsNoVotantes();
+        int cantidadNoVotantes = rutsNoVotantes.length;
+
+        if(cantidadNoVotantes > 0){
+            System.out.println("No votantes de la region de valparaiso");
+            System.out.println("Nombre\t\tRut\t\tComuna\t\tDireccion\t\tRazon");
+        }
+
+        for(int i = 0; i < cantidadNoVotantes; i++){
+            String[] datosNoVotante = valparaiso.obtenerDatosNoVotante(rutsNoVotantes[i]);
+            System.out.println(datosNoVotante[0]+"\t\t"+datosNoVotante[1]+"\t\t"+datosNoVotante[2]+"\t\t"+datosNoVotante[3]+"\t\t"+datosNoVotante[4]);
+        }
 
     }
     
-    
-    
-    
-    /**
-     * Función 15: exportar
-     * @param nombreArchivo nombre del archivo a exportar
-     * @param valparaiso Región de Valparaiso
-     */
-    public void funcionExportar(String nombreArchivo, Region valparaiso){
-        valparaiso.exportar(nombreArchivo);
-    }
 }
