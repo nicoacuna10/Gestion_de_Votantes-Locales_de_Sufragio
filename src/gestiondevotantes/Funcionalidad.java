@@ -1,6 +1,7 @@
 package gestiondevotantes;
 
 import java.io.*;
+import java.util.*;
 
 /**
  * Funcionalidad contiene las funciones de la aplicación.
@@ -37,6 +38,9 @@ public class Funcionalidad {
         
         votante1 = new Votante("PEDRO ALBERTO LOPEZ GONZALEZ", "13800755-0", "VINA DEL MAR", "15 NORTE 567", 1, 50);
         valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", votante1);
+        
+        Votante votante4 = new Votante("PEDRO ANGEL LOPEZ QUISPE", "23845755-1", "VINA DEL MAR", "10 NORTE 567", 1, 25);
+        valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", votante4);
         
         votante2 = new Votante("PATRICIA CABRERO QUISPE", "8444987-2", "VALPARAISO", "CALLE ZENTENO 130", 1, 34);
         valparaiso.agregarVotante("PUCV CASA CENTRAL", votante2);
@@ -457,7 +461,7 @@ public class Funcionalidad {
     }
 
     /**
-     *  Funcion 13: muestra todos los votantes de un local en un intervalo
+     *  EXFuncion 13: muestra todos los votantes de un local en un intervalo
      * @param valparaiso Región de Valparaiso
      * @throws IOException 
      */
@@ -467,7 +471,39 @@ public class Funcionalidad {
         String nombreLocal = lector.readLine().toUpperCase();
         valparaiso.mostrarVotantesIntervalo(nombreLocal);
     }
-    
+    /**
+     *  Funcion 13: muestra todos los votantes que coincidan en un apellido
+     * @param valparaiso Region de Valparaiso
+     * @throws IOException
+     */
+    public void funcionMostrarVotantesNombreoApellido (Region valparaiso) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese un nombre o apellido");
+        String apellido = lector.readLine().toUpperCase();
+        String[] datos = valparaiso.votantesPorNombreoApellido(apellido);
+        if (datos!=null)
+        for(int i=0; i<datos.length ; i++){
+            
+            String[] datosPersona = valparaiso.obtenerDatosVotante(datos[i]);
+        
+            if(datosPersona != null){
+
+               // Se imprimen los datos del votante
+               System.out.println("------------------------------------------");
+               System.out.println("DATOS VOTANTE");
+               System.out.println("------------------------------------------");
+               System.out.println("NOMBRE: "+datosPersona[0]);
+               System.out.println("RUT "+datosPersona[1]);
+               System.out.println("COMUNA: "+datosPersona[2]);
+               System.out.println("DIRECCION: "+datosPersona[3]);
+               System.out.println("HABILITADO(A) PARA VOTAR: SI");
+               System.out.println("LOCAL: "+datosPersona[5]);
+               System.out.println("DIRECCION LOCAL: "+datosPersona[6]);
+               System.out.println("NUMERO DE MESA: "+datosPersona[4]);
+               System.out.println("------------------------------------------");
+            }
+        }
+    }
     /**
      * Función 14: Muestra todos los no votantes
      * @param valparaiso Región de Valparaiso

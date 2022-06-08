@@ -397,5 +397,26 @@ public class Region implements Mostrable{
         else
             System.out.println("LOCAL NO ENCONTRADO");
     }
+    /**
+     * Método votantesPorNombreoApellido: Busca el no votante en el registro y obtiene
+     * sus datos.
+     * @param apellido Nombre o apellido del votante
+     * @return Retorna un string con los datos de los votantes
+     */
+    public String[] votantesPorNombreoApellido(String apellido) {
+        ArrayList votantes = new ArrayList();
+        for(String nombreLocal : registroLocalesNombre.keySet()){
+            Local lo = registroLocalesNombre.get(nombreLocal);
+            lo.votantesPorNombreoApellido(apellido,votantes);
+        }
+        if(votantes.size()>0){
+            String [] rutsVotantes = new String[votantes.size()];
+            for(int i=0 ; i<votantes.size() ; i++){
+                rutsVotantes[i] = ((Votante)votantes.get(i)).getRut();
+            }
+            return rutsVotantes;
+        }
+        return null;
+    }
 
 }

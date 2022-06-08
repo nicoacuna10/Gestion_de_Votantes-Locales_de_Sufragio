@@ -50,7 +50,7 @@ public class Menu {
                 System.out.println("10. Mostrar los votantes de un local");
                 System.out.println("11. Mostrar todos los votantes de la region");
                 System.out.println("12. Mostrar el votante mas joven de un local");
-                System.out.println("13. Mostrar votantes de un local en un intervalo de ruts");
+                System.out.println("13. Mostrar votantes de un mismo nombre, o apellido");
                 System.out.println("14. Mostrar todos los no votantes de la region");
                 System.out.println("15. Exportar archivo *.csv");
                 System.out.println("16. Salir");
@@ -110,7 +110,7 @@ public class Menu {
                             break;
                             
                         case 13:
-                            f.funcionMostrarVotantesIntervalo(valparaiso);
+                            f.funcionMostrarVotantesNombreoApellido(valparaiso);
                             break;
                             
                         case 14:

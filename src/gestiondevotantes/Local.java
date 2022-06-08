@@ -359,5 +359,27 @@ public class Local implements Mostrable{
     public void setNumeroUltimaMesa(int numeroUltimaMesa) {
         this.numeroUltimaMesa = numeroUltimaMesa;
     }
+    /**
+     * Métod votantesPorNombreoApellido: Almacena los votantes que tengan un mismo nombre o apellido.
+     * @param apellido nombre o apellido del votante
+     * @param votantes arraylist que almacena votantes con un mismo nombre o apellido
+     * @return Retorna un arraylist de votantes
+     */
+    public ArrayList votantesPorNombreoApellido(String apellido, ArrayList votantes) {
+        int i=0;
+        //Votante votantes[] = new Votante[lo.getCapacidadMaxima()];
+        for(String rut : registroVotantesRut.keySet()){
+            Votante v = registroVotantesRut.get(rut);
+            String datos[] = (v.getNombreCompleto()).split(" ");
+            for(int j=0 ; j<datos.length ; j++){
+                if(datos[j].equals(apellido)){
+                    votantes.add(v);
+                    i++;
+                }
+            }
+        }
+        if(i==0)return null;
+        return votantes;
+    }
         
 }
