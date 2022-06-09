@@ -39,6 +39,13 @@ public abstract class Persona implements Identificarse{
     }
     
     /**
+     * Declaración método abstracto obtenerDatosPersona
+     * @return Retorna un String con los datos de la persona (votante o no votante).
+     */
+    @Override
+    public abstract String obtenerDatosPersona();
+    
+    /**
      * Método getEstadoElectoral
      * @return Retorna el estado electoral. 1 si está habilitado para votar, 0 caso contrario.
      */
@@ -54,12 +61,7 @@ public abstract class Persona implements Identificarse{
         this.estadoElectoral = estadoElectoral;
     }
     
-    /**
-     * Declaración método abstracto obtenerDatosPersona
-     * @return Retorna un String con los datos de la persona (votante o no votante).
-     */
-    @Override
-    public abstract String[] obtenerDatosPersona();
+    
     
     /**
      * Método getNombreCompleto: Obtiene el nombre completo de la persona.

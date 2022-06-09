@@ -37,16 +37,8 @@ public class NoVotante extends Persona{
      * @return Retorna un arreglo de Strings con los datos del no votante.
      */
     @Override
-    public String[] obtenerDatosPersona(){
-        String[] datosNoVotante = new String[5];
-        
-        datosNoVotante[0] = getNombreCompleto();
-        datosNoVotante[1] = getRut();
-        datosNoVotante[2] = getComuna();
-        datosNoVotante[3] = getDireccion();
-        datosNoVotante[4] = razon;
-        
-        return datosNoVotante;
+    public String obtenerDatosPersona(){        
+        return getNombreCompleto() + "," + getRut() + "," + getComuna() + "," + getDireccion() + "," + razon; 
     }
     
     /**

@@ -36,16 +36,8 @@ public class Votante extends Persona {
      * @return Retorna un string con los datos del votante
      */
     @Override
-    public String[] obtenerDatosPersona(){
-        String[] datosVotante = new String[7];
-        
-        datosVotante[0] = getNombreCompleto();
-        datosVotante[1] = getRut();
-        datosVotante[2] = getComuna();
-        datosVotante[3] = getDireccion();
-        datosVotante[4] = String.valueOf(numeroDeMesa);
-        
-        return datosVotante;
+    public String obtenerDatosPersona(){  
+        return getNombreCompleto() + "," + getRut() + "," + getComuna() + "," + getDireccion() + "," + String.valueOf(numeroDeMesa);
     }
     
     /**

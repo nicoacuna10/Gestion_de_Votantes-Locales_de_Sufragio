@@ -10,5 +10,5 @@ public interface Identificarse {
      * Declaración del método obtenerDatosPersona
      * @return Retorna un String con los datos de la persona.
      */
-    public String[] obtenerDatosPersona();
+    public String obtenerDatosPersona();
 }

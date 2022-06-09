@@ -300,14 +300,12 @@ public class Region implements Mostrable{
      * @param rut rut del votante 
      * @return Retorna un string con los datos del votante.
      */
-    public String[] obtenerDatosVotante(String rut){
+    public String obtenerDatosVotante(String rut){
         for( String nombreLocal : registroLocalesNombre.keySet()){
             Local a = registroLocalesNombre.get(nombreLocal);
                 Votante v = a.buscarVotante(rut);
                 if(v != null){
-                   String[] datosVotante;
-                   datosVotante = a.obtenerDatosVotante(v);
-                   return datosVotante;
+                   return a.obtenerDatosVotante(v);
                 }
         }
         return null;
@@ -319,14 +317,9 @@ public class Region implements Mostrable{
      * @param rut rut del no votante
      * @return Retorna un string con los datos del no votante
      */
-    public String[] obtenerDatosNoVotante(String rut){
-        if( !registroNoVotantesRut.containsKey(rut)){
-            return null;
-        }
-        NoVotante nv = registroNoVotantesRut.get(rut);
-        String[] datosNoVotante = nv.obtenerDatosPersona();
-        
-        return datosNoVotante;
+    public String obtenerDatosNoVotante(String rut){
+        NoVotante nv = buscarNoVotante(rut);        
+        return nv.obtenerDatosPersona();
     }
     
     /**

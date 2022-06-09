@@ -130,15 +130,12 @@ public class Local implements Mostrable{
     
     /**
      * Método obtenerDatosVotante: Guarda los datos del local del votante en
-     * el arreglo de datos del votante.
+     * el String de datos del votante.
      * @param v votante
      * @return Retorna un string con los datos del votante
      */
-    public String[] obtenerDatosVotante(Votante v){
-        String[] datosVotante = v.obtenerDatosPersona();
-        datosVotante[5] = nombreLocal;
-        datosVotante[6] = direccion;
-        return datosVotante;
+    public String obtenerDatosVotante(Votante v){
+        return v.obtenerDatosPersona() + ", " + nombreLocal + ", " + direccion;
     }
   
 

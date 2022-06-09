@@ -184,7 +184,10 @@ public class Funcionalidad {
      */
     public void funcionMostrarLocales(Region valparaiso){
         
-       String[] nombresLocales = valparaiso.obtenerNombresLocales();
+        VentanaMostrarLocales ventana = new VentanaMostrarLocales(valparaiso);
+        ventana.setVisible(true);
+        
+       /*String[] nombresLocales = valparaiso.obtenerNombresLocales();
        int cantidadLocales = nombresLocales.length;
        
        if(cantidadLocales > 0){
@@ -195,7 +198,7 @@ public class Funcionalidad {
        for(int i = 0; i < cantidadLocales; i++){
            Local a = valparaiso.buscarLocal(nombresLocales[i]);
            System.out.println(a.getNombreLocal()+"\t\t"+a.getComuna()+"\t\t"+a.getDireccion()+"\t\t"+a.getCapacidadMaxima()+"\t\t"+a.getNumeroPrimeraMesa()+" - "+a.getNumeroUltimaMesa());
-       }
+       }*/
 
     }
 
@@ -356,22 +359,24 @@ public class Funcionalidad {
         System.out.println("Ingrese rut del votante");
         rut = lector.readLine();
         
-        String[] datosPersona = valparaiso.obtenerDatosVotante(rut);
+        String datosPersona = valparaiso.obtenerDatosVotante(rut);
         
         if(datosPersona != null){
+            
+            String[] arregloDatosPersona = datosPersona.split(",");
 
            // Se imprimen los datos del votante
            System.out.println("------------------------------------------");
            System.out.println("DATOS VOTANTE");
            System.out.println("------------------------------------------");
-           System.out.println("NOMBRE: "+datosPersona[0]);
-           System.out.println("RUT "+datosPersona[1]);
-           System.out.println("COMUNA: "+datosPersona[2]);
-           System.out.println("DIRECCION: "+datosPersona[3]);
+           System.out.println("NOMBRE: "+arregloDatosPersona[0]);
+           System.out.println("RUT "+arregloDatosPersona[1]);
+           System.out.println("COMUNA: "+arregloDatosPersona[2]);
+           System.out.println("DIRECCION: "+arregloDatosPersona[3]);
            System.out.println("HABILITADO(A) PARA VOTAR: SI");
-           System.out.println("LOCAL: "+datosPersona[5]);
-           System.out.println("DIRECCION LOCAL: "+datosPersona[6]);
-           System.out.println("NUMERO DE MESA: "+datosPersona[4]);
+           System.out.println("LOCAL: "+arregloDatosPersona[5]);
+           System.out.println("DIRECCION LOCAL: "+arregloDatosPersona[6]);
+           System.out.println("NUMERO DE MESA: "+arregloDatosPersona[4]);
            System.out.println("------------------------------------------");
         }else{
             
@@ -379,16 +384,18 @@ public class Funcionalidad {
             
             if(datosPersona != null){
                 
+                String[] arregloDatosPersona = datosPersona.split(",");
+                
                 // Se imprimen los datos del no votante
                 System.out.println("------------------------------------------");
                 System.out.println("DATOS NO VOTANTE");
                 System.out.println("------------------------------------------");
-                System.out.println("NOMBRE: "+datosPersona[0]);
-                System.out.println("RUT "+datosPersona[1]);
-                System.out.println("COMUNA: "+datosPersona[2]);
-                System.out.println("DIRECCION: "+datosPersona[3]);
+                System.out.println("NOMBRE: "+arregloDatosPersona[0]);
+                System.out.println("RUT "+arregloDatosPersona[1]);
+                System.out.println("COMUNA: "+arregloDatosPersona[2]);
+                System.out.println("DIRECCION: "+arregloDatosPersona[3]);
                 System.out.println("HABILITADO(A) PARA VOTAR: NO");
-                System.out.println("RAZON: "+datosPersona[5]);
+                System.out.println("RAZON: "+arregloDatosPersona[5]);
                 System.out.println("------------------------------------------");
             }else System.out.println("La persona no existe en el registro");
                  
@@ -440,9 +447,10 @@ public class Funcionalidad {
             System.out.println("Nombre\t\tRut\t\tComuna\t\tDireccion\t\tLocal\t\tDireccion Local\t\tMesa");
             
             for(int i = 0; i < rutsVotantes.length; i++){     
-                String[] datosVotante = valparaiso.obtenerDatosVotante(rutsVotantes[i]);        
+                String datosVotante = valparaiso.obtenerDatosVotante(rutsVotantes[i]);
+                String [] arregloDatosVotante = datosVotante.split(",");
                 // Se imprimen datos
-                    System.out.println(datosVotante[0]+"\t\t"+datosVotante[1]+"\t\t"+datosVotante[2]+"\t\t"+datosVotante[3]+"\t\t"+datosVotante[5]+"\t\t"+datosVotante[6]+"\t\t"+datosVotante[4]);
+                System.out.println(arregloDatosVotante[0]+"\t\t"+arregloDatosVotante[1]+"\t\t"+arregloDatosVotante[2]+"\t\t"+arregloDatosVotante[3]+"\t\t"+arregloDatosVotante[5]+"\t\t"+arregloDatosVotante[6]+"\t\t"+arregloDatosVotante[4]);
             }
         }
   
@@ -484,22 +492,24 @@ public class Funcionalidad {
         if (datos!=null)
         for(int i=0; i<datos.length ; i++){
             
-            String[] datosPersona = valparaiso.obtenerDatosVotante(datos[i]);
+            String datosPersona = valparaiso.obtenerDatosVotante(datos[i]);
         
             if(datosPersona != null){
+                
+                String[] arregloDatosPersona = datosPersona.split(",");
 
                // Se imprimen los datos del votante
                System.out.println("------------------------------------------");
                System.out.println("DATOS VOTANTE");
                System.out.println("------------------------------------------");
-               System.out.println("NOMBRE: "+datosPersona[0]);
-               System.out.println("RUT "+datosPersona[1]);
-               System.out.println("COMUNA: "+datosPersona[2]);
-               System.out.println("DIRECCION: "+datosPersona[3]);
+               System.out.println("NOMBRE: "+arregloDatosPersona[0]);
+               System.out.println("RUT "+arregloDatosPersona[1]);
+               System.out.println("COMUNA: "+arregloDatosPersona[2]);
+               System.out.println("DIRECCION: "+arregloDatosPersona[3]);
                System.out.println("HABILITADO(A) PARA VOTAR: SI");
-               System.out.println("LOCAL: "+datosPersona[5]);
-               System.out.println("DIRECCION LOCAL: "+datosPersona[6]);
-               System.out.println("NUMERO DE MESA: "+datosPersona[4]);
+               System.out.println("LOCAL: "+arregloDatosPersona[5]);
+               System.out.println("DIRECCION LOCAL: "+arregloDatosPersona[6]);
+               System.out.println("NUMERO DE MESA: "+arregloDatosPersona[4]);
                System.out.println("------------------------------------------");
             }
         }
@@ -520,8 +530,9 @@ public class Funcionalidad {
         }
 
         for(int i = 0; i < cantidadNoVotantes; i++){
-            String[] datosNoVotante = valparaiso.obtenerDatosNoVotante(rutsNoVotantes[i]);
-            System.out.println(datosNoVotante[0]+"\t\t"+datosNoVotante[1]+"\t\t"+datosNoVotante[2]+"\t\t"+datosNoVotante[3]+"\t\t"+datosNoVotante[4]);
+            String datosNoVotante = valparaiso.obtenerDatosNoVotante(rutsNoVotantes[i]);
+            String[] arregloDatosNoVotante = datosNoVotante.split(",");
+            System.out.println(arregloDatosNoVotante[0]+"\t\t"+arregloDatosNoVotante[1]+"\t\t"+arregloDatosNoVotante[2]+"\t\t"+arregloDatosNoVotante[3]+"\t\t"+arregloDatosNoVotante[4]);
         }
 
     }
