@@ -1,7 +1,6 @@
 package gestiondevotantes;
 
 import java.util.*;
-import java.io.*;
 
 /**
  * Region contiene las colecciones de Locales y de NoVotantes
@@ -233,8 +232,8 @@ public class Region implements Mostrable{
     
     /**
      * Método modificarDatosNoVotante: Modifica la razón del no votante por la que no puede votar.
-     * @param rut
-     * @param razon
+     * @param rut rut del no votante
+     * @param razon razon por la que no vota
      * @return Retorna true si se modificó el dato, falso caso contrario.
      */
     public boolean modificarDatosNoVotante(String rut, String razon){
@@ -407,7 +406,7 @@ public class Region implements Mostrable{
         int maxTamano;
         for(String nombreLocal : registroLocalesNombre.keySet()){
             Local localAux = registroLocalesNombre.get(nombreLocal);
-            maxTamano = localAux.cantVotantes();
+            maxTamano = localAux.obtenerCantidadVotantes();
             if((int)datos[1] < maxTamano){
                 datos[1] = maxTamano;
                 datos[0] = localAux;

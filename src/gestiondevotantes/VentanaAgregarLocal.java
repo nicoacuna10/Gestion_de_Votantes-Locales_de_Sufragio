@@ -3,17 +3,17 @@ package gestiondevotantes;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *  Ventana agregar local de votacion
  * @author gerard
  */
-public class ventanaAgregarLocal extends javax.swing.JFrame {
+public class VentanaAgregarLocal extends javax.swing.JFrame {
     private Region valparaiso;
 
     /**
      * Creates new form ventanaPrueba
-     * @param valparaiso
+     * @param valparaiso region de valparaiso
      */
-    public ventanaAgregarLocal(Region valparaiso) {
+    public VentanaAgregarLocal(Region valparaiso) {
         this.valparaiso = valparaiso;
         initComponents();
     }
@@ -184,9 +184,6 @@ public class ventanaAgregarLocal extends javax.swing.JFrame {
         System.out.println("Presionaste Open en la seccion File");        // TODO add your handling code here:
     }//GEN-LAST:event_openMenuItemActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;

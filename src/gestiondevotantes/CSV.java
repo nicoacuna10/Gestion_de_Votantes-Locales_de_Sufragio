@@ -1,7 +1,6 @@
 package gestiondevotantes;
 
 import java.io.*;
-import java.util.*;
 import javax.swing.*;
 
 /**
@@ -22,7 +21,7 @@ public class CSV {
      * Locales y Votantes.
      * @param nombreArchivo nombre del archivo
      * @param valparaiso region de valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void importarCSV(String nombreArchivo, Region valparaiso)throws IOException{
         

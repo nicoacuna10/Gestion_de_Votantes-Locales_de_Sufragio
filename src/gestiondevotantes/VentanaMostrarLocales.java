@@ -1,15 +1,13 @@
 package gestiondevotantes;
 
 import java.awt.BorderLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.*;
 
 /**
- *
+ *  Ventana mostrar locales de votacion
  * @author Nicolás Acuña
  */
 public class VentanaMostrarLocales extends javax.swing.JFrame {
@@ -19,6 +17,7 @@ public class VentanaMostrarLocales extends javax.swing.JFrame {
     
     /**
      * Creates new form VentanaMostrarLocales
+     * @param valparaiso region de valparaiso
      */
     public VentanaMostrarLocales(Region valparaiso) {
         initComponents();

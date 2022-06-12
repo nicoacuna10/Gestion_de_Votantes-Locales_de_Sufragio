@@ -16,8 +16,8 @@ public class Menu {
     }
     
     /**
-     * 
-     * @throws IOException 
+     * Método menuOperaciones: menu con las opciones de la aplicacion
+     * @throws IOException Excepcion Input/Output
      */
     public void menuOperaciones() throws IOException{
         System.out.println(" -----------------------------------------");
@@ -49,7 +49,7 @@ public class Menu {
             System.out.println("9.  Buscar persona en el registro");
             System.out.println("10. Mostrar los votantes de un local");
             System.out.println("11. Mostrar todos los votantes de la region");
-            System.out.println("12. ");
+            System.out.println("12. Mostrar local con mas votantes");
             System.out.println("13. Mostrar votantes de un mismo nombre, o apellido");
             System.out.println("14. Mostrar todos los no votantes de la region");
             System.out.println("15. Exportar archivo *.csv");
@@ -106,7 +106,7 @@ public class Menu {
                         break;
 
                     case 12:
-
+                        f.funcionMostrarLocalMasLleno(valparaiso);
                         break;
 
                     case 13:

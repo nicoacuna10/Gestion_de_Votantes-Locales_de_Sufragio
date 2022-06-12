@@ -12,8 +12,8 @@ public class GestionDeVotantes {
 
     /**
      * Función principal de la clase
-     * @param args
-     * @throws IOException 
+     * @param args args
+     * @throws IOException Excepcion Input/Output
      */
     public static void main(String[] args)throws IOException{
         Menu m = new Menu();

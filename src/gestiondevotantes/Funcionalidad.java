@@ -1,7 +1,6 @@
 package gestiondevotantes;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * Funcionalidad contiene las funciones de la aplicación.
@@ -60,10 +59,10 @@ public class Funcionalidad {
     /**
      * Función 1: agregar local
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionAgregarLocal(Region valparaiso)throws IOException{
-        ventanaAgregarLocal ventana = new ventanaAgregarLocal(valparaiso);
+        VentanaAgregarLocal ventana = new VentanaAgregarLocal(valparaiso);
          ventana.setVisible(true);
         /*
         String nombre, comuna, direccion;
@@ -114,7 +113,7 @@ public class Funcionalidad {
     /**
      * Función 2: modificar datos de un local
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionModificarDatosLocal(Region valparaiso)throws IOException{
         String nombreLocal;
@@ -137,7 +136,7 @@ public class Funcionalidad {
     /**
      * Función 3: eliminar local
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionEliminarLocal(Region valparaiso)throws IOException{
         String nombreLocal;
@@ -156,7 +155,7 @@ public class Funcionalidad {
     /**
      * Función 4: buscar un local en el registro y mostrar sus datos.
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionBuscarLocal(Region valparaiso)throws IOException{
         String nombreLocal;
@@ -207,7 +206,7 @@ public class Funcionalidad {
     /**
      * Función 6: agregar una nueva persona.
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionAgregarPersona(Region valparaiso)throws IOException{
         Votante votanteNuevo;
@@ -264,7 +263,7 @@ public class Funcionalidad {
     /**
      * Función 7: modificar datos de una persona.
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionModificarDatosPersona(Region valparaiso)throws IOException{
         String rut, nombreLocalNuevo;
@@ -329,7 +328,7 @@ public class Funcionalidad {
     /**
      * Función 8: elimina persona del registro
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionEliminarPersona(Region valparaiso) throws IOException{
         String rut;
@@ -352,7 +351,7 @@ public class Funcionalidad {
     /**
      * Función 9: buscar una persona en el registro y mostrar sus datos.
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionBuscarPersona(Region valparaiso)throws IOException{        
         String rut;
@@ -409,7 +408,7 @@ public class Funcionalidad {
     /**
      * Funcion 10: muestra Votantes de un Local.
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionMostrarVotantesLocal(Region valparaiso) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -468,7 +467,7 @@ public class Funcionalidad {
     /**
      *  Funcion 13: muestra todos los votantes que coincidan en nombre o apellido
      * @param valparaiso Region de Valparaiso
-     * @throws IOException
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionMostrarVotantesNombreoApellido (Region valparaiso) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -503,7 +502,7 @@ public class Funcionalidad {
     /**
      * Función 14: Muestra todos los no votantes
      * @param valparaiso Región de Valparaiso
-     * @throws IOException 
+     * @throws IOException Excepcion Input/Output
      */
     public void funcionMostrarNoVotantes(Region valparaiso)throws IOException{
         
