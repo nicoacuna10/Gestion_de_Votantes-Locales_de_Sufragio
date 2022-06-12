@@ -396,5 +396,24 @@ public class Region implements Mostrable{
         }
         return null;
     }
+    /**
+     * Método localMasLleno: Busca el local que posea mas votantes
+     * @return Retorna un arreglo de Object, el que almacena el local y su cantidad
+     * de votantes.
+     */
+    public Object[] localMaslleno() {
+        Object[] datos = new Object[2];
+        datos[1] = 0;
+        int maxTamano;
+        for(String nombreLocal : registroLocalesNombre.keySet()){
+            Local localAux = registroLocalesNombre.get(nombreLocal);
+            maxTamano = localAux.cantVotantes();
+            if((int)datos[1] < maxTamano){
+                datos[1] = maxTamano;
+                datos[0] = localAux;
+            }
+        }
+        return datos;
+    }
 
 }

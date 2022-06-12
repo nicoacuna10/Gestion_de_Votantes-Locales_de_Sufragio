@@ -457,12 +457,16 @@ public class Funcionalidad {
         }
   
     }
-
-
-
-
     /**
-     *  Funcion 13: muestra todos los votantes que coincidan en un apellido
+     * Funcion 12: muestra el local mas lleno
+     * @param valparaiso Región de Valparaiso
+     */
+    public void funcionMostrarLocalMasLleno(Region valparaiso){
+        Object[] datos = valparaiso.localMaslleno();
+        System.out.println("El local "+((Local)datos[0]).getNombreLocal()+" es el mas lleno, con "+(int)datos[1]+" votantes");
+    }
+    /**
+     *  Funcion 13: muestra todos los votantes que coincidan en nombre o apellido
      * @param valparaiso Region de Valparaiso
      * @throws IOException
      */
