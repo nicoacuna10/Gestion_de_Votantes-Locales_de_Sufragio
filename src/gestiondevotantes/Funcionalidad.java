@@ -63,7 +63,9 @@ public class Funcionalidad {
      * @throws IOException 
      */
     public void funcionAgregarLocal(Region valparaiso)throws IOException{
-        
+        ventanaAgregarLocal ventana = new ventanaAgregarLocal(valparaiso);
+         ventana.setVisible(true);
+        /*
         String nombre, comuna, direccion;
         int capacidadMaxima, numeroPrimeraMesa, numeroUltimaMesa;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -105,7 +107,7 @@ public class Funcionalidad {
         if( valparaiso.agregarLocal(a) == true){
             System.out.println("Se agregó local con exito");
         }else System.out.println("No se agregó el local.");
-        
+        */
     }
     
     
