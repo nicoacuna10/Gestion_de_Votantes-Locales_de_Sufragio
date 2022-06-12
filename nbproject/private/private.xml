@@ -3,18 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/VentanaMostrarLocales.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/ventanaAgregarLocal.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Votante.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Identificarse.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Local.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/GestionDeVotantes.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/NoVotante.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Menu.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Mostrable.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Region.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Persona.java</file>
-            <file>file:/C:/Users/torna/OneDrive/Documentos/GitHub/Gestion_de_Votantes-Locales_de_Sufragio/src/gestiondevotantes/Funcionalidad.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/Menu.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/Region.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/VentanaMostrarLocales.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/ventanaAgregarLocal.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/Local.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/GestionDeVotantes.java</file>
+            <file>file:/C:/Users/nicol/Documents/NetBeansProjects/GestionDeVotantes/src/gestiondevotantes/Funcionalidad.java</file>
         </group>
     </open-files>
 </project-private>

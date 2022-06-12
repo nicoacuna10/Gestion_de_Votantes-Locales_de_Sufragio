@@ -34,105 +34,105 @@ public class Menu {
         
         boolean salir = false;
         int opcion;
-            while (!salir) {
+        while (!salir) {
 
-                System.out.println("MENU");
-                
-                System.out.println("1.  Agregar local al registro");
-                System.out.println("2.  Modificar datos del local");
-                System.out.println("3.  Eliminar local del registro");
-                System.out.println("4.  Consultar datos del local");
-                System.out.println("5.  Mostrar locales de votacion");
-                System.out.println("6.  Agregar persona al registro");
-                System.out.println("7.  Modificar datos de la persona");
-                System.out.println("8.  Eliminar persona del registro");
-                System.out.println("9.  Buscar persona en el registro");
-                System.out.println("10. Mostrar los votantes de un local");
-                System.out.println("11. Mostrar todos los votantes de la region");
-                System.out.println("12. Mostrar el votante mas joven de un local");
-                System.out.println("13. Mostrar votantes de un mismo nombre, o apellido");
-                System.out.println("14. Mostrar todos los no votantes de la region");
-                System.out.println("15. Exportar archivo *.csv");
-                System.out.println("16. Salir");
+            System.out.println("MENU");
 
-                try {
+            System.out.println("1.  Agregar local al registro");
+            System.out.println("2.  Modificar datos del local");
+            System.out.println("3.  Eliminar local del registro");
+            System.out.println("4.  Consultar datos del local");
+            System.out.println("5.  Mostrar locales de votacion");
+            System.out.println("6.  Agregar persona al registro");
+            System.out.println("7.  Modificar datos de la persona");
+            System.out.println("8.  Eliminar persona del registro");
+            System.out.println("9.  Buscar persona en el registro");
+            System.out.println("10. Mostrar los votantes de un local");
+            System.out.println("11. Mostrar todos los votantes de la region");
+            System.out.println("12. ");
+            System.out.println("13. Mostrar votantes de un mismo nombre, o apellido");
+            System.out.println("14. Mostrar todos los no votantes de la region");
+            System.out.println("15. Exportar archivo *.csv");
+            System.out.println("16. Salir");
 
-                    System.out.println("Escribe una de las opciones");
-                    opcion = sn.nextInt();
+            try {
 
-                    switch (opcion) {
-                        case 1:
-                            f.funcionAgregarLocal(valparaiso);
-                            break;
-                            
-                        case 2:
-                            f.funcionModificarDatosLocal(valparaiso);
-                            break;
-                            
-                        case 3:
-                            f.funcionEliminarLocal(valparaiso);
-                            break;
-                        
-                        case 4:
-                            f.funcionBuscarLocal(valparaiso);
-                            break;
-                            
-                        case 5:
-                            f.funcionMostrarLocales(valparaiso);
-                            break;
-                            
-                        case 6:
-                            f.funcionAgregarPersona(valparaiso);
-                            break;
-                        
-                        case 7:
-                            f.funcionModificarDatosPersona(valparaiso);
-                            break;
-                            
-                        case 8:
-                            f.funcionEliminarPersona(valparaiso);
-                            break;
-                            
-                        case 9:
-                            f.funcionBuscarPersona(valparaiso);
-                            break;
-                            
-                        case 10:
-                            f.funcionMostrarVotantesLocal(valparaiso);
-                            break;
-                            
-                        case 11:
-                            f.funcionMostrarVotantes(valparaiso);
-                            break;
-                            
-                        case 12:
-                            f.funcionMostrarVotanteMasJoven(valparaiso);
-                            break;
-                            
-                        case 13:
-                            f.funcionMostrarVotantesNombreoApellido(valparaiso);
-                            break;
-                            
-                        case 14:
-                            f.funcionMostrarNoVotantes(valparaiso);
-                            break;
-                            
-                        case 15:
-                            administradorCSV.exportarCSV("datosExportar.csv", valparaiso);
-                            break;
-                            
-                        case 16:
-                            salir = true;
-                            break;
-                        
-                        default:
-                            System.out.println("Solo números entre 1 y 16");
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Debes insertar un número");
-                    sn.next();
+                System.out.println("Escribe una de las opciones");
+                opcion = sn.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        f.funcionAgregarLocal(valparaiso);
+                        break;
+
+                    case 2:
+                        f.funcionModificarDatosLocal(valparaiso);
+                        break;
+
+                    case 3:
+                        f.funcionEliminarLocal(valparaiso);
+                        break;
+
+                    case 4:
+                        f.funcionBuscarLocal(valparaiso);
+                        break;
+
+                    case 5:
+                        f.funcionMostrarLocales(valparaiso);
+                        break;
+
+                    case 6:
+                        f.funcionAgregarPersona(valparaiso);
+                        break;
+
+                    case 7:
+                        f.funcionModificarDatosPersona(valparaiso);
+                        break;
+
+                    case 8:
+                        f.funcionEliminarPersona(valparaiso);
+                        break;
+
+                    case 9:
+                        f.funcionBuscarPersona(valparaiso);
+                        break;
+
+                    case 10:
+                        f.funcionMostrarVotantesLocal(valparaiso);
+                        break;
+
+                    case 11:
+                        f.funcionMostrarVotantes(valparaiso);
+                        break;
+
+                    case 12:
+
+                        break;
+
+                    case 13:
+                        f.funcionMostrarVotantesNombreoApellido(valparaiso);
+                        break;
+
+                    case 14:
+                        f.funcionMostrarNoVotantes(valparaiso);
+                        break;
+
+                    case 15:
+                        administradorCSV.exportarCSV("datosExportar.csv", valparaiso);
+                        break;
+
+                    case 16:
+                        salir = true;
+                        break;
+
+                    default:
+                        System.out.println("Solo números entre 1 y 16");
                 }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar un número");
+                sn.next();
             }
+        }
 
     }
 

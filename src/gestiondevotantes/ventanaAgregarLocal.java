@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  * @author gerard
  */
 public class ventanaAgregarLocal extends javax.swing.JFrame {
-    public Region valparaiso;
+    private Region valparaiso;
 
     /**
      * Creates new form ventanaPrueba
@@ -43,7 +43,7 @@ public class ventanaAgregarLocal extends javax.swing.JFrame {
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Añadir nuevo local");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

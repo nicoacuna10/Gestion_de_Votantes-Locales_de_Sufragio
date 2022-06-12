@@ -375,21 +375,6 @@ public class Region implements Mostrable{
         return rutsNoVotantes;
     }
             
-    public void mostrarVotantesIntervalo(String nombreLocal) throws IOException{
-        Local ll = buscarLocal(nombreLocal);//Se verifica la existencia del local
-        if(ll != null)
-            ll.mostrarVotantesIntervalo();
-        else
-            System.out.println("LOCAL NO ENCONTRADO");
-    }
-    
-    public void mostrarVotanteMasJoven(String nombreLocal){
-        Local ll = buscarLocal(nombreLocal);//Se verifica la existencia del local
-        if(ll != null)
-            ll.obtenerVotanteMasJoven();
-        else
-            System.out.println("LOCAL NO ENCONTRADO");
-    }
     /**
      * Método votantesPorNombreoApellido: Busca el no votante en el registro y obtiene
      * sus datos.

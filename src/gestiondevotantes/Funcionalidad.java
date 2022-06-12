@@ -458,29 +458,9 @@ public class Funcionalidad {
   
     }
 
-    /**
-     * Funcion 12: muestra el votante mas joven de un local especifico
-     * @param valparaiso Región de Valparaiso
-     * @throws IOException 
-     */
-    public void funcionMostrarVotanteMasJoven(Region valparaiso) throws IOException{
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Ingrese el nombre del local");
-        String nombreLocal = lector.readLine().toUpperCase();
-        valparaiso.mostrarVotanteMasJoven(nombreLocal);
-    }
 
-    /**
-     *  EXFuncion 13: muestra todos los votantes de un local en un intervalo
-     * @param valparaiso Región de Valparaiso
-     * @throws IOException 
-     */
-    public void funcionMostrarVotantesIntervalo(Region valparaiso) throws IOException{
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Ingrese el nombre del local");
-        String nombreLocal = lector.readLine().toUpperCase();
-        valparaiso.mostrarVotantesIntervalo(nombreLocal);
-    }
+
+
     /**
      *  Funcion 13: muestra todos los votantes que coincidan en un apellido
      * @param valparaiso Region de Valparaiso
