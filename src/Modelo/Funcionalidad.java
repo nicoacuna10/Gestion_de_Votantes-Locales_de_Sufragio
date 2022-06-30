@@ -64,7 +64,7 @@ public class Funcionalidad {
      * @param valparaiso Región de Valparaiso
      * @throws IOException Excepcion Input/Output
      */
-    public void funcionAgregarPersona(Region valparaiso)throws IOException{
+    public void funcionAgregarPersona(Region valparaiso)throws IOException, RutException{
         Votante votanteNuevo;
         String nombreLocal, nombreCompleto, rut, comuna, direccion;
         int estadoElectoral, numeroDeMesa;
@@ -74,15 +74,47 @@ public class Funcionalidad {
         System.out.println("Ingrese nombre completo de la persona");
         nombreCompleto = lector.readLine().toUpperCase();
 
-        System.out.println("Ingrese rut del persona");
+        System.out.println("Ingrese rut del persona, Formato: 11222333-4");
         rut = lector.readLine();
+        try {
+            if(rut.indexOf('-')==-1 || rut.length()<9 || rut.length()>10){
+                throw new RutException();
+            }
+        } catch (RutException e) {
+            String rutAux = rut;
+            while(rutAux.length()<9 || rutAux.length()<9 || rutAux.indexOf('-')==-1){
+                System.out.println("Ingrese nuevamente el rut");
+                if(rut.length()>9 && rut.length()<11)break;
+                if(rut.indexOf('-')!=-1)break;
+                rutAux = lector.readLine();
+                rut=rutAux;
+            }              
+        }
 
         System.out.println("Ingrese comuna de domicilio de la persona");
         comuna = lector.readLine().toUpperCase();
 
-        System.out.println("Ingrese dirección de domicilio de la persona");
+        System.out.println("Ingrese dirección de domicilio de la persona, formato: CALLE #NUMERO");
         direccion = lector.readLine().toUpperCase();
-
+        try {
+            if(direccion.indexOf('#')==-1) throw new DireccionException();
+        } catch (DireccionException e) {
+            while (direccion.indexOf('#')==-1) {
+                System.out.println("Ingrese nuevamente la direccion en el formato: CALLE #NUMERO");
+                direccion=lector.readLine().toUpperCase();
+            }
+        }
+        /*
+        try{
+            direccion = lector.readLine();
+        }catch(DireccionException){
+            e.printStackTrace();
+            while(){
+                ...
+            }
+        }
+        */
+        
         System.out.println("Ingrese 1 si la persona esta habilitada para votar, 0 caso contrario");
         estadoElectoral = Integer.parseInt(lector.readLine());
         while(estadoElectoral != 1 && estadoElectoral != 0){
@@ -104,7 +136,6 @@ public class Funcionalidad {
                 System.out.println("El votante se agrego con exito");
             }else System.out.println("El votante ya existe");
             
-            
         }else{
             System.out.println("Ingrese la razon");
             String razon = lector.readLine().toUpperCase();
@@ -122,15 +153,28 @@ public class Funcionalidad {
      * @param valparaiso Región de Valparaiso
      * @throws IOException Excepcion Input/Output
      */
-    public void funcionModificarDatosPersona(Region valparaiso)throws IOException{
+    public void funcionModificarDatosPersona(Region valparaiso)throws IOException,RutException{
         String rut, nombreLocalNuevo;
         int numeroDeMesaNueva;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         // Se solicita ingresar el rut de la persona para realizar los cambios necesarios.
-        System.out.println("Ingrese rut de la persona que necesite modificar datos");
+        System.out.println("Ingrese rut de la persona que necesite modificar datos, formato: 11222333-4");
         rut = lector.readLine();
-        
+        try {
+            if(rut.indexOf('-')==-1 || rut.length()<9 || rut.length()>10){
+                throw new RutException();
+            }
+        } catch (RutException e) {
+            String rutAux = rut;
+            while(rutAux.length()<9 || rutAux.length()<9 || rutAux.indexOf('-')==-1){
+                System.out.println("Ingrese nuevamente el rut");
+                if(rut.length()>9 && rut.length()<11)break;
+                if(rut.indexOf('-')!=-1)break;
+                rutAux = lector.readLine();
+                rut=rutAux;
+            }              
+        }
         Votante v = valparaiso.buscarVotante(rut);
         if(v != null){
             Local a = valparaiso.obtenerLocalVotante(rut);
@@ -180,5 +224,4 @@ public class Funcionalidad {
         }
    
     }
-    
 }
