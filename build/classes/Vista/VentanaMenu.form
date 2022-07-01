@@ -28,31 +28,37 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botonFuncion1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonFuncion2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonFuncion3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonFuncion4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonFuncion5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="botonFuncion10" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonFuncion11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="botonFuncion6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonFuncion7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonFuncion8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonFuncion9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonFuncion1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonFuncion2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonFuncion3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonFuncion4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonFuncion5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="92" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="botonFuncion15" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonFuncion14" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonFuncion13" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonFuncion12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="botonFuncion11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="botonFuncion6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="70" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="botonFuncion15" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion13" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonFuncion12" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
+                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -60,7 +66,7 @@
                       <Component id="jLabel1" min="-2" pref="286" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -99,8 +105,13 @@
                   <Component id="botonFuncion10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botonFuncion11" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonFuncion11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,7 +151,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonFuncion5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mostrar Locales de la region"/>
+        <Property name="text" type="java.lang.String" value="Mostrar Locales de la region en detalle"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFuncion5ActionPerformed"/>
@@ -229,6 +240,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFuncion15ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar nombres de Locales en orden alfabetico"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar Votantes de todos los Locales en orden alfabetico"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

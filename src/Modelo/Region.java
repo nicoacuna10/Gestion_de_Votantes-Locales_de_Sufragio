@@ -15,6 +15,8 @@ public class Region implements Mostrable{
     /**
      * Constructor de la clase Region, inicializa las colecciones
      */
+    StrategySortMostrar strategy;
+    
     public Region(){
         registroLocalesNombre = new HashMap();
         registroNoVotantesRut = new HashMap();
@@ -415,6 +417,16 @@ public class Region implements Mostrable{
             }
         }
         return datos;
+    }
+    /*
+    Metodos pertenecientes a Strategy
+    Se establece el formato de salida en el primer metodo y se muestra en el segundo
+    */
+    public void setDisplayFormat( StrategySortMostrar ssm ) {
+    strategy = ssm;
+}
+    public void mostrar(){
+    strategy.mostrarDatos(registroLocalesNombre);
     }
 
 }
