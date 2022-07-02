@@ -29,6 +29,16 @@ public class VentanaModificarDatosPersona extends javax.swing.JFrame {
         
         jLabel3.setVisible(false);
         jTextField2.setVisible(false);
+        jButton1.setEnabled(false);
+    }
+    
+    public void habilitarBotonModificarDatosPersona(){
+        if(botonModificarNumeroDeMesa.isSelected() || botonModificarLocal.isSelected() || botonModificarRazon.isSelected()){
+            if(!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()){
+                jButton1.setEnabled(true);
+            }else jButton1.setEnabled(false);
+        
+        }else jButton1.setEnabled(false);
     }
 
     /**
@@ -56,6 +66,12 @@ public class VentanaModificarDatosPersona extends javax.swing.JFrame {
 
         jLabel1.setText("Ingrese rut de la persona para modificar sus datos:");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         jLabel2.setText("Seleccione opción de modificación:");
 
         buttonGroup1.add(botonModificarNumeroDeMesa);
@@ -79,6 +95,12 @@ public class VentanaModificarDatosPersona extends javax.swing.JFrame {
         botonModificarRazon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarRazonActionPerformed(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
             }
         });
 
@@ -184,9 +206,9 @@ public class VentanaModificarDatosPersona extends javax.swing.JFrame {
                 throw new RutException();
             }
         } catch (RutException e) {
-            System.out.println(e.getMessage());
             String rutAux = rut;
-            while(rutAux.length()<9 || rutAux.length()<9 || rutAux.indexOf('-')==-1){
+            while(rutAux.length()<9 || rutAux.length()>10 || rutAux.indexOf('-')==-1){
+                System.out.println(e.getMessage());
                 rutAux = JOptionPane.showInputDialog("Ingrese nuevamente el rut");
                 if(rut.length()>9 && rut.length()<11)break;
                 if(rut.indexOf('-')!=-1)break;
@@ -248,6 +270,14 @@ public class VentanaModificarDatosPersona extends javax.swing.JFrame {
         this.menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        habilitarBotonModificarDatosPersona();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        habilitarBotonModificarDatosPersona();
+    }//GEN-LAST:event_jTextField2KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

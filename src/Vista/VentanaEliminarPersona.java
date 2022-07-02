@@ -24,6 +24,8 @@ public class VentanaEliminarPersona extends javax.swing.JFrame {
         this.menu = menu;
         this.valparaiso = valparaiso;
         this.setLocationRelativeTo(null);
+        
+        jButton1.setEnabled(false);
     }
 
     /**
@@ -43,6 +45,12 @@ public class VentanaEliminarPersona extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Ingrese rut de la persona a eliminar");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Eliminar Persona");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +109,7 @@ public class VentanaEliminarPersona extends javax.swing.JFrame {
         } catch (RutException e) {
             System.out.println(e.getMessage());
             String rutAux = rut;
-            while(rutAux.length()<9 || rutAux.length()<9 || rutAux.indexOf('-')==-1){
+            while(rutAux.length()<9 || rutAux.length()>10 || rutAux.indexOf('-')==-1){
                 rutAux = JOptionPane.showInputDialog("Ingrese nuevamente el rut");
                 if(rut.length()>9 && rut.length()<11)break;
                 if(rut.indexOf('-')!=-1)break;
@@ -127,6 +135,12 @@ public class VentanaEliminarPersona extends javax.swing.JFrame {
         this.menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if(!jTextField1.getText().isEmpty()){
+            jButton1.setEnabled(true);
+        }else jButton1.setEnabled(false);
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

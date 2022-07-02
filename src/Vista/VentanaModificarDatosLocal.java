@@ -23,6 +23,14 @@ public class VentanaModificarDatosLocal extends javax.swing.JFrame {
         this.menu = menu;
         this.valparaiso = valparaiso;
         this.setLocationRelativeTo(null);
+        
+        jButton1.setEnabled(false);
+    }
+    
+    public void habilitarBotonModificarDatosLocal(){
+        if(!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()){
+            jButton1.setEnabled(true);
+        }else jButton1.setEnabled(false);
     }
 
     /**
@@ -48,6 +56,18 @@ public class VentanaModificarDatosLocal extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
             }
         });
 
@@ -131,6 +151,14 @@ public class VentanaModificarDatosLocal extends javax.swing.JFrame {
         this.menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        habilitarBotonModificarDatosLocal();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        habilitarBotonModificarDatosLocal();
+    }//GEN-LAST:event_jTextField2KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

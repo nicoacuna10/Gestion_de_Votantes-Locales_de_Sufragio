@@ -25,6 +25,8 @@ public class VentanaMostrarVotantesNombreoApellido extends javax.swing.JFrame {
         this.valparaiso = valparaiso;
         
         this.setLocationRelativeTo(null);
+        
+        jButton1.setEnabled(false);
     }
 
     /**
@@ -47,6 +49,12 @@ public class VentanaMostrarVotantesNombreoApellido extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Ingrese nombre o apellido");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Buscar Votantes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +174,7 @@ public class VentanaMostrarVotantesNombreoApellido extends javax.swing.JFrame {
                     Object[] datosFila = new Object[7];
                     String[] arregloDatosPersona = datosPersona.split(",");
                   
-                    jLabel1.setText("DATOS VOTANTE");
+                    jLabel1.setText("DATOS VOTANTES");
 
                     datosFila[0] = arregloDatosPersona[0];
                     datosFila[1] = arregloDatosPersona[1];
@@ -197,6 +205,12 @@ public class VentanaMostrarVotantesNombreoApellido extends javax.swing.JFrame {
         this.menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if(!jTextField1.getText().isEmpty()){
+            jButton1.setEnabled(true);
+        }else jButton1.setEnabled(false);
+    }//GEN-LAST:event_jTextField1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

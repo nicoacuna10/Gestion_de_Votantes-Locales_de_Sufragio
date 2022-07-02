@@ -28,8 +28,24 @@ public class VentanaAgregarPersona extends javax.swing.JFrame {
         
         jTextField5.setVisible(false);
         jTextField6.setVisible(false);
+        
+        jButton1.setEnabled(false);
     }
+    
+    public void habilitarBotonAgregarPersona(){
+        if(jRadioButton1.isSelected()){
+            if(!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty() && !jTextField3.getText().isEmpty() && !jTextField4.getText().isEmpty() && !jTextField5.getText().isEmpty() && !jTextField6.getText().isEmpty()){
+                jButton1.setEnabled(true);
+            }else jButton1.setEnabled(false);
+        
+        }else{
+            if(!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty() && !jTextField3.getText().isEmpty() && !jTextField4.getText().isEmpty() && !jTextField5.getText().isEmpty()){
+                jButton1.setEnabled(true);
+            }else jButton1.setEnabled(false);
 
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,6 +84,30 @@ public class VentanaAgregarPersona extends javax.swing.JFrame {
 
         jLabel4.setText("Dirección:");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
+        });
+
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("SÍ");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +125,18 @@ public class VentanaAgregarPersona extends javax.swing.JFrame {
         });
 
         jLabel5.setText("¿Habilitado(a) para votar?");
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+        });
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField6KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Agregar persona");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -219,9 +271,9 @@ public class VentanaAgregarPersona extends javax.swing.JFrame {
                 throw new RutException();
             }
         } catch (RutException e) {
-            System.out.println(e.getMessage());
             String rutAux = rut;
-            while(rutAux.length()<9 || rutAux.length()<9 || rutAux.indexOf('-')==-1){
+            while(rutAux.length()<9 || rutAux.length()>10 || rutAux.indexOf('-')==-1){
+                System.out.println(e.getMessage());
                 rutAux = JOptionPane.showInputDialog("Ingrese nuevamente el rut");
                 if(rut.length()>9 && rut.length()<11)break;
                 if(rut.indexOf('-')!=-1)break;
@@ -235,9 +287,10 @@ public class VentanaAgregarPersona extends javax.swing.JFrame {
         try {
             if(direccion.indexOf('#')==-1) throw new DireccionException();
         } catch (DireccionException e) {
-            System.out.println(e.getMessage());
             while (direccion.indexOf('#')==-1) {
-                JOptionPane.showInputDialog("Ingrese nuevamente la direccion en el formato: CALLE #NUMERO");
+                System.out.println(e.getMessage());
+                direccion = JOptionPane.showInputDialog("Ingrese nuevamente la direccion en el formato: CALLE #NUMERO");
+                
             }
         }
         
@@ -273,6 +326,30 @@ public class VentanaAgregarPersona extends javax.swing.JFrame {
         this.menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        habilitarBotonAgregarPersona();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        habilitarBotonAgregarPersona();
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        habilitarBotonAgregarPersona();
+    }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        habilitarBotonAgregarPersona();
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        habilitarBotonAgregarPersona();
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+        habilitarBotonAgregarPersona();
+    }//GEN-LAST:event_jTextField6KeyReleased
 
 
 

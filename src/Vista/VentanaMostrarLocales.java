@@ -81,7 +81,7 @@ public class VentanaMostrarLocales extends javax.swing.JFrame {
 
             },
             new String [] {
-                "nombre", "comuna", "direccion", "capacidad maxima", "mesas"
+                "Nombre", "Comuna", "Direccion", "Capacidad Maxima", "Mesas"
             }
         ) {
             Class[] types = new Class [] {
@@ -108,9 +108,9 @@ public class VentanaMostrarLocales extends javax.swing.JFrame {
             tablaLocales.getColumnModel().getColumn(3).setMinWidth(130);
             tablaLocales.getColumnModel().getColumn(3).setPreferredWidth(100);
             tablaLocales.getColumnModel().getColumn(3).setMaxWidth(130);
-            tablaLocales.getColumnModel().getColumn(4).setMinWidth(80);
+            tablaLocales.getColumnModel().getColumn(4).setMinWidth(60);
             tablaLocales.getColumnModel().getColumn(4).setPreferredWidth(50);
-            tablaLocales.getColumnModel().getColumn(4).setMaxWidth(80);
+            tablaLocales.getColumnModel().getColumn(4).setMaxWidth(60);
         }
 
         jScrollPane2.setViewportView(jScrollPane1);

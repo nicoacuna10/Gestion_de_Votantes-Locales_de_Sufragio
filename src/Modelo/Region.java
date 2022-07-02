@@ -204,7 +204,7 @@ public class Region implements Mostrable{
      * @return Retorna true, si se realizó la modificación, false caso contrario.
      */
     public boolean modificarDatosVotante(Votante v, Local a, int numeroDeMesaNueva){
-        if(!registroLocalesNombre.containsKey(a.getNombreLocal()) || a.buscarVotante(v.getRut()) == null){
+        if(a.buscarVotante(v.getRut()) == null){
             return false;
         }
         return a.modificarNumeroDeMesaVotante(v.getRut(), numeroDeMesaNueva); 
@@ -222,7 +222,7 @@ public class Region implements Mostrable{
      * @return Retorna true, si se realizó la modificación, false caso contrario.
      */
     public boolean modificarDatosVotante(Votante v, Local a, Local b){
-        if(!registroLocalesNombre.containsKey(a.getNombreLocal()) || !registroLocalesNombre.containsKey(b.getNombreLocal()) || a.getNombreLocal().equals(b.getNombreLocal())){
+        if( b == null || !registroLocalesNombre.containsKey(b.getNombreLocal()) || a.getNombreLocal().equals(b.getNombreLocal())){
             return false;
         }
         a.eliminarVotante(v.getRut());

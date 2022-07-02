@@ -35,22 +35,22 @@ public class Funcionalidad {
         valparaiso.agregarLocal(local3);
         
         
-        votante1 = new Votante("PEDRO ALBERTO LOPEZ GONZALEZ", "13800755-0", "VINA DEL MAR", "15 NORTE 567", 1, 50);
+        votante1 = new Votante("PEDRO ALBERTO LOPEZ GONZALEZ", "13800755-0", "VINA DEL MAR", "15 NORTE #567", 1, 50);
         valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", votante1);
         
-        Votante votante4 = new Votante("PEDRO ANGEL LOPEZ QUISPE", "23845755-1", "VINA DEL MAR", "10 NORTE 567", 1, 25);
+        Votante votante4 = new Votante("PEDRO ANGEL LOPEZ QUISPE", "23845755-1", "VINA DEL MAR", "10 NORTE #567", 1, 25);
         valparaiso.agregarVotante("UNIVERSIDAD ANDRES BELLO", votante4);
         
-        votante2 = new Votante("PATRICIA CABRERO QUISPE", "8444987-2", "VALPARAISO", "CALLE ZENTENO 130", 1, 34);
+        votante2 = new Votante("PATRICIA CABRERO QUISPE", "8444987-2", "VALPARAISO", "CALLE ZENTENO #130", 1, 34);
         valparaiso.agregarVotante("PUCV CASA CENTRAL", votante2);
         
-        votante3 = new Votante("JUAN RICARDO ASTORGA BERMUDEZ", "19731000-K", "CONCON", "CALLE CUATRO 111", 1, 1);
+        votante3 = new Votante("JUAN RICARDO ASTORGA BERMUDEZ", "19731000-K", "CONCON", "CALLE CUATRO #111", 1, 1);
         valparaiso.agregarVotante("LICEO POLITECNICO CONCON", votante3);
         
-        noVotante1 = new NoVotante("MARIA JUANA DE LOS ANGELES RIVEROS", "12888012-9", "SAN ANTONIO", "RUBEN DARIO 1073", 0,"CARCEL");
+        noVotante1 = new NoVotante("MARIA JUANA DE LOS ANGELES RIVEROS", "12888012-9", "SAN ANTONIO", "RUBEN DARIO #1073", 0,"CARCEL");
         valparaiso.agregarNoVotante(noVotante1);
         
-        noVotante2 = new NoVotante("JUANA VALENTINA SANCHEZ ORTUZAR", "24898012-1", "VIÑA DEL MAR", "6 ORIENTE 458", 0,"MENOR DE EDAD");
+        noVotante2 = new NoVotante("JUANA VALENTINA SANCHEZ ORTUZAR", "24898012-1", "VIÑA DEL MAR", "6 ORIENTE #458", 0,"MENOR DE EDAD");
         valparaiso.agregarNoVotante(noVotante2);
 
     }

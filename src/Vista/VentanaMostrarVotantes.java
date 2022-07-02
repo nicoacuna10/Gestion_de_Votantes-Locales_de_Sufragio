@@ -82,6 +82,9 @@ public class VentanaMostrarVotantes extends javax.swing.JFrame {
         jLabel1.setText("Votantes de la región de Valparaiso");
 
         jScrollPane2.setBorder(new javax.swing.border.MatteBorder(null));
+        jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setMaximumSize(tablaVotantes.getPreferredScrollableViewportSize());
+        jScrollPane2.setPreferredSize(tablaVotantes.getPreferredScrollableViewportSize());
 
         tablaVotantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,18 +104,18 @@ public class VentanaMostrarVotantes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaVotantes);
         if (tablaVotantes.getColumnModel().getColumnCount() > 0) {
-            tablaVotantes.getColumnModel().getColumn(0).setMinWidth(250);
-            tablaVotantes.getColumnModel().getColumn(0).setMaxWidth(250);
-            tablaVotantes.getColumnModel().getColumn(1).setMinWidth(120);
-            tablaVotantes.getColumnModel().getColumn(1).setMaxWidth(120);
-            tablaVotantes.getColumnModel().getColumn(2).setMinWidth(150);
-            tablaVotantes.getColumnModel().getColumn(2).setMaxWidth(150);
+            tablaVotantes.getColumnModel().getColumn(0).setMinWidth(280);
+            tablaVotantes.getColumnModel().getColumn(0).setMaxWidth(280);
+            tablaVotantes.getColumnModel().getColumn(1).setMinWidth(90);
+            tablaVotantes.getColumnModel().getColumn(1).setMaxWidth(90);
+            tablaVotantes.getColumnModel().getColumn(2).setMinWidth(125);
+            tablaVotantes.getColumnModel().getColumn(2).setMaxWidth(125);
             tablaVotantes.getColumnModel().getColumn(3).setMinWidth(175);
             tablaVotantes.getColumnModel().getColumn(3).setMaxWidth(175);
-            tablaVotantes.getColumnModel().getColumn(4).setMinWidth(200);
-            tablaVotantes.getColumnModel().getColumn(4).setMaxWidth(200);
-            tablaVotantes.getColumnModel().getColumn(5).setMinWidth(175);
-            tablaVotantes.getColumnModel().getColumn(5).setMaxWidth(175);
+            tablaVotantes.getColumnModel().getColumn(4).setMinWidth(275);
+            tablaVotantes.getColumnModel().getColumn(4).setMaxWidth(275);
+            tablaVotantes.getColumnModel().getColumn(5).setMinWidth(200);
+            tablaVotantes.getColumnModel().getColumn(5).setMaxWidth(200);
             tablaVotantes.getColumnModel().getColumn(6).setMinWidth(60);
             tablaVotantes.getColumnModel().getColumn(6).setMaxWidth(60);
         }
@@ -127,12 +130,12 @@ public class VentanaMostrarVotantes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(523, 523, 523))
+                .addGap(546, 546, 546))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

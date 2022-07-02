@@ -25,7 +25,10 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
         this.valparaiso = valparaiso;
         
         this.setLocationRelativeTo(null);
+        
+        jButton1.setEnabled(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +52,12 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Ingrese nombre del local");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Buscar Local");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +164,12 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
        this.menu.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if(!jTextField1.getText().isEmpty()){
+            jButton1.setEnabled(true);
+        }else jButton1.setEnabled(false);
+    }//GEN-LAST:event_jTextField1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
