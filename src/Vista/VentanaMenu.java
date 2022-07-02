@@ -1,11 +1,7 @@
 package Vista;
 
 
-import Modelo.CSV;
-import Modelo.Funcionalidad;
-import Modelo.Region;
-import Modelo.mostrarSortNombresLocales;
-import Modelo.mostrarSortRutsVotantes;
+import Modelo.*;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +13,6 @@ import java.util.logging.Logger;
 public class VentanaMenu extends javax.swing.JFrame {
     
     private final Region valparaiso;
-    private final Funcionalidad f;
     private final CSV administradorCSV;
     
     private VentanaAgregarLocal agregarLocal;
@@ -26,6 +21,8 @@ public class VentanaMenu extends javax.swing.JFrame {
     private VentanaBuscarLocal buscarLocal;
     private VentanaMostrarLocales mostrarLocales;
     
+    private VentanaAgregarPersona agregarPersona;
+    private VentanaModificarDatosPersona modificarDatosPersona;
     private VentanaEliminarPersona eliminarPersona;
     private VentanaBuscarPersona buscarPersona;
     private VentanaMostrarVotantesLocal mostrarVotantesLocal;
@@ -39,13 +36,11 @@ public class VentanaMenu extends javax.swing.JFrame {
     /**
      * Creates new form VentanaMenu
      * @param valparaiso región valparaiso
-     * @param f funcionalidad
      * @param administradorCSV administrador de los CSV
      */
-    public VentanaMenu(Region valparaiso, Funcionalidad f, CSV administradorCSV) {
+    public VentanaMenu(Region valparaiso, CSV administradorCSV) {
         initComponents();
         this.valparaiso = valparaiso;
-        this.f = f;
         this.administradorCSV = administradorCSV;
         this.setLocationRelativeTo(null);
     }
@@ -75,8 +70,8 @@ public class VentanaMenu extends javax.swing.JFrame {
         botonFuncion13 = new javax.swing.JButton();
         botonFuncion14 = new javax.swing.JButton();
         botonFuncion15 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonFuncion16 = new javax.swing.JButton();
+        botonFuncion17 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,17 +182,17 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Mostrar nombres de Locales en orden alfabetico");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonFuncion16.setText("Mostrar nombres de Locales en orden alfabetico");
+        botonFuncion16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonFuncion16ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Mostrar Votantes de todos los Locales en orden alfabetico");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonFuncion17.setText("Mostrar Votantes de todos los Locales en orden alfabetico");
+        botonFuncion17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonFuncion17ActionPerformed(evt);
             }
         });
 
@@ -206,38 +201,33 @@ public class VentanaMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonFuncion1)
-                                    .addComponent(botonFuncion2)
-                                    .addComponent(botonFuncion3)
-                                    .addComponent(botonFuncion4)
-                                    .addComponent(botonFuncion5)
-                                    .addComponent(jButton1))
-                                .addGap(113, 113, 113)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(botonFuncion11)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(botonFuncion6)
-                                            .addComponent(botonFuncion7)
-                                            .addComponent(botonFuncion8)
-                                            .addComponent(botonFuncion9)
-                                            .addComponent(botonFuncion10))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(botonFuncion15)
-                                            .addComponent(botonFuncion14)
-                                            .addComponent(botonFuncion13)
-                                            .addComponent(botonFuncion12)))))
-                            .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(347, 347, 347)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botonFuncion1)
+                    .addComponent(botonFuncion2)
+                    .addComponent(botonFuncion3)
+                    .addComponent(botonFuncion4)
+                    .addComponent(botonFuncion5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonFuncion6)
+                    .addComponent(botonFuncion7)
+                    .addComponent(botonFuncion8)
+                    .addComponent(botonFuncion9)
+                    .addComponent(botonFuncion10)
+                    .addComponent(botonFuncion11))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonFuncion16)
+                    .addComponent(botonFuncion17)
+                    .addComponent(botonFuncion15)
+                    .addComponent(botonFuncion14)
+                    .addComponent(botonFuncion13)
+                    .addComponent(botonFuncion12))
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(347, 347, 347)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -245,37 +235,47 @@ public class VentanaMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFuncion1)
-                    .addComponent(botonFuncion6)
-                    .addComponent(botonFuncion12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFuncion2)
-                    .addComponent(botonFuncion7)
-                    .addComponent(botonFuncion13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFuncion3)
-                    .addComponent(botonFuncion8)
-                    .addComponent(botonFuncion14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFuncion4)
-                    .addComponent(botonFuncion9)
-                    .addComponent(botonFuncion15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFuncion5)
-                    .addComponent(botonFuncion10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFuncion11)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(51, 51, 51))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(botonFuncion1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonFuncion2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonFuncion3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonFuncion4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonFuncion5)
+                        .addGap(109, 109, 109))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonFuncion6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonFuncion12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFuncion17)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -312,19 +312,15 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonFuncion5ActionPerformed
 
     private void botonFuncion6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion6ActionPerformed
-        try {
-            f.funcionAgregarPersona(valparaiso);
-        } catch (IOException ex) {
-            Logger.getLogger(VentanaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.setVisible(false);
+        this.agregarPersona = new VentanaAgregarPersona(this, valparaiso);
+        agregarPersona.setVisible(true);
     }//GEN-LAST:event_botonFuncion6ActionPerformed
 
     private void botonFuncion7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion7ActionPerformed
-        try {
-            f.funcionModificarDatosPersona(valparaiso);
-        } catch (IOException ex) {
-            Logger.getLogger(VentanaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.setVisible(false);
+        this.modificarDatosPersona = new VentanaModificarDatosPersona(this, valparaiso);
+        modificarDatosPersona.setVisible(true);
     }//GEN-LAST:event_botonFuncion7ActionPerformed
 
     private void botonFuncion8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion8ActionPerformed
@@ -373,15 +369,15 @@ public class VentanaMenu extends javax.swing.JFrame {
         administradorCSV.exportarCSV("datosExportar.csv", valparaiso);
     }//GEN-LAST:event_botonFuncion15ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonFuncion16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion16ActionPerformed
        valparaiso.setDisplayFormat(new mostrarSortNombresLocales());
        valparaiso.mostrar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonFuncion16ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonFuncion17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion17ActionPerformed
         valparaiso.setDisplayFormat(new mostrarSortRutsVotantes());
         valparaiso.mostrar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonFuncion17ActionPerformed
 
 
 
@@ -393,6 +389,8 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JButton botonFuncion13;
     private javax.swing.JButton botonFuncion14;
     private javax.swing.JButton botonFuncion15;
+    private javax.swing.JButton botonFuncion16;
+    private javax.swing.JButton botonFuncion17;
     private javax.swing.JButton botonFuncion2;
     private javax.swing.JButton botonFuncion3;
     private javax.swing.JButton botonFuncion4;
@@ -401,8 +399,6 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JButton botonFuncion7;
     private javax.swing.JButton botonFuncion8;
     private javax.swing.JButton botonFuncion9;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

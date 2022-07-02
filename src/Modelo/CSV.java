@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.io.*;
-import javax.swing.*;
 
 /**
  *  CSV
@@ -52,8 +51,8 @@ public class CSV {
 
             }
         
-        }catch(Exception e){
-        
+        }catch(IOException e){
+            System.out.println(e.getMessage());
         }
     }
     
@@ -91,7 +90,7 @@ public class CSV {
             pw.close();
             bw.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+ e);
+            System.out.println(e.getMessage());
         }
         
         System.out.println("El archivo *.csv se ha exportado con exito");

@@ -1,6 +1,7 @@
 package Vista;
 
 import Modelo.Region;
+import Modelo.RutException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -139,7 +140,22 @@ public class VentanaBuscarPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String rut = jTextField1.getText();
+        String rut = jTextField1.getText().toUpperCase();
+        
+        try {
+            if(rut.indexOf('-')==-1 || rut.length()<9 || rut.length()>10){
+                throw new RutException();
+            }
+        } catch (RutException e) {
+            System.out.println(e.getMessage());
+            String rutAux = rut;
+            while(rutAux.length()<9 || rutAux.length()<9 || rutAux.indexOf('-')==-1){
+                rutAux = JOptionPane.showInputDialog("Ingrese nuevamente el rut");
+                if(rut.length()>9 && rut.length()<11)break;
+                if(rut.indexOf('-')!=-1)break;
+                rut=rutAux;
+            }              
+        }
         
         String datosPersona = valparaiso.obtenerDatosVotante(rut);
         

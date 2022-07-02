@@ -125,11 +125,11 @@ public class Region implements Mostrable{
      * @return Retorna true si lo agrega, caso contrario false. 
      */
     public boolean agregarNoVotante(NoVotante nv){
-        if( registroNoVotantesRut.containsKey(nv.getRut())){
-            return false;
-        }
-        registroNoVotantesRut.put(nv.getRut(), nv);
-        return true;
+            if( registroNoVotantesRut.containsKey(nv.getRut())){
+                return false;
+            }
+            registroNoVotantesRut.put(nv.getRut(), nv);
+            return true;
     }
     
     
@@ -222,7 +222,7 @@ public class Region implements Mostrable{
      * @return Retorna true, si se realizó la modificación, false caso contrario.
      */
     public boolean modificarDatosVotante(Votante v, Local a, Local b){
-        if(!registroLocalesNombre.containsKey(a.getNombreLocal()) || !registroLocalesNombre.containsKey(b.getNombreLocal()) || a.buscarVotante(v.getRut()) == null || a.getNombreLocal().equals(b.getNombreLocal())){
+        if(!registroLocalesNombre.containsKey(a.getNombreLocal()) || !registroLocalesNombre.containsKey(b.getNombreLocal()) || a.getNombreLocal().equals(b.getNombreLocal())){
             return false;
         }
         a.eliminarVotante(v.getRut());

@@ -28,7 +28,7 @@ public class GestionDeVotantes {
         f.funcionInicial(valparaiso);
         administradorCSV.importarCSV("datosImportar.csv", valparaiso);
         
-        VentanaMenu menu = new VentanaMenu(valparaiso, f, administradorCSV);
+        VentanaMenu menu = new VentanaMenu(valparaiso, administradorCSV);
         menu.setVisible(true);
         
     }
