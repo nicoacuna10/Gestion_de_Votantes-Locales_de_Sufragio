@@ -425,8 +425,9 @@ public class Region implements Mostrable{
     public void setDisplayFormat( StrategySortMostrar ssm ) {
     strategy = ssm;
 }
-    public void mostrar(){
+    /*public void mostrar(){
     strategy.mostrarDatos(registroLocalesNombre);
     }
+*/
 
 }

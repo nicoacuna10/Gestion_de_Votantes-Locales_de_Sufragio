@@ -101,8 +101,6 @@ public class VentanaMostrarLocales extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaLocales);
         if (tablaLocales.getColumnModel().getColumnCount() > 0) {
-            tablaLocales.getColumnModel().getColumn(0).setMinWidth(300);
-            tablaLocales.getColumnModel().getColumn(0).setMaxWidth(300);
             tablaLocales.getColumnModel().getColumn(1).setMinWidth(150);
             tablaLocales.getColumnModel().getColumn(1).setMaxWidth(150);
             tablaLocales.getColumnModel().getColumn(3).setMinWidth(130);

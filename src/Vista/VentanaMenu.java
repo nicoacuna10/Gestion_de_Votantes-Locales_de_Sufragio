@@ -31,7 +31,8 @@ public class VentanaMenu extends javax.swing.JFrame {
     private VentanaMostrarLocalMasLleno mostrarLocalMasLleno;
     private VentanaMostrarVotantesNombreoApellido mostrarVotantesNombreoApellido;
     private VentanaMostrarNoVotantes mostrarNoVotantes;
-   
+   private VentanaMostrarSortNombresLocales mostrarSortNombresLocales;
+   private VentanaMostrarSortRutsVotantes mostrarSortRutsVotantes;
 
     /**
      * Creates new form VentanaMenu
@@ -370,13 +371,15 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonFuncion15ActionPerformed
 
     private void botonFuncion16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion16ActionPerformed
-       valparaiso.setDisplayFormat(new mostrarSortNombresLocales());
-       valparaiso.mostrar();
+       this.setVisible(false);
+       this.mostrarSortNombresLocales = new VentanaMostrarSortNombresLocales(this,valparaiso);
+       mostrarSortNombresLocales.setVisible(true);
     }//GEN-LAST:event_botonFuncion16ActionPerformed
 
     private void botonFuncion17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFuncion17ActionPerformed
-        valparaiso.setDisplayFormat(new mostrarSortRutsVotantes());
-        valparaiso.mostrar();
+       this.setVisible(false);
+       this.mostrarSortRutsVotantes = new VentanaMostrarSortRutsVotantes(this,valparaiso);
+       mostrarSortRutsVotantes.setVisible(true);
     }//GEN-LAST:event_botonFuncion17ActionPerformed
 
 
